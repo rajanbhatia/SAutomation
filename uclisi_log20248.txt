@@ -1,0 +1,22 @@
+﻿[startup] ======================================================================
+[startup] Date/time : 2017-08-24 08:57:51.63
+[startup] Uniface   : [MSW] 9.7.03.02, QG15 (Jun 23 2017), $ioprint=0
+[startup] Command   : \\Filer-usg.its.waikato.ac.nz\usg-share\program\SITS\siapp\vision\uat\uniface\bin\uniface.exe /asn=\\Filer-usg.its.waikato.ac.nz\usg-share\program\sits\siapp\vision\uat\adm\uclisi.asn winlog, pid=20248
+[startup] Directory : C:\Users\rbhatia\Google Drive\Project\Automation\SMSAutomation\
+[startup] OS        : Windows 10  (Build 14393)
+[startup] Processor : Intel64 Family 6 Model 78 Stepping 3, Intel(R) Core(TM) i5-6200U CPU @ 2.30GHz, 8074 Mb
+[startup] Hostname  : AVC-SMS-LAP17.resource.waikato.ac.nz
+[startup] User      : rbhatia
+[startup] ======================================================================
+2017-08-24 08:57:51.49 - Uniface session started
+
+  IC201  SVCO AUTHEN      WARNING: Software Activation Key (SAK) licence expires on 31/Aug/2017
+
+
+1 Software Activation Key (SAK) licence(s) expire within 14 days.
+24/Aug/2017 08:58:31.19 - TUP 'CAP.SRS/IFIDM01S' - condition 1 not met '""="F"'.
+WARNING: System parameter (SYP) not defined for 'HER_YCNX_004'.
+Stage 1: Conditional - no reponse 
+ERROR: Fee status not defined on STU - fee translation not possible. 
+commit!!!
+
