@@ -44,7 +44,6 @@ import com.relevantcodes.extentreports.LogStatus;
 //import main.resources.ExcelDataConfig;
 //import test.resources.Codes;
 //import test.resources.ReportScreenshotUtility;
-
 //import test.ClearanceChecks;
 
 public class TEAWeeklyRun {
@@ -165,6 +164,7 @@ public void Auto1TEASubmitApplication(String getusertype, String getfirstn, Stri
 			    assertEquals(driver.findElement(By.xpath("//div[@id='new_user_section']/div/div/div/div/div/h2")).getText(), "Create a new user");
 			    assertEquals(driver.findElement(By.xpath("//div[@id='new_user_section']/div/div/div/div[2]/div/h2")).getText(), "I'm a current student or have studied here before");
 			    assertTrue(isElementPresent(By.xpath("//div[@id='new_user_section']/div/div/div/div[2]/div[2]/div/a")));
+			  
 			    assertEquals(driver.findElement(By.xpath("//div[@id='new_user_section']/div/div/div/div[2]/div[2]/div/a")).getText(), "Login");
 			    assertEquals(driver.findElement(By.cssSelector("h2.sv-col-md-3.sv-col-xs-12")).getText(), "Get in touch with us");
 			    assertEquals(driver.findElement(By.cssSelector("p.sv-col-md-3.sv-col-xs-6 > span")).getText(), "In New Zealand");
@@ -873,7 +873,7 @@ public void Auto1TEASubmitApplication(String getusertype, String getfirstn, Stri
     //assertEquals(driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr/td[4]")).getText(), "Submitted");
     assertEquals(driver.findElement(By.id("PTAD01S")).getText(), "Applications");
     assertEquals(driver.findElement(By.xpath("//html/body/header/nav/div/div[2]/ul[2]/li/a")).getText(), firstn+" "+lastn);
-    assertEquals(driver.findElement(By.id("sitsportalpagetitle")).getText(), "Applications");
+    assertEquals(driver.findElement(By.id("sitsportalpagetitle")).getText(), "Qualifications and Papers");
     assertEquals(driver.findElement(By.cssSelector("h2.sv-panel-title")).getText(), "Current applications");
     }
     // temp this.executeScript("aftersubmission", firstn, lastn, email, dob, city, postcode, mobile, country, coursename, contactaddressline1, contactaddressline2, contactaddressline3, contactaddressline4, gender, contactcountry, homephone, completequalcode, qualname, yearfrom, yearto, firstenrolter, livinginNZcode, nstudentnumber, prevfamilyname, secondname, othersecondname, anyotherqualcode, prevtertiarystudyatunivcode, currentlyatsecondaryschoolcode, currentlystudyingtowards, highsecqual, institutionname, institutiontype, qualificationtype, lastsecschool, lastschoolyear, ethnicity1, ethnicity2, ethnicity3, iwi1, iwi2, iwi3, iwi4, residencystatus, courseyear, coursemonth);
@@ -954,7 +954,7 @@ try {
 		studentLogin(email, password);
 	  
 		 assertEquals(driver.findElement(By.cssSelector("h2.sv-panel-title")).getText(), "Current applications");
-		 assertEquals(driver.findElement(By.id("sitsportalpagetitle")).getText(), "Applications");
+		 assertEquals(driver.findElement(By.id("sitsportalpagetitle")).getText(), "Qualifications and Papers");
 		 assertEquals(driver.findElement(By.xpath("//html/body/header/nav/div/div[2]/ul[2]/li/a")).getText(), firstn+" "+lastn);
 		 courserownumber=getSummaryPageCourseRowNumber(coursename);
 		 //if (courserownumber==0) logger.log(LogStatus.INFO,"Course record not found on the Applications Summary page.");
@@ -1964,7 +1964,7 @@ public void Auto6TEASecondarySchoolDetails(String getusertype, String getfirstn,
 				studentLogin(email, password);
 			    // Applications Summary Page
 			    assertEquals(driver.findElement(By.cssSelector("h2.sv-panel-title")).getText(), "Current applications");
-			    assertEquals(driver.findElement(By.id("sitsportalpagetitle")).getText(), "Applications");
+			    assertEquals(driver.findElement(By.id("sitsportalpagetitle")).getText(), "Qualifications and Papers");
 			    driver.findElement(By.linkText("Start a New Application")).click();
 			    break;
 		}
@@ -2171,7 +2171,7 @@ public void Auto6TEASecondarySchoolDetails(String getusertype, String getfirstn,
     else if (usertype.equals("Student"))
     {
     driver.findElement(By.linkText("Applications")).click();
-    assertEquals(driver.findElement(By.id("sitsportalpagetitle")).getText(), "Applications");
+    assertEquals(driver.findElement(By.id("sitsportalpagetitle")).getText(), "Qualifications and Papers");
     }
     
     if (usertype.equals("Agent"))
@@ -2306,7 +2306,7 @@ public void Auto8TEAApplicationForMasterOfAppliedPsychology(String getusertype, 
 						studentLogin(email, password);
 					    // Applications Summary Page
 					    assertEquals(driver.findElement(By.cssSelector("h2.sv-panel-title")).getText(), "Current applications");
-					    assertEquals(driver.findElement(By.id("sitsportalpagetitle")).getText(), "Applications");
+					    assertEquals(driver.findElement(By.id("sitsportalpagetitle")).getText(), "Qualifications and Papers");
 					    driver.findElement(By.linkText("Start a New Application")).click(); //
 					    break;
 				}
@@ -2345,7 +2345,7 @@ public void Auto8TEAApplicationForMasterOfAppliedPsychology(String getusertype, 
     while(i<=3)                    // execute for all 3 courses of Master of Applied Psychology
     {
  //   assertEquals(driver.findElement(By.cssSelector("h2.sv-panel-title")).getText(), "Current applications"); 
-  //  assertEquals(driver.findElement(By.id("sitsportalpagetitle")).getText(), "Applications"); 
+  //  assertEquals(driver.findElement(By.id("sitsportalpagetitle")).getText(), "Qualifications and Papers"); 
    // driver.findElement(By.linkText("Start a New Application")).click();
     // Qualification Search Page
     driver.findElement(By.id("KEYWORD.IPP.SRS")).clear();
@@ -2498,7 +2498,7 @@ public void Auto9TEATeachingProgrammeAdditionalInfo(String getusertype, String g
 				studentLogin(email, password);
 			    // Applications Summary Page
 			    assertEquals(driver.findElement(By.cssSelector("h2.sv-panel-title")).getText(), "Current applications");
-			    assertEquals(driver.findElement(By.id("sitsportalpagetitle")).getText(), "Applications");
+			    assertEquals(driver.findElement(By.id("sitsportalpagetitle")).getText(), "Qualifications and Papers");
 			   
 			    break;
 		}

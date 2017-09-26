@@ -71,10 +71,8 @@ public class ExcelDataConfig {
 	        newdatestring = formatter.format(date);	        
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-		}
-	
-		return newdatestring;
-		 
+		}	
+		return newdatestring;	 
 		
 	/**	
 	//	LocalDate localDate = new LocalDate();

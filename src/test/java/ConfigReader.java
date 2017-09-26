@@ -51,7 +51,6 @@ public class ConfigReader {
 	}
 	public String getReportPath()
 	{
-		
 		return pro.getProperty("ExecutionReport");		
 	}
 	public String getScreenShotPath()
