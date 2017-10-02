@@ -4,6 +4,7 @@
   <test name="Test">
     <classes>
       <class name="TEADailyRun"/>
+      <class name="UATStudentDataDailyImport"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
