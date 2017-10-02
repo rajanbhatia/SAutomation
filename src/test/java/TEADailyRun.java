@@ -1,7 +1,9 @@
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -16,7 +18,6 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-
 import org.openqa.selenium.support.ui.Select;
 import org.testng.AssertJUnit;
 import org.testng.ITestResult;
@@ -25,7 +26,9 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
+
+
+
 
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
@@ -47,7 +50,7 @@ public class TEADailyRun {
 	Login lgn;
 	QualSearch qsearch;
 	PersonalDetailsPage pdpage;
-	SoftAssert softAssert = new SoftAssert(); 
+	//SoftAssert softAssert = new SoftAssert(); 
 	
 	
 	@Test(dataProvider = "ParamData")
@@ -136,13 +139,13 @@ public class TEADailyRun {
 	    else coursemonth=""+month1;
 	    
 	    // Location and subject selection
-	    softAssert.assertEquals(driver.findElement(By.xpath("//*[@id='app_form']/div/div[1]/h2")).getText(), "Location and subject selection");
-	    softAssert.assertEquals(driver.findElement(By.xpath("//*[@id='app_form']/div/div[2]/div/div/fieldset/div/label")).getText(), "Where do you want to study?*");
+	    assertEquals(driver.findElement(By.xpath("//*[@id='app_form']/div/div[1]/h2")).getText(), "Location and subject selection");
+	    assertEquals(driver.findElement(By.xpath("//*[@id='app_form']/div/div[2]/div/div/fieldset/div/label")).getText(), "Where do you want to study?*");
 	    new Select(driver.findElement(By.id("IPQ_ADOAP_LCA"))).selectByVisibleText("Hamilton"); //Hamilton location
 	    driver.findElement(By.id("app-btn-next")).click();
 	    Thread.sleep(500);
 	    // Personal Details Page  
-	    softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div/div[1]/p")).getText(), "Logged in as: "+ getfirstn+" "+ getlastn);
+	    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div/div[1]/p")).getText(), "Logged in as: "+ getfirstn+" "+ getlastn);
 	    pdpage = new PersonalDetailsPage();
 	    pdpage.personalDetails(driver, livinginNZ, livinginNZcode, flag, getprevfamilyname, gender, getnstudentnumber, residencystatus, country, ethnicity1, ethnicity2, ethnicity3, iwi1, iwi2, iwi3, iwi4); // call the method
    		driver.findElement(By.id("app-btn-next")).click();
@@ -152,7 +155,7 @@ public class TEADailyRun {
    		// temp if (usertype.equals("Student") || usertype.equals("Staff_New") || usertype.equals("Agent"))  this.executeScript("beforesubmission",firstn, lastn, email, dob, null, null, null, country, coursename, null, null, null, null, gender, "", null, null, null, null, null, null, livinginNZcode, nstudentnumber, prevfamilyname, secondname, othersecondname, null, null, null, null, null, null, null, null, null, null, ethnicity1, ethnicity2, ethnicity3, iwi1, iwi2, iwi3, iwi4, residencystatus, courseyear, coursemonth);
    
    		// Contact Details
-		softAssert.assertEquals(driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/div/div/input")).getAttribute("value"), getemail);
+		assertEquals(driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/div/div/input")).getAttribute("value"), getemail);
 		//assertFalse(driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/div/div/input")).isEnabled());
    
 		if (flag.equals("New"))
@@ -181,15 +184,15 @@ public class TEADailyRun {
 	    //Checking the Postcode condition, as it's mandatory for NZ only
 	    if (contactcountry.equals("New Zealand"))
 	    {
-	    	softAssert.assertEquals(driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/div[9]/label")).getText(),"Postcode*");
+	    	assertEquals(driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/div[9]/label")).getText(),"Postcode*");
 	    	driver.findElement(By.id("IPR_CAPC")).clear();
 	    	driver.findElement(By.id("app-btn-next")).click();
-	    	softAssert.assertEquals(driver.findElement(By.xpath("//span[@id='parsley-id-21']/div")).getText(),"This value is required.");   
+	    	assertEquals(driver.findElement(By.xpath("//span[@id='parsley-id-21']/div")).getText(),"This value is required.");   
 	    	driver.findElement(By.id("IPR_CAPC")).sendKeys(postcode);
 	    }	
 	    else
 	    {	
-	    	softAssert.assertEquals(driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/div[9]/label")).getText(),"Postcode");
+	    	assertEquals(driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/div[9]/label")).getText(),"Postcode");
 	    }
     
 	    driver.findElement(By.id("app-btn-next")).click();
@@ -223,15 +226,14 @@ public class TEADailyRun {
 		    driver.findElement(By.xpath("//div[@id='IPQ_ADOAP_EDLSCL_chosen']/div/div/input")).sendKeys(lastsecschool);
 		    driver.findElement(By.xpath("//div[@id='IPQ_ADOAP_EDLSCL_chosen']/div/div/input")).sendKeys(Keys.RETURN);
 		    new Select(driver.findElement(By.id("IPQ_ADOAP_EDLSTY"))).selectByVisibleText(lastschoolyear);   
-		    softAssert.assertEquals(driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset/div[6]/label")).getText(),"What is the highest secondary level qualification you have completed?*"); 
+		    assertEquals(driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset/div[6]/label")).getText(),"What is the highest secondary level qualification you have completed?*"); 
 		    new Select(driver.findElement(By.id("IPQ_ADOAP_EDHQAL"))).selectByVisibleText(highsecqual);
 		    if (highsecqual.equals("Overseas Qualification"))
 		    {
-		    	softAssert.assertEquals(driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset/div[7]/label")).getText(),"What qualification did you complete?*");
+		    	assertEquals(driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset/div[7]/label")).getText(),"What qualification did you complete?*");
 	    		driver.findElement(By.id("IPQ_ADOAP_EDQC")).sendKeys("Higher School Certificate");
 		    }
-	    	
-		    softAssert.assertEquals(driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset/div[8]/p")).getText(),"Have you previously studied at tertiary level ( other than at the University of Waikato )?*");    
+	    	assertEquals(driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset/div[8]/p")).getText(),"Have you previously studied at tertiary level ( other than at the University of Waikato )?*");    
 	     
 		    //	Story# 10043 (As an applicant (general), I need a mechanism to provide details of any previous tertiary study I may have completed in order to apply to the University.)
 		    if(prevtertiarystudyatuniv.equalsIgnoreCase("Yes"))
@@ -241,13 +243,14 @@ public class TEADailyRun {
 		    	//Reference Check : HIST04	Evidence of graduation for completed tertiary qualifications	STU	STU	Which year did you first enrol in tertiary study = populated //
 		    	//Reference Check : HIST03	Tertiary academic records (including grading scale)	STU	STU	Which year did you first enrol in tertiary study = populated
 		    	//Both Clearance checks depend upon the below question to be populated
-		    	softAssert.assertEquals(driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset/div[9]/label")).getText(),"Which year did you first enrol in tertiary study?*");    	 
+		    	assertEquals(driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset/div[9]/label")).getText(),"Which year did you first enrol in tertiary study?*");    	 
 		    	new Select(driver.findElement(By.id("IPQ_Which year did you first enrol in tertiary study"))).selectByVisibleText(firstenrolter); 
-		    	if (!residencystatus.equals("Other"))
-		    	{
-			    	softAssert.assertEquals(driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset/div[11]/p")).getText(),"Have you studied at an institution that has a credit or pathway arrangement with us?*");
+		    	if (residencystatus.equals("NZ Citizen") || residencystatus.equals("NZ Permanent Resident") ||  residencystatus.equals("Cook Islands") || residencystatus.equals("Niue") || residencystatus.equals("Tokelau") || (residencystatus.equals("Australian Citizen") && livinginNZ.equalsIgnoreCase("Yes")) || (residencystatus.equalsIgnoreCase("Australian Permanent Resident") && livinginNZ.equals("Yes")) || (residencystatus.equalsIgnoreCase("Australian and NZ Permanent Resident") && livinginNZ.equalsIgnoreCase("Yes")))
+		     	{ // Domestic only
+			    	assertEquals(driver.findElement(By.xpath("//*[@id='app_form']/div/div[2]/div/div/fieldset/div[11]/p")).getText(),"Have you studied at an institution that has a credit or pathway arrangement with us?*");
 			    	driver.findElement(By.id("ADOAP_CRPTH2")).click();
 		    	}
+
 		    	
 		    	new Select(driver.findElement(By.id("IPQ_ADOAP_EDIT"))).selectByVisibleText(institutiontype);    	 
 		    	driver.findElement(By.xpath("//div[@id='IPQ_ADOAP_EDIN_chosen']")).click();
@@ -256,7 +259,7 @@ public class TEADailyRun {
 	    	
 		    	if (institutionname.equals("Overseas Teachers College") || institutionname.equals("Overseas Technical Institute") || institutionname.equals("Overseas University"))
 		    	{
-	    		 		softAssert.assertEquals(driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset[3]/div[3]/label")).getText(), "Country of Institution*"); 
+	    		 		assertEquals(driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset[3]/div[3]/label")).getText(), "Country of Institution*"); 
 	    		 		new Select(driver.findElement(By.id("IPQ_ADOAP_EDIC"))).selectByVisibleText(overseasinstitutioncountry);  //Institution country name
 		    	}
 	    	 	    	    	
@@ -278,7 +281,7 @@ public class TEADailyRun {
 		    	    	completequalcode="P";
 		    	}    	
 		    	 
-		    	 softAssert.assertEquals(driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset[3]/div[9]/p")).getText(),"Do you have any other qualifications?");
+		    	 assertEquals(driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset[3]/div[9]/p")).getText(),"Do you have any other qualifications?");
 		    	 	    	 
 		    	 if(anyotherqual.equalsIgnoreCase("Yes"))
 		    	 {
@@ -317,14 +320,14 @@ public class TEADailyRun {
 	    //Documents page
 	    driver.findElement(By.id("app-btn-next")).click();
 	    // Declaration Page	    
-	    softAssert.assertEquals(driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset/div/p")).getText(), "I declare that the information I have provided in this application and in any attached documentation is true and correct, and that I have not withheld any information which could have a bearing on my application, enrolment or the conditions of my enrolment. I agree to supply any further documentation requested by the University of Waikato for the purpose of my application or enrolment.\nI have read the statement regarding the Privacy Act 1993 and I understand that the University of Waikato will hold, use and disclose information which I have provided as explained in that statement.\nI also understand that I have the right to have access to the information about me held by the University of Waikato and to request correction of that information, in the terms provided for under the Privacy Act 1993.\nSome personal information will be used by the Ministry of Education in an authorised information matching programme for the purposes of the National Student Index.");    
+	    assertEquals(driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset/div/p")).getText(), "I declare that the information I have provided in this application and in any attached documentation is true and correct, and that I have not withheld any information which could have a bearing on my application, enrolment or the conditions of my enrolment. I agree to supply any further documentation requested by the University of Waikato for the purpose of my application or enrolment.\nI have read the statement regarding the Privacy Act 1993 and I understand that the University of Waikato will hold, use and disclose information which I have provided as explained in that statement.\nI also understand that I have the right to have access to the information about me held by the University of Waikato and to request correction of that information, in the terms provided for under the Privacy Act 1993.\nSome personal information will be used by the Ministry of Education in an authorised information matching programme for the purposes of the National Student Index.");    
 	    driver.findElement(By.id("ADOAP_DECC")).click();
-	    softAssert.assertEquals(driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset/div[2]/div/div/label/strong")).getText(),"I have read and agreed to the above declaration.*");
+	    assertEquals(driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset/div[2]/div/div/label/strong")).getText(),"I have read and agreed to the above declaration.*");
         driver.findElement(By.xpath("//button[@id='app-btn-next']")).click();
 	    // 	Confirmation Page     
-	    softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div/div[1]/ol/li[2]")).getText(), coursename + " " + courseyear);
-	    softAssert.assertEquals(driver.findElement(By.xpath("//div/div/p")).getText(), "Logged in as: "+getfirstn+" "+getlastn);
-	    softAssert.assertEquals(driver.findElement(By.cssSelector("h2.sv-panel-title")).getText(), "Your application has been submitted");
+	    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div/div[1]/ol/li[2]")).getText(), coursename + " " + courseyear);
+	    assertEquals(driver.findElement(By.xpath("//div/div/p")).getText(), "Logged in as: "+getfirstn+" "+getlastn);
+	    assertEquals(driver.findElement(By.cssSelector("h2.sv-panel-title")).getText(), "Your application has been submitted");
 	    Thread.sleep(4000);
     // Check Studylink link for Story# 10050 (Residency status- All but not 'Other')
             
@@ -335,28 +338,28 @@ public class TEADailyRun {
     // //Story#10287 (AC:1 [Submitted], 2 - qual name and occurance)
     //this.executeScript();
       
-    //softAssert.assertEquals(driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr/td[4]")).getText(), "Submitted");
-    softAssert.assertEquals(driver.findElement(By.id("PTAD01S")).getText(), "Qualifications and Papers");  
-    softAssert.assertEquals(driver.findElement(By.id("sitsportalpagetitle")).getText(), "Qualifications and Papers");
-    //softAssert.assertEquals(driver.findElement(By.cssSelector("h2.sv-panel-title")).getText(), "Qualifications overview");  
-    //softAssert.assertEquals(driver.findElement(By.linkText("Start a new application")).getText(), "Start a New Application");
-    softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/thead/tr/th[1]")).getText(), "Year");
+    //assertEquals(driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr/td[4]")).getText(), "Submitted");
+    assertEquals(driver.findElement(By.id("PTAD01S")).getText(), "Qualifications and Papers");  
+    assertEquals(driver.findElement(By.id("sitsportalpagetitle")).getText(), "Qualifications and Papers");
+    //assertEquals(driver.findElement(By.cssSelector("h2.sv-panel-title")).getText(), "Qualifications overview");  
+    //assertEquals(driver.findElement(By.linkText("Start a new application")).getText(), "Start a New Application");
+    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/thead/tr/th[1]")).getText(), "Year");
     										  
-    softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/thead/tr/th[2]")).getText(), "Qualification");
-    softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/thead/tr/th[3]")).getText(), "Submitted");
-    softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/thead/tr/th[4]")).getText(), "Status");
-    softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/thead/tr/th[5]")).getText(), "Actions");    
+    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/thead/tr/th[2]")).getText(), "Qualification");
+    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/thead/tr/th[3]")).getText(), "Submitted");
+    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/thead/tr/th[4]")).getText(), "Status");
+    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/thead/tr/th[5]")).getText(), "Actions");    
    
     courserownumber=getSummaryPageCourseRowNumber(coursename);  //get the courserownumber
-    softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+courserownumber+"]/td")).getText(), courseyear);
-    softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+courserownumber+"]/td[2]")).getText(), coursename);    
-	softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+courserownumber+"]/td[3]")).getText(), localDate.toString("dd/MMM/yyyy"));  //submitted date
-	softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+courserownumber+"]/td[5]/a")).getText(), "View");
+    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+courserownumber+"]/td")).getText(), courseyear);
+    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+courserownumber+"]/td[2]")).getText(), coursename);    
+	assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+courserownumber+"]/td[3]")).getText(), localDate.toString("dd/MMM/yyyy"));  //submitted date
+	assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+courserownumber+"]/td[5]/a")).getText(), "View");
 	
-	//softAssert.assertEquals(driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr/td[5]/a[2]")).getText(), "Withdraw");
+	//assertEquals(driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr/td[5]/a[2]")).getText(), "Withdraw");
     //submitdate = driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr/td[3]")).getText();
 	
-    callSITS("assessment", getfirstn, getlastn, getemail, getdob, coursename, contactcountry, courseyear, coursemonth, flag);
+    callSITS("assessment", getfirstn, getlastn, getemail, getdob, coursename, contactcountry, courseyear, coursemonth, flag,currentlystudyingtowards); //currentlystudyingtowards to test the auto Conditional offer for the NCEA Level 3 studying student
     //  Applications summary page
     driver.findElement(By.xpath("//html/body/header/nav/div/div[2]/ul[2]/li/a")).click();
     driver.findElement(By.linkText("Logout")).click();  //Logout to view the offer
@@ -365,76 +368,84 @@ public class TEADailyRun {
  	lgn.login(driver, propertyconfig, "Existing", getpassword, getrpassword, getemail, getremail, getfirstn, getsecondname, getothersecondname, getlastn, getdob);
     driver.findElement(By.linkText("Qualifications and Papers")).click();
     courserownumber=getSummaryPageCourseRowNumber(coursename);  //get the courserownumber
-    softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+courserownumber+"]/td[5]/a[2]")).getText(), "Respond to offer");
+    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+courserownumber+"]/td[5]/a[2]")).getText(), "Respond to offer");
     									
     driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+courserownumber+"]/td[5]/a[2]")).click();   //Click on Respond to offer
     
     //Respond to offer page
-    softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[1]/h1")).getText(), "Respond to offer");
-    softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div/div[1]/h2")).getText(), "About your offer");
-    softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div/div[2]/div/div/fieldset/p[1]")).getText(), "Congratulations on your offer from the University of Waikato for the "+coursename+".");
-    softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div/div[2]/div/div/fieldset/p[2]/strong[1]")).getText(), "Unconditional Offer");
-    //softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div/div[2]/div/div/fieldset/p[2]/strong[1]")).getText(), "Conditional Offer");
-    softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div/div[2]/div/div/fieldset/p[3]")).getText(), "To accept your offer please select the Accept button below. If you do not wish to accept a place at the University, please select the Decline button to inform us of your decision.");
-    driver.findElement(By.xpath("//*[@id='ANSWER.TTQ.MENSYS.3.']")).click();   //Click to Accept the offer
+    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[1]/h1")).getText(), "Respond to offer");
+    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div/div[1]/h2")).getText(), "About your offer");
+    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div/div[2]/div/div/fieldset/p[1]")).getText(), "Congratulations on your offer from the University of Waikato for the "+coursename+".");
+    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div/div[2]/div/div/fieldset/p[3]")).getText(), "To accept your offer please select the Accept button below. If you do not wish to accept a place at the University, please select the Decline button to inform us of your decision.");
+    if (currentlystudyingtowards.equalsIgnoreCase("NCEA Level 3 Certificate"))
+    {
+    	assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div/div[2]/div/div/fieldset/p[2]/strong[1]")).getText(), "Conditional Offer");
+    	driver.findElement(By.xpath("//*[@id='ANSWER.TTQ.MENSYS.4.']")).click();   //Click to Accept the offer
+    }
+    else
+    {
+    	assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div/div[2]/div/div/fieldset/p[2]/strong[1]")).getText(), "Unconditional Offer");
+    	 driver.findElement(By.xpath("//*[@id='ANSWER.TTQ.MENSYS.3.']")).click();   //Click to Accept the offer
+    }   
+   
  
     //Offer confirmation page
-    softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div/div[1]/h2")).getText(), "Offer accepted");
-    softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div/div[2]/div/div/fieldset/p[1]")).getText(), "You have accepted the offer! This is final confirmation towards accepting your offer to study at the University of Waikato.");
-    softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div/div[2]/div/div/fieldset/p[2]")).getText(), "You will recieve further information from the University soon.");
-    softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div/div[2]/div/div/fieldset/p[3]")).getText(), "If you wish to find out more about the student experience at the University please click here.");
-    softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div/div[2]/div/div/fieldset/p[4]")).getText(), "If you are an international applicant and would like additional information about studying abroad please click here.");
+    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div/div[1]/h2")).getText(), "Offer accepted");
+    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div/div[2]/div/div/fieldset/p[1]")).getText(), "You have accepted the offer! This is final confirmation towards accepting your offer to study at the University of Waikato.");
+    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div/div[2]/div/div/fieldset/p[2]")).getText(), "You will recieve further information from the University soon.");
+    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div/div[2]/div/div/fieldset/p[3]")).getText(), "If you wish to find out more about the student experience at the University please click here.");
+    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div/div[2]/div/div/fieldset/p[4]")).getText(), "If you are an international applicant and would like additional information about studying abroad please click here.");
     driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div/div[3]/div/input")).click();   //Exit
     //Application Summary page//
     
     // Call SITS again to check the data
     //  this.callSITS("assessment", getfirstn, getlastn, getemail, getdob, city, postcode, mobile, country, coursename, contactaddressline1, contactaddressline2, contactaddressline3, contactaddressline4, gender, contactcountry, homephone, completequalcode, qualname, yearfrom, yearto, firstenrolter, livinginNZcode, getnstudentnumber, getprevfamilyname, getsecondname, getothersecondname, anyotherqualcode, prevtertiarystudyatunivcode, currentlyatsecondaryschoolcode, currentlystudyingtowards, highsecqual, institutionname, institutiontype, qualificationtype, lastsecschool, lastschoolyear, ethnicity1, ethnicity2, ethnicity3, iwi1, iwi2, iwi3, iwi4, residencystatus, courseyear, coursemonth);
-    this.callSITS("after_acceptance", getfirstn, getlastn, getemail, getdob, coursename, contactcountry, courseyear, coursemonth, flag);
+    this.callSITS("after_acceptance", getfirstn, getlastn, getemail, getdob, coursename, contactcountry, courseyear, coursemonth, flag,currentlystudyingtowards);
     
     //ENROLMENT
     lgn.login(driver, propertyconfig,"Existing", getpassword, getrpassword, getemail, getremail, getfirstn, getsecondname, getothersecondname, getlastn, getdob); // call the method
     driver.findElement(By.id("PTAD01S")).click(); //click 'Qualifications and Papers' link
     
     //Qualifications and Papers
-    softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[1]/h3")).getText(), coursename);
+    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[1]/h3")).getText(), coursename);
     driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[3]/div/div/a")).click(); //click 'Complete enrolment' button
    
     //Qualification Selection page
-    softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div/div[1]/h2")).getText(), "Select the qualification(s) you would like to enrol in");
-    softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div/div[2]/div/div/fieldset/div/div/div/label")).getText(), coursename);
+    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div/div[1]/h2")).getText(), "Select the qualification(s) you would like to enrol in");
+    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div/div[2]/div/div/fieldset/div/div/div/label")).getText(), coursename);
     driver.findElement(By.id("ANSWER.RECPICKER.MENSYS.1-2")).click(); //click checkbox
     driver.findElement(By.id("ANSWER.TTQ.MENSYS.4.")).click(); //click 'Next' button
     //Enrolment Welcome Page
-    softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div[1]/h2")).getText(), "Welcome to your enrolment "+ getfirstn + " " +getlastn);
+    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div[1]/h2")).getText(), "Welcome to your enrolment "+ getfirstn + " " +getlastn);
     driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div[2]/section[1]/div/div[2]/a")).click(); //click 'Complete now' button for Personal details
     							
     //Review Personal Details
-    softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div/div/div/div[1]/h2")).getText(), "Check and confirm your personal details");
-    softAssert.assertEquals(driver.findElement(By.id("ANSWER.TTQ.MENSYS.2.")).getAttribute("Value"), getfirstn.toUpperCase());
+    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div/div/div/div[1]/h2")).getText(), "Check and confirm your personal details");
+    assertEquals(driver.findElement(By.id("ANSWER.TTQ.MENSYS.2.")).getAttribute("Value"), getfirstn.toUpperCase());
     
     if(livinginNZ.equalsIgnoreCase("Yes"))
     {
-    	softAssert.assertTrue(driver.findElement(By.id("ANSWER.TTQ.MENSYS.4.1")).isSelected());    	
+    	assertTrue(driver.findElement(By.id("ANSWER.TTQ.MENSYS.4.1")).isSelected());    	
     }
     else
     {	
-    	softAssert.assertTrue(driver.findElement(By.id("ANSWER.TTQ.MENSYS.4.2")).isSelected());    	
+    	assertTrue(driver.findElement(By.id("ANSWER.TTQ.MENSYS.4.2")).isSelected());    	
     }
-    softAssert.assertEquals(new Select(driver.findElement(By.id("ANSWER.TTQ.MENSYS.5."))).getFirstSelectedOption().getText(),ethnicity1); // To validate the selected dropdown value
+    assertEquals(new Select(driver.findElement(By.id("ANSWER.TTQ.MENSYS.5."))).getFirstSelectedOption().getText(),ethnicity1); // To validate the selected dropdown value
     
     driver.findElement(By.name("NEXT.DUMMY.MENSYS.1")).click(); //click 'Next' button
-    softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div[2]/section[1]/div/div[2]/a")).getText(), "Review");
+    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div[2]/section[1]/div/div[2]/a")).getText(), "Review");
     driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div[2]/section[2]/div/div[2]/a")).click(); //click 'Complete now' button for Contact Details
     
     //Review Contact Details
-    softAssert.assertEquals(driver.findElement(By.id("ANSWER.TTQ.MENSYS.4.")).getAttribute("Value"), contactaddressline1.toUpperCase());
+    assertEquals(driver.findElement(By.id("ANSWER.TTQ.MENSYS.4.")).getAttribute("Value"), contactaddressline1.toUpperCase());
    
-    softAssert.assertEquals(driver.findElement(By.id("ANSWER.TTQ.MENSYS.8.")).getAttribute("Value"), city.toUpperCase());    
-    softAssert.assertEquals(driver.findElement(By.id("ANSWER_TTQ_MENSYS_10__chosenspan")).getText(),contactcountry); 
+    assertEquals(driver.findElement(By.id("ANSWER.TTQ.MENSYS.8.")).getAttribute("Value"), city.toUpperCase());    
+    assertEquals(driver.findElement(By.id("ANSWER_TTQ_MENSYS_10__chosenspan")).getText(),contactcountry); 
     driver.findElement(By.name("NEXT.DUMMY.MENSYS.1")).click(); //click 'Update' button on the Contact Details
     Thread.sleep(1000);
     //Emergency contact details
-    softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div/div/div/div[1]/h2")).getText(), "Your emergency contact details");
+    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div/div/div/div[1]/h2")).getText(), "Your emergency contact details");
     driver.findElement(By.id("ANSWER.TTQ.MENSYS.1.")).sendKeys("EFname"); //Emergency first name
     driver.findElement(By.id("ANSWER.TTQ.MENSYS.2.")).sendKeys("ELName"); //Emergency last name
     new Select(driver.findElement(By.id("ANSWER.TTQ.MENSYS.3."))).selectByVisibleText("Legal guardian");
@@ -444,12 +455,12 @@ public class TEADailyRun {
     driver.findElement(By.name("NEXT.DUMMY.MENSYS.1")).click(); //Click Update button
     
     //Back to Enrolment page
-    softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div/p")).getText(), "Emergency contact updated");
-    softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div[2]/section[2]/div/div[2]/a")).getText(), "Review");
+    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div/p")).getText(), "Emergency contact updated");
+    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div[2]/section[2]/div/div[2]/a")).getText(), "Review");
     driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div[2]/section[3]/div/div[2]/a")).click(); //click 'Complete now' button for Annual questions
     Thread.sleep(500);
     //Annual Questions
-    softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div/h1")).getText(), "Annual Questions");
+    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div/h1")).getText(), "Annual Questions");
     new Select(driver.findElement(By.id("ANSWER.TTQ.MENSYS.1."))).selectByVisibleText("Polytechnic student");
     driver.findElement(By.id("ANSWER.TTQ.MENSYS.2.1")).click(); //Yes
     driver.findElement(By.id("ANSWER.TTQ.MENSYS.3.1")).click(); //Full-time
@@ -457,20 +468,20 @@ public class TEADailyRun {
     driver.findElement(By.name("NEXT.DUMMY.MENSYS.1")).click(); // click Next
  
     //Back to Enrolment page
-    softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div/p")).getText(), "Annual questions submitted");
-    softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div[2]/section[3]/div/div[2]/a")).getText(), "Review");
+    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div/p")).getText(), "Annual questions submitted");
+    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div[2]/section[3]/div/div[2]/a")).getText(), "Review");
     driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div[2]/section[4]/div[2]/div[2]/a")).click();  // click Confirm button 
     
     //Subject Selection
-    softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div/h1")).getText(), "Subject Selection");
-    softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div/div/div/div[2]/div/div/fieldset/div/label")).getText(), "Major*");
+    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div/h1")).getText(), "Subject Selection");
+    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div/div/div/div[2]/div/div/fieldset/div/label")).getText(), "Major*");
     //new Select(driver.findElement(By.id("ANSWER.TTQ.MENSYS.2."))).selectByIndex(1); // select the first element
     new Select(driver.findElement(By.id("ANSWER.TTQ.MENSYS.2."))).selectByVisibleText("Music (Hamilton)"); // select Music as major
     driver.findElement(By.name("NEXT.DUMMY.MENSYS.1")).click(); // click Next
     
     //Back to Enrolment page
-    softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div/p")).getText(), "Subject selections confirmed");
-    softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div[2]/section[4]/div[2]/div[2]/a")).getText(), "Review");
+    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div/p")).getText(), "Subject selections confirmed");
+    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div[2]/section[4]/div[2]/div[2]/a")).getText(), "Review");
     driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div[2]/section[5]/div/div[2]/a")).click();  // click Complete Now button 
    
     //Paper Selection page
@@ -480,8 +491,8 @@ public class TEADailyRun {
     driver.findElement(By.name("NEXT.DUMMY.MENSYS.1")).click(); // click Next  
     
     //Select papers
-    softAssert.assertEquals(driver.findElement(By.xpath("//*[@id='sitspagecontent']/div[1]/h1")).getText(), "Paper Selection");
-    softAssert.assertEquals(driver.findElement(By.xpath("//*[@id='sme_spr_block']/div/div/div/div[2]/div/div/fieldset/div/div/p")).getText(), coursename);
+    assertEquals(driver.findElement(By.xpath("//*[@id='sitspagecontent']/div[1]/h1")).getText(), "Paper Selection");
+    assertEquals(driver.findElement(By.xpath("//*[@id='sme_spr_block']/div/div/div/div[2]/div/div/fieldset/div/div/p")).getText(), coursename);
   
     //Paper selection    
     //driver.findElement(By.id("sme_global_search_box")).sendKeys("music"); //Global search text
@@ -493,7 +504,7 @@ public class TEADailyRun {
     driver.findElement(By.id("sme_search_button001")).click(); //Paper Search
     Thread.sleep(500);
     driver.findElement(By.xpath("//*[@id='sme_search_results_grid001']/tbody/tr[1]/td[6]/button")).click();  //Add first paper
-    Thread.sleep(1000);
+    Thread.sleep(1000);			//*[@id="sme_search_results_grid001"]/tbody/tr[1]/td[6]/button
     //driver.findElement(By.xpath("//*[@id='sme_search_results_grid001']/tbody/tr[2]/td[6]/button")).click();  //Add second paper
     //Thread.sleep(1000);
     //driver.findElement(By.xpath("//*[@id='sme_search_results_grid001']/tbody/tr[3]/td[6]/button")).click();  //Add third paper
@@ -507,25 +518,25 @@ public class TEADailyRun {
     driver.findElement(By.id("sme_submit_button")).click(); // click Submit Selections button
     Thread.sleep(3000);
     //Confirmed Papers
-    softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[1]/h1")).getText(), "Confirmed Papers");
+    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[1]/h1")).getText(), "Confirmed Papers");
     driver.findElement(By.name("BP108.DUMMY_B.MENSYS.1")).click(); //Click Next
     Thread.sleep(1000);
     //Review your selection
-    softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div/div[1]/h2")).getText(), "Review your selections");
+    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div/div[1]/h2")).getText(), "Review your selections");
     driver.findElement(By.id("ANSWER.TTQ.MENSYS.6.")).click(); //click Confirm Selections
     
     //Enrolment Declaration
-    softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[1]/h1")).getText(), "Enrolment Declaration");  
+    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[1]/h1")).getText(), "Enrolment Declaration");  
     driver.findElement(By.id("ANSWER.TTQ.MENSYS.2.")).click();	//click declaration checkbox
     driver.findElement(By.name("NEXT.DUMMY.MENSYS.1")).click();	//Click Submit button
     driver.findElement(By.name("NEXT.DUMMY.MENSYS.1")).click();	//Click Next button on the What to expect next
     
     //Paper selections confirmed
-    softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[1]/p")).getText(), "Paper selections confirmed");
-    softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[4]/div/div/div[4]/div/div/div[2]/div[1]/div/h3")).getText(), courseyear);
-    softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[4]/div/div/div[4]/div/div/div[2]/div[1]/h3")).getText(), coursename);
-    softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[4]/div/div/div[4]/div/div/div[2]/div[1]/small")).getText(), "Major : Music");
-    softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[4]/div/div/div[4]/div/div/div[2]/div[2]/small")).getText(), "Status: Pending approval");
+    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[1]/p")).getText(), "Paper selections confirmed");
+    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[4]/div/div/div[4]/div/div/div[2]/div[1]/div/h3")).getText(), courseyear);
+    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[4]/div/div/div[4]/div/div/div[2]/div[1]/h3")).getText(), coursename);
+    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[4]/div/div/div[4]/div/div/div[2]/div[1]/small")).getText(), "Major : Music");
+    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[4]/div/div/div[4]/div/div/div[2]/div[2]/small")).getText(), "Status: Pending approval");
     
     //Login as a staff
 	    lgn.loginStaff(driver, propertyconfig, "testuser", "Testing@2");
@@ -543,25 +554,25 @@ public class TEADailyRun {
 	    driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[1]/a[2]")).click(); //click on StuID
 	  //*[@id="DataTables_Table_0"]/tbody/tr[2]/td[1]/a[2]
 	    //Enrolment Approval
-	    softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[2]/div[2]/div/div[1]/dl/dd[1]")).getText(), stuID);
+	    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[2]/div[2]/div/div[1]/dl/dd[1]")).getText(), stuID);
 	    driver.findElement(By.xpath("//html/body/div[1]/form/div[1]/div[4]/table/tbody/tr[1]/td[10]/a[1]/i")).click(); //tick the papers
 	    Thread.sleep(1500);
 	    driver.findElement(By.xpath("//html/body/div[1]/form/div[1]/div[4]/table/tbody/tr[2]/td[10]/a[1]/i")).click();//tick the papers
 	    Thread.sleep(1500);
-	    softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[1]/div[4]/table/tbody/tr[1]/td[9]/span")).getText(), "Approved"); //Papers approved
-	    softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[1]/div[4]/table/tbody/tr[2]/td[9]/span")).getText(), "Approved"); //Papers approved
+	    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[1]/div[4]/table/tbody/tr[1]/td[9]/span")).getText(), "Approved"); //Papers approved
+	    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[1]/div[4]/table/tbody/tr[2]/td[9]/span")).getText(), "Approved"); //Papers approved
 	    driver.findElement(By.id("ANSWER.TTQ.MENSYS.5.")).click(); //click Approve
 	    
 	    //Confirm
 	    driver.findElement(By.name("NEXT.DUMMY.MENSYS.1")).click(); //click Confirm Decision
 	    
 	    //Enrolment approved
-	    softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[1]/p")).getText(), "Enrolment approved"); 
+	    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[1]/p")).getText(), "Enrolment approved"); 
     
 	//Login as a student
 	    lgn.login(driver, propertyconfig,"Existing", getpassword, getrpassword, getemail, getremail, getfirstn, getsecondname, getothersecondname, getlastn, getdob); // call the method
 	    driver.findElement(By.id("PTAD01S")).click(); //click 'Qualifications and Papers' link
-	    softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/small")).getText(), "Status: Enrolment approved - unconditional");
+	    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/small")).getText(), "Status: Enrolment approved - unconditional");
 	    driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[3]/div/div/a")).click(); //click Complete Enrolment
 	    driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div[2]/section[6]/div/div[2]/a")).click();  //Click Complete now
 	    
@@ -570,24 +581,24 @@ public class TEADailyRun {
 	    new Select(driver.findElement(By.id("ANSWER.TTQ.MENSYS.4."))).selectByVisibleText("Student Loan"); //Payment option
 	    driver.findElement(By.id("ANSWER.TTQ.MENSYS.8.")).click(); //Confirm button
 	    Thread.sleep(1000);
-	    softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div/p")).getText(), "Enrolment Agreement accepted"); 
+	    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div/p")).getText(), "Enrolment Agreement accepted"); 
 	    
 	    driver.findElement(By.id("PTAD01S")).click(); //click 'Qualifications and Papers' link
-	    softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[3]/div/div[2]/div/table/tbody/tr[1]/td[8]/span")).getText(), "Enrolled"); //check 2 papers 
-	    softAssert.assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[3]/div/div[2]/div/table/tbody/tr[2]/td[8]/span")).getText(), "Enrolled"); //check 2 papers
+	    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[3]/div/div[2]/div/table/tbody/tr[1]/td[8]/span")).getText(), "Enrolled"); //check 2 papers 
+	    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[3]/div/div[2]/div/table/tbody/tr[2]/td[8]/span")).getText(), "Enrolled"); //check 2 papers
 	   
 	    
     System.out.println("TEA - Smoke Workflow test case executed - "+getemail);
     System.out.println("--------------------------------------------------");
     logger.log(LogStatus.INFO,"TEA - Smoke Workflow test case executed");
-    softAssert.assertAll();
+    //assertAll();
 	  } catch (Exception e) {
 	      System.out.println("Error:"+e.getMessage());
 	      exceptionerror="true";
 	      errormessage=e.getMessage();}
   }
 	
-	public void callSITS(String getstage, String getfirstn, String getlastn, String getemail, String getdob, String getcoursename, String getcontactcountry, String getcourseyear, String getcoursemonth, String flag) throws IOException	{
+	public void callSITS(String getstage, String getfirstn, String getlastn, String getemail, String getdob, String getcoursename, String getcontactcountry, String getcourseyear, String getcoursemonth, String flag, String currentlystudyingtowards) throws IOException	{
 	  	try{		
 		Runtime runtime = Runtime.getRuntime();
 		String scriptpath=propertyconfig.getSmokeWorkflowScriptPath();
@@ -621,8 +632,8 @@ public class TEADailyRun {
 	    Period period = new Period(birthdate, now, PeriodType.yearMonthDay());
 	    //System.out.println("Age:"+period.getYears());
 	    //////////// Age calculated/////////////////////////////	        
-	    System.out.println("Script: "+scriptpath+" "+"\""+getfirstn.toUpperCase()+"\""+" "+"\""+getlastn.toUpperCase()+"\""+" "+"\""+getcontactcountry+"\""+" "+"\""+getdob+"\""+" "+"\""+getcoursename+"\""+" "+"\""+period.getYears()+"\""+" "+"\""+localDate.toString("dd/MMM/yyyy")+"\""+" "+"\""+getstage+"\""+" "+"\""+getcourseyear+"\""+" "+"\""+getcoursemonth+"\""+" "+"\""+flag+"\"");
-	    p = runtime.exec(scriptpath+" "+"\""+getfirstn.toUpperCase()+"\""+" "+"\""+getlastn.toUpperCase()+"\""+" "+"\""+getcontactcountry+"\""+" "+"\""+getdob+"\""+" "+"\""+getcoursename+"\""+" "+"\""+period.getYears()+"\""+" "+"\""+localDate.toString("dd/MMM/yyyy")+"\""+" "+"\""+getstage+"\""+" "+"\""+getcourseyear+"\""+" "+"\""+getcoursemonth+"\""+" "+"\""+flag+"\"");
+	    System.out.println("Script: "+scriptpath+" "+"\""+getfirstn.toUpperCase()+"\""+" "+"\""+getlastn.toUpperCase()+"\""+" "+"\""+getcontactcountry+"\""+" "+"\""+getdob+"\""+" "+"\""+getcoursename+"\""+" "+"\""+period.getYears()+"\""+" "+"\""+localDate.toString("dd/MMM/yyyy")+"\""+" "+"\""+getstage+"\""+" "+"\""+getcourseyear+"\""+" "+"\""+getcoursemonth+"\""+" "+"\""+flag+"\""+" "+"\""+currentlystudyingtowards+"\"");
+	    p = runtime.exec(scriptpath+" "+"\""+getfirstn.toUpperCase()+"\""+" "+"\""+getlastn.toUpperCase()+"\""+" "+"\""+getcontactcountry+"\""+" "+"\""+getdob+"\""+" "+"\""+getcoursename+"\""+" "+"\""+period.getYears()+"\""+" "+"\""+localDate.toString("dd/MMM/yyyy")+"\""+" "+"\""+getstage+"\""+" "+"\""+getcourseyear+"\""+" "+"\""+getcoursemonth+"\""+" "+"\""+flag+"\""+" "+"\""+currentlystudyingtowards+"\"");
 	    //System.out.println("Script: "+scriptpath+" "+"\""+getfirstn.toUpperCase()+"\""+" "+"\""+getlastn.toUpperCase()+"\""+" "+"\""+getcontactcountry+"\""+" "+"\""+getdob+"\""+" "+"\""+"AP"+"\""+" "+"\""+"UOW"+"\""+" "+"\""+getcoursename+"\""+" "+"\""+getcourseyear+"\""+" "+"\""+getcoursemonth+"\""+" "+"\""+getsecondname.toUpperCase()+"\""+" "+"\""+getothersecondname.toUpperCase()+"\""+" "+"\""+getprevfamilyname.toUpperCase()+"\""+" "+"\""+contactcountrycode+"\""+" "+"\""+"C"+"\""+" "+"\""+getgender+"\""+" "+"\""+getnstudentnumber+"\""+" "+"\""+highsecqualcode+"\""+" "+"\""+lastsecschoolcode+"\""+" "+"\""+getlastschoolyear+"\""+" "+"\""+getfirstenrolter+"\""+" "+"\""+currentlystudyingtowardscode+"\""+" "+"\""+getcontactaddressline1.toUpperCase()+"\""+" "+"\""+getcontactaddressline2.toUpperCase()+"\""+" "+"\""+getcontactaddressline3.toUpperCase()+"\""+" "+"\""+getcontactaddressline4.toUpperCase()+"\""+" "+"\""+getemail+"\""+" "+"\""+getpostcode+"\""+" "+"\""+getcity.toUpperCase()+"\""+" "+"\""+gethomephone+"\""+" "+"\""+getmobile+"\""+" "+"\""+period.getYears()+"\"");
 		//p = runtime.exec(scriptpath+" "+"\""+getfirstn.toUpperCase()+"\""+" "+"\""+getlastn.toUpperCase()+"\""+" "+"\""+getcontactcountry+"\""+" "+"\""+getdob+"\""+" "+"\""+"AP"+"\""+" "+"\""+"UOW"+"\""+" "+"\""+getcoursename+"\""+" "+"\""+getcourseyear+"\""+" "+"\""+getcoursemonth+"\""+" "+"\""+getsecondname.toUpperCase()+"\""+" "+"\""+getothersecondname.toUpperCase()+"\""+" "+"\""+getprevfamilyname.toUpperCase()+"\""+" "+"\""+contactcountrycode+"\""+" "+"\""+"C"+"\""+" "+"\""+getgender+"\""+" "+"\""+getnstudentnumber+"\""+" "+"\""+highsecqualcode+"\""+" "+"\""+lastsecschoolcode+"\""+" "+"\""+getlastschoolyear+"\""+" "+"\""+getfirstenrolter+"\""+" "+"\""+currentlystudyingtowardscode+"\""+" "+"\""+getcontactaddressline1.toUpperCase()+"\""+" "+"\""+getcontactaddressline2.toUpperCase()+"\""+" "+"\""+getcontactaddressline3.toUpperCase()+"\""+" "+"\""+getcontactaddressline4.toUpperCase()+"\""+" "+"\""+getemail+"\""+" "+"\""+getpostcode+"\""+" "+"\""+getcity.toUpperCase()+"\""+" "+"\""+gethomephone+"\""+" "+"\""+getmobile+"\""+" "+"\""+period.getYears()+"\"");	    	    			    
 		//runtime.getRuntime().exec("path to the autoIt exe file");
@@ -642,7 +653,7 @@ public class TEADailyRun {
 		  //System.out.println(found);
 		  int exitCode;
 		  exitCode = p.waitFor();  //method waitFor() will make the current thread to wait until the external program finishes and returns the exit value.
-		  softAssert.assertEquals(exitCode, 0);   // This will cause the first test case (or calling test case) to fail if the exit code is not 0. 
+		  assertEquals(exitCode, 0);   // This will cause the first test case (or calling test case) to fail if the exit code is not 0. 
 			  // System.out.println("Exited with error code "+exitVal);
 			//  if(found)
 			  //{
@@ -750,8 +761,7 @@ public class TEADailyRun {
 		  if(ITestResult.FAILURE==result.getStatus() || (exceptionerror.equals("true")))  //Check if Test case has failed
 		  {
 		  	 String screenshot_path = ReportScreenshotUtility.captureScreenshot(driver,propertyconfig.getScreenShotPath(),result.getName());   //Take screenshot if Test Case fails
-		  	
-		  	 String image=logger.addScreenCapture(screenshot_path);
+		   	 String image=logger.addScreenCapture(screenshot_path);
 		  	 logger.log(LogStatus.FAIL, "Failed", image);
 		  	 if(ITestResult.FAILURE==result.getStatus())		logger.log(LogStatus.FAIL, "Exception Message", result.getThrowable());
 		  	 if (exceptionerror=="true")  logger.log(LogStatus.FAIL, "Exception Message", errormessage);
