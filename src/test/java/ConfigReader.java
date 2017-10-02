@@ -51,6 +51,7 @@ public class ConfigReader {
 	}
 	public String getReportPath()
 	{
+		
 		return pro.getProperty("ExecutionReport");		
 	}
 	public String getScreenShotPath()
@@ -85,4 +86,8 @@ public class ConfigReader {
 		return pro.getProperty("CourseWithdrawScriptPath");
 	}
 	
+	public String getUATStudentDailyImportScriptPath()
+	{
+		return pro.getProperty("UATStudentDailyImportScriptPath");
+	}
 }
