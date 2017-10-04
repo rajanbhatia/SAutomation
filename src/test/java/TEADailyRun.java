@@ -60,10 +60,13 @@ public class TEADailyRun {
 		
 		exceptionerror="false";
 		Calendar cal = Calendar.getInstance();
-		getemail=mData(getemail,cal);  //change data
-		getremail=mData(getremail,cal);
-		getfirstn=mData(getfirstn,cal);
-		getlastn=mData(getlastn,cal);
+		if (flag.equals("New")) //No need to change for the existing student
+		{
+			getemail=mData(getemail,cal);  //change data
+			getremail=mData(getremail,cal);
+			getfirstn=mData(getfirstn,cal);
+			getlastn=mData(getlastn,cal);
+		}
 		System.out.println(getlastn+", "+getemail);
 		logger = ReportScreenshotUtility.report.startTest("AutoTEAWorkflow - "+getemail);
 	    String qualsearchtype = getqualsearchtype;
@@ -138,10 +141,20 @@ public class TEADailyRun {
 	    if (month1<10)    coursemonth="0"+month1;  //to check in SITS
 	    else coursemonth=""+month1;
 	    
-	    // Location and subject selection
-	    assertEquals(driver.findElement(By.xpath("//*[@id='app_form']/div/div[1]/h2")).getText(), "Location and subject selection");
-	    assertEquals(driver.findElement(By.xpath("//*[@id='app_form']/div/div[2]/div/div/fieldset/div/label")).getText(), "Where do you want to study?*");
+	    // Location and subject selection	    
+	    if (coursename.equals("Bachelor of Business"))
+	    {	    	
+	    	assertEquals(driver.findElement(By.xpath("//*[@id='app_form']/div/div[2]/div/div/fieldset/div/label")).getText(), "Major*");
+	    	assertEquals(driver.findElement(By.xpath("//*[@id='app_form']/div/div[2]/div/div/fieldset[2]/div/label")).getText(), "Where do you want to study?*");
+	    	new Select(driver.findElement(By.id("IPQ_ADOAP_MAJ1"))).selectByVisibleText("Digital Business (Hamilton only)");
+	  	    
+	    }
+	    else
+	    {		    
+		    assertEquals(driver.findElement(By.xpath("//*[@id='app_form']/div/div[2]/div/div/fieldset/div/label")).getText(), "Where do you want to study?*");		    
+	    }
 	    new Select(driver.findElement(By.id("IPQ_ADOAP_LCA"))).selectByVisibleText("Hamilton"); //Hamilton location
+	    assertEquals(driver.findElement(By.xpath("//*[@id='app_form']/div/div[1]/h2")).getText(), "Location and subject selection");
 	    driver.findElement(By.id("app-btn-next")).click();
 	    Thread.sleep(500);
 	    // Personal Details Page  
@@ -516,7 +529,7 @@ public class TEADailyRun {
     //driver.findElement(By.xpath("//*[@id='sme_search_results_grid001']/tbody/tr[6]/td[6]/button")).click();  //Add sixth paper
     //Thread.sleep(1000);    
     driver.findElement(By.id("sme_submit_button")).click(); // click Submit Selections button
-    Thread.sleep(3000);
+    Thread.sleep(3500);
     //Confirmed Papers
     assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[1]/h1")).getText(), "Confirmed Papers");
     driver.findElement(By.name("BP108.DUMMY_B.MENSYS.1")).click(); //Click Next
