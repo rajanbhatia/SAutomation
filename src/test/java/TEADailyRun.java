@@ -572,7 +572,14 @@ public class TEADailyRun {
 	//Login as a student
 	    lgn.login(driver, propertyconfig,"Existing", getpassword, getrpassword, getemail, getremail, getfirstn, getsecondname, getothersecondname, getlastn, getdob); // call the method
 	    driver.findElement(By.id("PTAD01S")).click(); //click 'Qualifications and Papers' link
-	    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/small")).getText(), "Status: Enrolment approved - unconditional");
+	    if (currentlystudyingtowards.equalsIgnoreCase("NCEA Level 3 Certificate"))
+	    {
+	    	assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/small")).getText(), "Status: Enrolment approved - conditional");
+	    }
+	    else
+	    {
+	    	assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/small")).getText(), "Status: Enrolment approved - unconditional");
+	    }
 	    driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[3]/div/div/a")).click(); //click Complete Enrolment
 	    driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div[2]/section[6]/div/div[2]/a")).click();  //Click Complete now
 	    
@@ -761,7 +768,8 @@ public class TEADailyRun {
 		  if(ITestResult.FAILURE==result.getStatus() || (exceptionerror.equals("true")))  //Check if Test case has failed
 		  {
 		  	 String screenshot_path = ReportScreenshotUtility.captureScreenshot(driver,propertyconfig.getScreenShotPath(),result.getName());   //Take screenshot if Test Case fails
-		   	 String image=logger.addScreenCapture(screenshot_path);
+		  	
+		  	 String image=logger.addScreenCapture(screenshot_path);
 		  	 logger.log(LogStatus.FAIL, "Failed", image);
 		  	 if(ITestResult.FAILURE==result.getStatus())		logger.log(LogStatus.FAIL, "Exception Message", result.getThrowable());
 		  	 if (exceptionerror=="true")  logger.log(LogStatus.FAIL, "Exception Message", errormessage);
