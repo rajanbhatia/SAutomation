@@ -61,9 +61,17 @@ public class TEADailyRun {
 		exceptionerror="false";
 		Calendar cal = Calendar.getInstance();
 		if (flag.equals("New")) //No need to change for the existing student
-		{
-			getemail=mData(getemail,cal);  //change data
-			getremail=mData(getremail,cal);
+		{			
+			if (getemail.equals(getremail))
+				{
+					getemail=mData(getemail,cal);  //change data
+					getremail=getemail;  //no need to call the function again and a test case was failing with different data values.
+				}
+			else 	
+				{
+					getemail=mData(getemail,cal);
+					getremail=mData(getremail,cal); 
+				}
 			getfirstn=mData(getfirstn,cal);
 			getlastn=mData(getlastn,cal);
 		}
@@ -147,7 +155,6 @@ public class TEADailyRun {
 	    	assertEquals(driver.findElement(By.xpath("//*[@id='app_form']/div/div[2]/div/div/fieldset/div/label")).getText(), "Major*");
 	    	assertEquals(driver.findElement(By.xpath("//*[@id='app_form']/div/div[2]/div/div/fieldset[2]/div/label")).getText(), "Where do you want to study?*");
 	    	new Select(driver.findElement(By.id("IPQ_ADOAP_MAJ1"))).selectByVisibleText("Digital Business (Hamilton only)");
-	  	    
 	    }
 	    else
 	    {		    
@@ -418,7 +425,7 @@ public class TEADailyRun {
     //ENROLMENT
     lgn.login(driver, propertyconfig,"Existing", getpassword, getrpassword, getemail, getremail, getfirstn, getsecondname, getothersecondname, getlastn, getdob); // call the method
     driver.findElement(By.id("PTAD01S")).click(); //click 'Qualifications and Papers' link
-    
+    Thread.sleep(2000);
     //Qualifications and Papers
     assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[1]/h3")).getText(), coursename);
     driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[3]/div/div/a")).click(); //click 'Complete enrolment' button
@@ -585,28 +592,30 @@ public class TEADailyRun {
 	//Login as a student
 	    lgn.login(driver, propertyconfig,"Existing", getpassword, getrpassword, getemail, getremail, getfirstn, getsecondname, getothersecondname, getlastn, getdob); // call the method
 	    driver.findElement(By.id("PTAD01S")).click(); //click 'Qualifications and Papers' link
-	    if (currentlystudyingtowards.equalsIgnoreCase("NCEA Level 3 Certificate"))
+	    if (currentlystudyingtowards.equalsIgnoreCase("NCEA Level 3 Certificate"))   // Student getting conditional offer only and no option to accept as results are not in yet.
 	    {
 	    	assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/small")).getText(), "Status: Enrolment approved - conditional");
 	    }
 	    else
 	    {
 	    	assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/small")).getText(), "Status: Enrolment approved - unconditional");
+	    	driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[3]/div/div/a")).click(); //click Complete Enrolment
+	  	    driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div[2]/section[6]/div/div[2]/a")).click();  //Click Complete now
+	  	    	  	    
+	  	    //Offer of Enrolment
+	  	    driver.findElement(By.id("ANSWER.TTQ.MENSYS.2.1")).click();  //accept the terms
+	  	    new Select(driver.findElement(By.id("ANSWER.TTQ.MENSYS.4."))).selectByVisibleText("Student Loan"); //Payment option
+	  	    driver.findElement(By.id("ANSWER.TTQ.MENSYS.8.")).click(); //Confirm button
+	  	    Thread.sleep(1000);
+	  	    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div/p")).getText(), "Enrolment Agreement accepted"); 
+	  	    driver.findElement(By.id("PTAD01S")).click(); //click 'Qualifications and Papers' link
+	  	    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[3]/div/div[2]/div/table/tbody/tr[1]/td[8]/span")).getText(), "Enrolled"); //check 2 papers 
+	  	    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[3]/div/div[2]/div/table/tbody/tr[2]/td[8]/span")).getText(), "Enrolled"); //check 2 papers
 	    }
-	    driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[3]/div/div/a")).click(); //click Complete Enrolment
-	    driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div[2]/section[6]/div/div[2]/a")).click();  //Click Complete now
 	    
-	    //Offer of Enrolment
-	    driver.findElement(By.id("ANSWER.TTQ.MENSYS.2.1")).click();  //accept the terms
-	    new Select(driver.findElement(By.id("ANSWER.TTQ.MENSYS.4."))).selectByVisibleText("Student Loan"); //Payment option
-	    driver.findElement(By.id("ANSWER.TTQ.MENSYS.8.")).click(); //Confirm button
-	    Thread.sleep(1000);
-	    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div/p")).getText(), "Enrolment Agreement accepted"); 
-	    
-	    driver.findElement(By.id("PTAD01S")).click(); //click 'Qualifications and Papers' link
-	    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[3]/div/div[2]/div/table/tbody/tr[1]/td[8]/span")).getText(), "Enrolled"); //check 2 papers 
-	    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[3]/div/div[2]/div/table/tbody/tr[2]/td[8]/span")).getText(), "Enrolled"); //check 2 papers
-	   
+	  
+	  
+	  
 	    
     System.out.println("TEA - Smoke Workflow test case executed - "+getemail);
     System.out.println("--------------------------------------------------");
