@@ -3,6 +3,7 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertNotEquals;
 import static org.testng.Assert.assertTrue;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -19,6 +20,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
+
 import org.joda.time.LocalDate;
 import org.joda.time.Period;
 import org.joda.time.PeriodType;
@@ -38,6 +40,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 //import main.resources.ConfigReader;
@@ -140,8 +143,11 @@ public void Auto1TEASubmitApplication(String getusertype, String getfirstn, Stri
 	    String anyotherqual=getanyotherqual;
 		String courseintake, coursemonth=null; 
 		int courserownumber=1;
+		
 		usertype=getusertype;
-		Thread.sleep(2000);
+		
+		System.out.println(getlastn+", "+getemail);
+		
 	    String appurl= propertyconfig.getApplicationURL();
 	    driver.get(appurl);  //URL picked from the Property file	
 
@@ -2729,7 +2735,8 @@ private boolean isElementPresent(By by) {
   @DataProvider(name="ParamData")  //Parameterizing @Test code for the Excel records
 	public Object[][] passData() throws Exception   // Load Data Excel  
 	{	  		  	
-	  	int sheetnumber = 0;		
+	  	int sheetnumber = 0;
+	  	Calendar cal = Calendar.getInstance();
 		String excelpath=propertyconfig.getExcelSheetPath();	
 	  	ExcelDataConfig excelconfig = new ExcelDataConfig(excelpath);
 	  	
@@ -2743,6 +2750,12 @@ private boolean isElementPresent(By by) {
 			for (int j=0;j<cols;j++)  //Columns value is one more than the index so less than sign
 			{
 				data[i][j]=excelconfig.getData(sheetnumber, i+1, j);  //Picking data from the 2nd row in excel sheet, so i+1
+				
+				if (j==1 || j==2 || j==8 || j==9)  //parameterise firstname, lastname, email, remail
+				{
+					data[i][j]=mData(data[i][j],cal);
+				}
+				
 				if (j==6)   //As date field is in the 7th col (6th index)
 				{
 					//Calling the function to change the date format from mm/dd/yy to dd/mm/yyyy//
@@ -2750,12 +2763,10 @@ private boolean isElementPresent(By by) {
 					String datevalue = (String) data[i][j]; 
 					String datechange = excelconfig.changeDateFormat(datevalue);  
 					data[i][j]=datechange;
-					 	
 					// -----------------------------------------------------------------     //		
 				}
 			}					
-		}
-		
+		}		
 	  	return data;
 	}
   
@@ -3758,6 +3769,11 @@ private boolean isElementPresent(By by) {
  	 
  	  }
   
- 
+public Object mData(Object string, Calendar cal)
+{
+	//string=new Timestamp(System.currentTimeMillis()).getTime()+""+cal.get(Calendar.DATE)+string;
+	string=System.currentTimeMillis()+""+cal.get(Calendar.DATE)+string;
+	return string;
+}
  
 }
