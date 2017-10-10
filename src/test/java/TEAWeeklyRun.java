@@ -63,12 +63,14 @@ public class TEAWeeklyRun {
 	public ExtentTest logger;	//Main class to generate the Logs and add to the report
 	//String firstn;
 	String winhandlebefore, winhandlebefore_staff, winhandlebefore_loginAgain;
+	String email,firstn,lastn;
 	Integer qualsearchcount=1;
 	LocalDate localDate = new LocalDate(); //getdate
 	//DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MMM/yyyy");
 	//DateTimeFormatter dtf = DateTimeFormat.forPattern("dd/MMM/yyyy");
 	String dob;
 	String usertype, stuID;
+	Calendar cal = Calendar.getInstance();
 	//DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MMM/yyyy");
 	
 	
@@ -89,16 +91,30 @@ public void Auto1TEASubmitApplication(String getusertype, String getfirstn, Stri
 		String courseyear, livinginNZcode, currentlyatsecondaryschoolcode=null, prevtertiarystudyatunivcode=null, completequalcode="", anyotherqualcode="";		
 		logger = ReportScreenshotUtility.report.startTest("Auto1TEASubmitApplication - "+getemail);
 		exceptionerror="false";
-		String firstn = getfirstn;
+		if (getemail.equals(getremail))
+		{
+			getemail=mData(getemail,cal);  //change data
+			getremail=getemail;  //no need to call the function again and a test case was failing with different data values.
+		}
+		else 	
+		{
+			getemail=mData(getemail,cal);
+			getremail=mData(getremail,cal); 
+		}
+		getfirstn=mData(getfirstn,cal);
+		getlastn=mData(getlastn,cal);
+		
+		usertype=getusertype;
+		firstn = getfirstn;
 	    String firstname = getfirstn.toUpperCase();
-	    String lastn = getlastn;
+	    lastn = getlastn;
 	    String lastname = getlastn.toUpperCase();
 	    String secondname = getsecondname;
 	    String othersecondname=getothersecondname;
 	    String prevfamilyname=getprevfamilyname;
 	    dob = getdob;
 	    String nstudentnumber=getnstudentnumber;
-	    String email = getemail;   
+	    email = getemail;   
 	    String remail = getremail;
 	    String password = getpassword;  
 	    String rpassword = getrpassword;
@@ -144,7 +160,6 @@ public void Auto1TEASubmitApplication(String getusertype, String getfirstn, Stri
 		String courseintake, coursemonth=null; 
 		int courserownumber=1;
 		
-		usertype=getusertype;
 		
 		System.out.println(getlastn+", "+getemail);
 		
@@ -177,8 +192,8 @@ public void Auto1TEASubmitApplication(String getusertype, String getfirstn, Stri
 			    assertEquals(driver.findElement(By.cssSelector("em > a")).getText(), "0800 WAIKATO");
 			    assertEquals(driver.findElement(By.xpath("//p[2]/span")).getText(), "International");
 			    assertEquals(driver.findElement(By.linkText("+64 7 856 2889")).getText(), "+64 7 856 2889");
-			    assertEquals(driver.findElement(By.xpath("//img[@alt='University of Waikato Logo']")).getText(), "");
-			    assertTrue(isElementPresent(By.xpath("//img[@alt='University of Waikato Logo']")));
+			    
+			    //assertTrue(isElementPresent(By.xpath("//img[@alt='University of Waikato Logo']")));
 			    assertEquals(driver.findElement(By.id("NEW_USER")).getAttribute("value"), "New User");
 			    driver.findElement(By.id("NEW_USER")).click();
 			    // Register - Provide Login Details  
@@ -229,7 +244,7 @@ public void Auto1TEASubmitApplication(String getusertype, String getfirstn, Stri
 			staffSearchLogin(firstn, lastn, email, secondname, othersecondname, dob); //Login steps for Staff Search.
 			winhandlebefore_staff = driver.getWindowHandle(); //   get  Driver Window Handle to use at the end, to close student window;
 			getDriverWindowHandle();
-			driver.findElement(By.linkText("Start a New Application")).click(); //
+			driver.findElement(By.linkText("Start a new application")).click(); //
 			switchDriver();					 
 			break;
 		}
@@ -237,9 +252,9 @@ public void Auto1TEASubmitApplication(String getusertype, String getfirstn, Stri
 		{			
 			// Register/Login Page
 			 driver.findElement(By.xpath("//div[@id='new_user_section']/div/div/div/div[2]/div[2]/div/a")).click();
-			 assertEquals(driver.findElement(By.cssSelector("p.header-subtitle.sv-hidden-xs")).getText(), "e:Vision");
-			 assertEquals(driver.findElement(By.cssSelector("h1")).getText(), "Log in to SITS e:Vision Portal");
-			 assertEquals(driver.findElement(By.cssSelector("div.sv-page-header.sv-hidden-xs > p")).getText(), "This page is the SITS e:Vision Portal login screen. Please use the form below to supply your login details and click the \"Log in\" button to access the system.");
+			 assertEquals(driver.findElement(By.cssSelector("p.header-subtitle.sv-hidden-xs")).getText(), "MyWaikato (UAT)");
+			 assertEquals(driver.findElement(By.cssSelector("h1")).getText(), "Log in to SITS MyWaikato");
+			 assertEquals(driver.findElement(By.cssSelector("div.sv-page-header.sv-hidden-xs > p")).getText(), "This page is the MyWaikato login screen. Please use the form below to supply your login details and click the \"Log in\" button to access the system.");
 			 assertEquals(driver.findElement(By.cssSelector("h2.sv-panel-title")).getText(), "Portal Login");
 			 assertEquals(driver.findElement(By.cssSelector("label")).getText(), "Username");
 			 driver.findElement(By.id("MUA_CODE.DUMMY.MENSYS")).clear();
@@ -317,7 +332,7 @@ public void Auto1TEASubmitApplication(String getusertype, String getfirstn, Stri
 		
     // Qualification Search
     // temp if (qualsearchcount<2) qualificationSearch(email);  // Call the Qualification search method to test all the qualifications at high level. Just execute once. Story# 10228, 10041
-    assertEquals(driver.findElement(By.cssSelector("img[alt=\"University of Waikato\"]")).getText(), "");
+    
     assertEquals(driver.findElement(By.cssSelector("p.header-subtitle.sv-hidden-xs")).getText(), "Application");
     assertEquals(driver.findElement(By.cssSelector("h1")).getText(), "Qualification Search");
     assertEquals(driver.findElement(By.cssSelector("h2.sv-panel-title")).getText(), "Search criteria");
@@ -354,7 +369,7 @@ public void Auto1TEASubmitApplication(String getusertype, String getfirstn, Stri
         coursemonth = courseintake.substring(0, courseintake.indexOf(" ")); 
     }
     Date date = new SimpleDateFormat("MMM", Locale.ENGLISH).parse(coursemonth);
-    Calendar cal = Calendar.getInstance();
+    
     cal.setTime(date);
     int month1 = cal.get(Calendar.MONTH);     // To use this for Age verification in the ACD screen, once exact course start dates will appear.
     month1++;     
@@ -365,12 +380,17 @@ public void Auto1TEASubmitApplication(String getusertype, String getfirstn, Stri
     //LocalDate now = new LocalDate();
     //Years age = Years.yearsBetween(birthdate, now);
     
+    // Location and subject selection	    
+    locationSubjectSelection(coursename, "Tauranga");
+    
     // Personal Details Page
-    assertEquals(driver.findElement(By.cssSelector("h4.progress-title")).getText(), "Personal details");
-    assertEquals(driver.findElement(By.xpath("//li[2]/span[2]/h4")).getText(), "Contact details");
-    assertEquals(driver.findElement(By.xpath("//li[3]/span[2]/h4")).getText(), "Education");
-    assertEquals(driver.findElement(By.xpath("//li[4]/span[2]/h4")).getText(), "Documents");
-    assertEquals(driver.findElement(By.xpath("//li[5]/span[2]/h4")).getText(), "Declaration");
+    
+    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div/ul/li[1]/a/span[2]/h4")).getText(), "Location and subject selection");
+    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div/ul/li[2]/span[2]/h4")).getText(), "Personal details");
+    assertEquals(driver.findElement(By.xpath("//li[3]/span[2]/h4")).getText(), "Contact details");
+    assertEquals(driver.findElement(By.xpath("//li[4]/span[2]/h4")).getText(), "Education");
+    assertEquals(driver.findElement(By.xpath("//li[5]/span[2]/h4")).getText(), "Documents");
+    assertEquals(driver.findElement(By.xpath("//li[6]/span[2]/h4")).getText(), "Declaration");
     
     if (usertype.equals("Staff_Search")) 
     { 
@@ -750,13 +770,13 @@ public void Auto1TEASubmitApplication(String getusertype, String getfirstn, Stri
 	    //if (courserownumber==0) logger.log(LogStatus.INFO,"Course record not found on the Applications Summary page.");
 	    //else 
 	    //{
-	    assertEquals(driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr["+courserownumber+"]/td[1]")).getText(), courseyear);
-	    assertEquals(driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr["+courserownumber+"]/td[2]")).getText(),coursename);
-	    ///assertEquals(driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr/td[4]")).getText(), "UnSubmitted");
-	    assertEquals(driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr["+courserownumber+"]/td[4]")).getText(), "Incomplete");
-	    assertEquals(driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr["+courserownumber+"]/td[5]/a[2]")).getText(), "Delete");
-	    assertEquals(driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr["+courserownumber+"]/td[5]/a")).getText(), "Continue");
-	    driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr["+courserownumber+"]/td[5]/a")).click(); //Click the corresponding 'Continue' button
+	    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+courserownumber+"]/td")).getText(), courseyear);
+	    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+courserownumber+"]/td[2]")).getText(), coursename);    
+		 ///assertEquals(driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr/td[4]")).getText(), "UnSubmitted");
+	    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+courserownumber+"]/td[4]")).getText(), "Incomplete");
+	    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+courserownumber+"]/td[5]/a[2]")).getText(), "Delete");
+	    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+courserownumber+"]/td[5]/a")).getText(), "Continue");
+	    driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+courserownumber+"]/td[5]/a")).click(); //Click the corresponding 'Continue' button
 		//}
 	    // Verifying the Data for Story#10037
 	    // ERROR: Caught exception [ERROR: Unsupported command [getSelectedValue | id=IPQ_ADOAP_EDLSTY | ]]
@@ -794,21 +814,23 @@ public void Auto1TEASubmitApplication(String getusertype, String getfirstn, Stri
     driver.findElement(By.id("app-btn-next")).click();
     // Declaration Page
     assertEquals(driver.findElement(By.cssSelector("h1")).getText(), "Qualification Application");  
-    assertEquals(driver.findElement(By.cssSelector("h4.progress-title")).getText(), "Personal details");
-    assertEquals(driver.findElement(By.xpath("//li[2]/a/span[2]/h4")).getText(), "Contact details");
-    assertEquals(driver.findElement(By.xpath("//li[3]/a/span[2]/h4")).getText(), "Education");
+    assertEquals(driver.findElement(By.xpath("/html/body/div[1]/div/ul/li[1]/a/span[2]/h4")).getText(), "Location and subject selection");
+    assertEquals(driver.findElement(By.xpath("//li[2]/a/span[2]/h4")).getText(), "Personal details");
+    assertEquals(driver.findElement(By.xpath("//li[3]/a/span[2]/h4")).getText(), "Contact details");
+    assertEquals(driver.findElement(By.xpath("//li[4]/a/span[2]/h4")).getText(), "Education");
     if (residencystatus.equals("Other") || (residencystatus.equals("Australian Citizen") && livinginNZ.equalsIgnoreCase("No")) || (residencystatus.equalsIgnoreCase("Australian Permanent Resident") && livinginNZ.equals("No")) || (residencystatus.equalsIgnoreCase("Australian and NZ Permanent Resident") && livinginNZ.equalsIgnoreCase("No")))
     {
-    	assertEquals(driver.findElement(By.xpath("//li[4]/a/span[2]/h4")).getText(), "Additional info");
-      	assertEquals(driver.findElement(By.xpath("//li[5]/a/span[2]/h4")).getText(), "Documents");
-     	assertEquals(driver.findElement(By.xpath("//li[6]/span[2]/h4")).getText(), "Declaration");    
+    	assertEquals(driver.findElement(By.xpath("//li[5]/a/span[2]/h4")).getText(), "Additional info");
+      	assertEquals(driver.findElement(By.xpath("//li[6]/a/span[2]/h4")).getText(), "Documents");
+     	assertEquals(driver.findElement(By.xpath("//li[7]/span[2]/h4")).getText(), "Declaration");    
     }
     else
     {
-    	assertEquals(driver.findElement(By.xpath("//li[4]/a/span[2]/h4")).getText(), "Documents");  
-    	assertEquals(driver.findElement(By.cssSelector("li.progress-step.is-active > span.progress-text > h4.progress-title")).getText(), "Declaration");
+    	assertEquals(driver.findElement(By.xpath("//li[5]/a/span[2]/h4")).getText(), "Documents");  
+    	assertEquals(driver.findElement(By.cssSelector("li.progress-step:nth-child(6) > span:nth-child(2) > h4:nth-child(1)")).getText(), "Declaration");
     }
-    assertEquals(driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset/div/p")).getText(), "I declare that the information I have provided in this application and in any attached documentation is true and correct, and that I have not withheld any information which could have a bearing on my application, enrolment or the conditions of my enrolment. I agree to supply any further documentation requested by the University of Waikato for the purpose of my application or enrolment. I have read the statement regarding the Privacy Act 1993 and I understand that the University of Waikato will hold, use and disclose information which I have provided as explained in that statement. I also understand that I have the right to have access to the information about me held by the University of Waikato and to request correction of that information, in the terms provided for under the Privacy Act 1993. Some personal information will be used by the Ministry of Education in an authorised information matching programme for the purposes of the National Student Index.");
+    assertEquals(driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset/div/p")).getText(), "I declare that the information I have provided in this application and in any attached documentation is true and correct, and that I have not withheld any information which could have a bearing on my application, enrolment or the conditions of my enrolment. I agree to supply any further documentation requested by the University of Waikato for the purpose of my application or enrolment.\nI have read the statement regarding the Privacy Act 1993 and I understand that the University of Waikato will hold, use and disclose information which I have provided as explained in that statement.\nI also understand that I have the right to have access to the information about me held by the University of Waikato and to request correction of that information, in the terms provided for under the Privacy Act 1993.\nSome personal information will be used by the Ministry of Education in an authorised information matching programme for the purposes of the National Student Index.");
+
     getDriverWindowHandle();
     driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset/div/p/a")).click();
     switchDriver();
@@ -820,6 +842,7 @@ public void Auto1TEASubmitApplication(String getusertype, String getfirstn, Stri
     // ERROR: Caught exception [ERROR: Unsupported command [selectWindow |  | ]]
     driver.findElement(By.xpath("//form[@id='app_form']/div/div[3]/div/button[3]")).click();
     assertEquals(driver.findElement(By.xpath("//span[@id='parsley-id-multiple-ADOAP_DECC']/div")).getText(), "You must agree to submit your application.");
+    
     driver.findElement(By.id("ADOAP_DECC")).click();
     assertEquals(driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset/div[2]/div/div/label/strong")).getText(),"I have read and agreed to the above declaration.*");
     assertEquals(driver.findElement(By.xpath("//form[@id='app_form']/div/div[3]/div/button[2]")).getText(), "Save and return later");
@@ -827,7 +850,7 @@ public void Auto1TEASubmitApplication(String getusertype, String getfirstn, Stri
     assertEquals(driver.findElement(By.xpath("//form[@id='app_form']/div/div[3]/div/button[3]")).getText(), "Submit application");
     driver.findElement(By.xpath("//button[@id='app-btn-next']")).click();      
     
-    Thread.sleep(5000);
+    Thread.sleep(2000);
     // Confirmation Page
     assertEquals(driver.findElement(By.cssSelector("h1")).getText(), "Qualification Application");
     if (usertype.equals("Staff_Search"))     assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div/div[1]/ol/li")).getText(), coursename + " " + courseyear); 
@@ -877,27 +900,27 @@ public void Auto1TEASubmitApplication(String getusertype, String getfirstn, Stri
     // //Story#10287 (AC:1 [Submitted], 2 - qual name and occurance)
     //this.executeScript();      
     //assertEquals(driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr/td[4]")).getText(), "Submitted");
-    assertEquals(driver.findElement(By.id("PTAD01S")).getText(), "Applications");
+    assertEquals(driver.findElement(By.id("PTAD01S")).getText(), "Qualifications and Papers");
     assertEquals(driver.findElement(By.xpath("//html/body/header/nav/div/div[2]/ul[2]/li/a")).getText(), firstn+" "+lastn);
     assertEquals(driver.findElement(By.id("sitsportalpagetitle")).getText(), "Qualifications and Papers");
-    assertEquals(driver.findElement(By.cssSelector("h2.sv-panel-title")).getText(), "Current applications");
+    assertEquals(driver.findElement(By.cssSelector("h3.sv-panel-title")).getText(), "Current applications");
     }
     // temp this.executeScript("aftersubmission", firstn, lastn, email, dob, city, postcode, mobile, country, coursename, contactaddressline1, contactaddressline2, contactaddressline3, contactaddressline4, gender, contactcountry, homephone, completequalcode, qualname, yearfrom, yearto, firstenrolter, livinginNZcode, nstudentnumber, prevfamilyname, secondname, othersecondname, anyotherqualcode, prevtertiarystudyatunivcode, currentlyatsecondaryschoolcode, currentlystudyingtowards, highsecqual, institutionname, institutiontype, qualificationtype, lastsecschool, lastschoolyear, ethnicity1, ethnicity2, ethnicity3, iwi1, iwi2, iwi3, iwi4, residencystatus, courseyear, coursemonth);
-    assertEquals(driver.findElement(By.linkText("Start a New Application")).getText(), "Start a New Application");
-    assertEquals(driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/thead/tr/th")).getText(), "Year");
-    assertEquals(driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/thead/tr/th[2]")).getText(), "Qualification");
-    assertEquals(driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/thead/tr/th[3]")).getText(), "Submitted");
-    assertEquals(driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/thead/tr/th[4]")).getText(), "Status");
-    assertEquals(driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/thead/tr/th[5]")).getText(), "Actions");
+    assertEquals(driver.findElement(By.cssSelector(".sv-btn")).getText(), "Start a new application");
+    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/thead/tr/th[1]")).getText(), "Year");
+    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/thead/tr/th[2]")).getText(), "Qualification");
+    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/thead/tr/th[3]")).getText(), "Submitted");
+    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/thead/tr/th[4]")).getText(), "Status");
+    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/thead/tr/th[5]")).getText(), "Actions");
     //courserownumber = getSummaryPageCourseRowNumber(coursename);  //For staff home page. Staff home page not getting refreshed.
     if (!usertype.equals("Staff_Search"))  // 15280 bug logged for it
     {
     	courserownumber=getSummaryPageCourseRowNumber(coursename);
-	    assertEquals(driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr["+courserownumber+"]/td")).getText(), courseyear);
-	    assertEquals(driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr["+courserownumber+"]/td[2]")).getText(), coursename);    
-	    assertEquals(driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr["+courserownumber+"]/td[3]")).getText(), localDate.toString("dd/MMM/yyyy"));  //submitted date
-	    assertEquals(driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr["+courserownumber+"]/td[5]/a")).getText(), "View");
-	    driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr/td[5]/a")).click();  // Click View button
+	    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+courserownumber+"]/td")).getText(), courseyear);
+	    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+courserownumber+"]/td[2]")).getText(), coursename);    
+	    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+courserownumber+"]/td[3]")).getText(), localDate.toString("dd/MMM/yyyy"));  //submitted date
+	    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+courserownumber+"]/td[5]/a")).getText(), "View");
+	    driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr/td[5]/a")).click();  // Click View button
 		viewSubmittedCourseDetails(coursename, courseyear, firstname, secondname, othersecondname, lastname, prevfamilyname,nstudentnumber, gender, residencystatus, country, email, homephone, mobile, contactaddressline1, contactaddressline2, contactaddressline3, contactaddressline4, city, postcode, contactcountry,livinginNZ, ethnicity1, ethnicity2, ethnicity3, iwi1, iwi2,iwi3,iwi4);  // View the submitted course details
 	}
     //assertEquals(driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr/td[5]/a[2]")).getText(), "Withdraw");
@@ -934,11 +957,11 @@ public void Auto2TEALogin_Confirm_UploadDocs(String getusertype, String getfirst
 // BUGS: 11108
 try {
  logger = ReportScreenshotUtility.report.startTest("Auto2TEALogin_Confirm_UploadDocs - "+getemail);
- String email, password, firstn, lastn, coursename, courseyear, qualsearchtype, residencystatus, clchkcoursename="";
- email=getemail;
+ String password, coursename, courseyear, qualsearchtype, residencystatus, clchkcoursename="";
+ //String email=getemail;  //Use global as data is changing on rum time
  password=getpassword;
- firstn=getfirstn;
- lastn=getlastn;
+ //String firstn=getfirstn;
+ //String lastn=getlastn;
  coursename=getcoursename;
  residencystatus=getresidencystatus;
  int i=1;  //Qualifications count
@@ -959,23 +982,23 @@ try {
  	{
 		studentLogin(email, password);
 	  
-		 assertEquals(driver.findElement(By.cssSelector("h2.sv-panel-title")).getText(), "Current applications");
+		 assertEquals(driver.findElement(By.cssSelector("h3.sv-panel-title")).getText(), "Current applications");
 		 assertEquals(driver.findElement(By.id("sitsportalpagetitle")).getText(), "Qualifications and Papers");
 		 assertEquals(driver.findElement(By.xpath("//html/body/header/nav/div/div[2]/ul[2]/li/a")).getText(), firstn+" "+lastn);
 		 courserownumber=getSummaryPageCourseRowNumber(coursename);
 		 //if (courserownumber==0) logger.log(LogStatus.INFO,"Course record not found on the Applications Summary page.");
 		 //else
 		 //{
-		 assertEquals(driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr["+courserownumber+"]/td[2]")).getText(), coursename);
+		 assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+courserownumber+"]/td[2]")).getText(), coursename);
 		 //assertEquals(driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr["+courserownumber+"]/td[4]")).getText(), "Incomplete");
 		 //assertEquals(driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr["+courserownumber+"]/td[5]/a[2]")).getText(), "Delete"); Delete won't come after submission
-		assertEquals(driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr["+courserownumber+"]/td[5]/a")).getText(), "View");
+		assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+courserownumber+"]/td[5]/a")).getText(), "View");
 		 //assertEquals(driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr/td")).getText(), courseyear);***/
 		 ///assertEquals(driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr/td[4]")).getText(), "Applicant in Clearing");
 		///assertEquals(driver.findElement(By.linkText("Withdraw")).getText(), "Withdraw");
 		 //}
-		 assertEquals(driver.findElement(By.linkText("Start a New Application")).getText(), "Start a New Application");
-		 driver.findElement(By.linkText("Start a New Application")).click();
+		assertEquals(driver.findElement(By.cssSelector(".sv-btn")).getText(), "Start a new application");
+		 driver.findElement(By.linkText("Start a new application")).click();
 		 break;
  	}
  	case "Agent":
@@ -1006,15 +1029,15 @@ try {
 		 //if (courserownumber==0) logger.log(LogStatus.INFO,"Course record not found on the Applications Summary page.");
 		 //else
 		 //{
-		assertEquals(driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr["+courserownumber+"]/td[2]")).getText(), coursename);
-		assertEquals(driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr["+courserownumber+"]/td[4]")).getText(), "Applicant");
+		assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+courserownumber+"]/td[2]")).getText(), coursename);
+		assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+courserownumber+"]/td[4]")).getText(), "Applicant");
 		 //assertEquals(driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr["+courserownumber+"]/td[4]")).getText(), "Incomplete");
 		 //assertEquals(driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr["+courserownumber+"]/td[5]/a[2]")).getText(), "Delete"); Delete won't come after submission
-		assertEquals(driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr["+courserownumber+"]/td[5]/a")).getText(), "View");
-		assertEquals(driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr["+courserownumber+"]/td[5]/a[2]")).getText(), "Withdraw");
+		assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+courserownumber+"]/td[5]/a")).getText(), "View");
+		assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+courserownumber+"]/td[5]/a[2]")).getText(), "Withdraw");
 		winhandlebefore_staff = driver.getWindowHandle(); //   get  Driver Window Handle to use at the end, to close student window;
 		getDriverWindowHandle();
-		driver.findElement(By.linkText("Start a New Application")).click(); //
+		driver.findElement(By.linkText("Start a new application")).click(); //
 		switchDriver();	 
  	 	break;
  	}
@@ -1084,6 +1107,10 @@ driver.findElement(By.id("KEYWORD.IPP.SRS")).clear();
 			//driver.findElement(By.xpath("//ul[@id='courses']/li[12]/a")).click();
 			// Qualification Selection Page
 			driver.findElement(By.name("APPLY.IPO.SRS.1")).click();
+			
+			// Location and subject selection	    
+		   locationSubjectSelection(clchkcoursename, "Tauranga");
+			
 			// Personal details page
 			if(getlivinginNZ.equalsIgnoreCase("Yes"))
 		    {
@@ -1142,13 +1169,13 @@ driver.findElement(By.id("KEYWORD.IPP.SRS")).clear();
 				driver.switchTo().window(winhandlebefore_staff);    // Close the additional student window
 				winhandlebefore_staff = driver.getWindowHandle(); //   get  Driver Window Handle to use at the end, to close student window;
 				getDriverWindowHandle();
-				driver.findElement(By.linkText("Start a New Application")).click(); //
+				driver.findElement(By.linkText("Start a new application")).click(); //
 				switchDriver();	 
 			}
 			else if (usertype.equalsIgnoreCase("Student"))
 			{
 				driver.findElement(By.linkText("Applications")).click();
-				driver.findElement(By.linkText("Start a New Application")).click();
+				driver.findElement(By.linkText("Start a new application")).click();
 			}
 			else if (usertype.equalsIgnoreCase("Agent"))
 			{
@@ -1170,6 +1197,10 @@ driver.findElement(By.xpath("//ul[@id='courses']/li/a")).click();
 clchkcoursename="Certificate of University Preparation";
 // Qualification Selection Page
 driver.findElement(By.name("APPLY.IPO.SRS.1")).click();
+
+//Location and Subject selection
+locationSubjectSelection(coursename, "Hamilton");
+
 // Personal details page
 if(getlivinginNZ.equalsIgnoreCase("Yes"))
 {
@@ -1219,14 +1250,18 @@ driver.findElement(By.xpath("//button[@id='app-btn-next']")).click();
 
 //driver.findElement(By.xpath("//form[@id='app_form']/div/div[3]/div/button")).click();
 driver.findElement(By.linkText("Applications")).click();
-driver.findElement(By.linkText("Start a New Application")).click();
+driver.findElement(By.linkText("Start a new application")).click();
 // Qualification Search Page
 new Select(driver.findElement(By.id("SELECTION.CRITERIA.SRS.1-1"))).selectByVisibleText("Bachelors Degree");
 driver.findElement(By.id("BP102.DUMMY_B.MENSYS")).click();
-assertEquals(driver.findElement(By.xpath("//ul[@id='courses']/li[8]/a")).getText(), "Bachelor of Music");
-driver.findElement(By.xpath("//ul[@id='courses']/li[8]/a")).click();
+
+driver.findElement(By.linkText("Bachelor of Music")).click();
 // Qualification Selection Page
 driver.findElement(By.name("APPLY.IPO.SRS.1")).click();
+
+//Location and Subject selection
+locationSubjectSelection("Bachelor of Music", "Hamilton");
+
 // Personal details page
 if(getlivinginNZ.equalsIgnoreCase("Yes"))
 {
@@ -1241,7 +1276,11 @@ driver.findElement(By.id("app-btn-next")).click();
 // Contact details Page
 driver.findElement(By.id("app-btn-next")).click();
 // Education Page
-if (getcurrentlyatsecondaryschool.equals("Yes")) driver.findElement(By.id("ADOAP_EDSSQ1")).click();  //to reset the check as had to select other option for the Bachelor of Laws course in Auto2 (checkbox was checked for this user story 10046 (10428))
+if (getcurrentlyatsecondaryschool.equals("Yes")) 
+{
+		driver.findElement(By.id("ADOAP_EDSSQ1")).click();  //to reset the check as had to select other option for the Bachelor of Laws course in Auto2 (checkbox was checked for this user story 10046 (10428))
+		driver.findElement(By.id("IPQ_ADOAP_CSTY")).sendKeys(getcurrentlystudyingtowards); //Selected Yes again above and had to provide this info again
+}
 driver.findElement(By.id("ADOAP_EDPTS2")).click();
 driver.findElement(By.id("app-btn-next")).click();
 if (residencystatus.equals("Other") || (residencystatus.equals("Australian Citizen") && getlivinginNZ.equalsIgnoreCase("No")) || (residencystatus.equalsIgnoreCase("Australian Permanent Resident") && getlivinginNZ.equals("No")) || (residencystatus.equalsIgnoreCase("Australian and NZ Permanent Resident") && getlivinginNZ.equalsIgnoreCase("No")))
@@ -1328,14 +1367,14 @@ public void Auto4TEASaveContinueDelete(String getusertype, String getfirstn, Str
 		Thread.sleep(1000);
 		driver.get(propertyconfig.getApplicationURL());  //URL picked from the Property file
 		exceptionerror="false";
-		String firstn = getfirstn;
-	    String lastn = getlastn;
+		//String firstn = getfirstn;
+	    //String lastn = getlastn;
 	    String secondname = getsecondname;
 	    String othersecondname=getothersecondname;
 	   // prevfamilyname=getprevfamilyname;
 	    String dob = getdob;
 	    String nstudentnumber=getnstudentnumber;
-	    String email = getemail;   	    
+	    //String email = getemail;   	    
 	    String password = getpassword;	    
 	   // String qualsearchtype = getqualsearchtype;
 	    //String coursename="Bachelor of Business Analysis";
@@ -1391,7 +1430,7 @@ public void Auto4TEASaveContinueDelete(String getusertype, String getfirstn, Str
 				staffSearchLogin(firstn, lastn, email, secondname, othersecondname, getdob); //Login steps for Staff Search. using the same for Staff_New case also
 				winhandlebefore_staff = driver.getWindowHandle(); //   get  Driver Window Handle to use at the end, to close student window;
 				getDriverWindowHandle();
-				driver.findElement(By.linkText("Start a New Application")).click(); //
+				driver.findElement(By.linkText("Start a new application")).click(); //
 				switchDriver();	 
 				break;
 	    	}
@@ -1401,7 +1440,7 @@ public void Auto4TEASaveContinueDelete(String getusertype, String getfirstn, Str
 		    {
 		  	  // Register/Login Page
 		    	studentLogin(email, password);
-			    driver.findElement(By.linkText("Start a New Application")).click();
+			    driver.findElement(By.linkText("Start a new application")).click();
 			    break;
 		    }
 	    case "Agent":
@@ -1460,6 +1499,9 @@ public void Auto4TEASaveContinueDelete(String getusertype, String getfirstn, Str
 	   
 	    driver.findElement(By.xpath("//input[@name='APPLY.IPO.SRS.1']")).click();
 	    getyear=(String)courseoptions[0][0]; //clicked first course
+	    
+	  //Location and Subject selection
+	   locationSubjectSelection(coursename, "Hamilton");
 	
 	  // Personal Details Page	 
 	  assertEquals(driver.findElement(By.cssSelector("p.user-info")).getText(), "Logged in as: "+firstn+" "+lastn);
@@ -1502,7 +1544,8 @@ public void Auto4TEASaveContinueDelete(String getusertype, String getfirstn, Str
 	  new Select(driver.findElement(By.id("IPQ_ADOAP_ETH1"))).selectByVisibleText(ethnicity1);
 	  assertTrue(isElementPresent(By.xpath("//button[@id='app-btn-save']")));
 	  assertEquals(driver.findElement(By.xpath("//button[@id='app-btn-save']")).getText(), "Save and return later");
-	  driver.findElement(By.xpath("//form[@id='app_form']/div/div[3]/div/button[2]")).click();
+	
+	  driver.findElement(By.id("app-btn-next")).click();
 	  // Contact Details Page
 	  driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/div[8]/div/input")).clear();
 	  driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/div[8]/div/input")).sendKeys(city);
@@ -1510,7 +1553,7 @@ public void Auto4TEASaveContinueDelete(String getusertype, String getfirstn, Str
 	  driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/div[9]/div/input")).sendKeys(postcode);
 	  assertTrue(isElementPresent(By.xpath("//button[@id='app-btn-save']")));
 	  assertEquals(driver.findElement(By.xpath("//button[@id='app-btn-save']")).getText(), "Save and return later");
-	  driver.findElement(By.xpath("//form[@id='app_form']/div/div[3]/div/button[3]")).click();
+	  driver.findElement(By.id("app-btn-next")).click();
 	  // Education Page
 	  // //Checking the Save option with mandatory info blank.
 	  assertEquals(new Select(driver.findElement(By.id("IPQ_ADOAP_EDLSTY"))).getFirstSelectedOption().getText(), lastschoolyear);
@@ -1580,7 +1623,8 @@ public void Auto4TEASaveContinueDelete(String getusertype, String getfirstn, Str
 		}
 	    else
 	    {
-	    	driver.findElement(By.linkText("Applications")).click();
+	    	driver.findElement(By.linkText("Applications")).click();    	
+	
 	    }
 	 // Applications summary page
 	    driver.findElement(By.xpath("//html/body/header/nav/div/div[2]/ul[2]/li/a")).click();
@@ -1597,7 +1641,7 @@ public void Auto4TEASaveContinueDelete(String getusertype, String getfirstn, Str
 	    		    driver.findElement(By.id("PASSWORD.DUMMY.MENSYS")).clear();
 	    		    driver.findElement(By.id("PASSWORD.DUMMY.MENSYS")).sendKeys(password);
 	    		    driver.findElement(By.cssSelector("input[name=\"BP101.DUMMY_B.MENSYS.1\"]")).click();
-	    		    driver.findElement(By.linkText("Applications")).click();
+	    		    driver.findElement(By.xpath("//*[@id='PTAD01S']")).click();
 	    		    break;
 	    	}
 	    case "Staff_New":
@@ -1653,7 +1697,7 @@ public void Auto4TEASaveContinueDelete(String getusertype, String getfirstn, Str
 					}
 				 }
 				assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[1]/h1")).getText(),"Student Maintenance");
-				assertEquals(driver.findElement(By.xpath("//html/body/div[1]/ul/li/a")).getText(),"Applications");
+				assertEquals(driver.findElement(By.xpath("//html/body/div[1]/ul/li/a")).getText(),"Qualifications and Papers");
 				break;
 	    	}
 	    case "Agent":
@@ -1682,17 +1726,17 @@ public void Auto4TEASaveContinueDelete(String getusertype, String getfirstn, Str
 		   // if (courserownumber==0) logger.log(LogStatus.INFO,"Course record not found on the Applications Summary page.");
 		    //else
 		    //{
-		    assertEquals(driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr["+courserownumber+"]/td[2]")).getText(), coursename);
-		    assertEquals(driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr["+courserownumber+"]/td[4]")).getText(), "Incomplete");
-		    assertEquals(driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr["+courserownumber+"]/td[5]/a[2]")).getText(), "Delete");
+		    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+courserownumber+"]/td[2]")).getText(), coursename);
+		    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+courserownumber+"]/td[4]")).getText(), "Incomplete");
+		    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+courserownumber+"]/td[5]/a[2]")).getText(), "Delete");
 		    getDriverWindowHandle();
-		    driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr["+courserownumber+"]/td[5]/a")).click(); //Click the corresponding 'Continue' button
+		    driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+courserownumber+"]/td[5]/a")).click(); //Click the corresponding 'Continue' button
 			//}
 		    // Education Page
 		    switchDriver();	 
 	    }
-	    driver.findElement(By.xpath("//html/body/div[1]/div/ul/li[1]/a/span[2]/h4")).click();  //Click on personal details link
-	    // Personal details page
+	    driver.findElement(By.xpath("//html/body/div[1]/div/ul/li[2]/a/span[2]/h4")).click();  //Click on personal details link
+	    // Personal details page	
 	    assertEquals(driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset/div[2]/div")).getText(),firstn.toUpperCase());
 		assertEquals(driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset/div[3]/div")).getText(),secondname.toUpperCase());
 		assertEquals(driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset/div[4]/div")).getText(),othersecondname.toUpperCase());
@@ -1713,7 +1757,7 @@ public void Auto4TEASaveContinueDelete(String getusertype, String getfirstn, Str
 				
 		assertEquals(new Select(driver.findElement(By.id("IPQ_ADOAP_ETH1"))).getFirstSelectedOption().getText(), ethnicity1);
 		
-		driver.findElement(By.xpath("//form[@id='app_form']/div/div[3]/div/button[2]")).click();
+		driver.findElement(By.xpath("//form[@id='app_form']/div/div[3]/div/button[3]")).click();
 		// Contact Details Page
 		assertEquals(driver.findElement(By.id("IPR_CAEM")).getAttribute("value"),email);
 		assertEquals(driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/div[2]/div/input")).getAttribute("value"),homephone);
@@ -1733,6 +1777,7 @@ public void Auto4TEASaveContinueDelete(String getusertype, String getfirstn, Str
 	    // Education Page
 	    driver.findElement(By.id("app-btn-back")).click();
 	    driver.findElement(By.cssSelector("h4.progress-title")).click();
+	    driver.findElement(By.id("app-btn-next")).click();
 	    driver.findElement(By.id("app-btn-next")).click();
 	    driver.findElement(By.id("app-btn-next")).click();
 	    // Education Page
@@ -1843,7 +1888,7 @@ public void Auto4TEASaveContinueDelete(String getusertype, String getfirstn, Str
 	    else if (usertype.equals("Student"))
 	    {
 	    	// Saving Confirmation Page
-	  	  	driver.findElement(By.linkText("Applications")).click();
+	  	  	driver.findElement(By.xpath("//*[@id='PTAD01S']")).click();
 	    }
 	  if (usertype.equals("Agent"))
 	   	{
@@ -1874,12 +1919,12 @@ public void Auto4TEASaveContinueDelete(String getusertype, String getfirstn, Str
 	    //else
 	    // {
 	    // assertEquals(driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr["+courserownumber+"]/td[1]")).getText(), courseyear);
-	    assertEquals(driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr["+courserownumber+"]/td[2]")).getText(),coursename);
+	    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+courserownumber+"]/td[2]")).getText(),coursename);
 	    ///assertEquals(driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr/td[4]")).getText(), "UnSubmitted");
-	    assertEquals(driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr["+courserownumber+"]/td[4]")).getText(), "Incomplete");
+	    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+courserownumber+"]/td[4]")).getText(), "Incomplete");
 	    //getyear =  driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr["+courserownumber+"]/td")).getText();
 	    //Implementing Story# 10117(S2); Auto: 5 TEA-DeleteApplication
-	    driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr["+courserownumber+"]/td[5]/a[2]")).click(); //Click the corresponding 'Delete' button
+	    driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+courserownumber+"]/td[5]/a[2]")).click(); //Click the corresponding 'Delete' button
 	  }
 	    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[1]/h1")).getText(), "Delete Application");
 	    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div/div[1]/h2")).getText(), "Confirm deletion");
@@ -1952,7 +1997,7 @@ public void Auto6TEASecondarySchoolDetails(String getusertype, String getfirstn,
 	logger = ReportScreenshotUtility.report.startTest("Auto6TEASecondarySchoolDetails - "+getemail);
 	exceptionerror="false";
 	String courseyear = null;
-	String email=getemail;
+	//String email=getemail;
 	String password=getpassword;
 	String residencystatus=getresidencystatus;
 	usertype=getusertype;
@@ -1969,9 +2014,9 @@ public void Auto6TEASecondarySchoolDetails(String getusertype, String getfirstn,
 			    // Register/Login Page
 				studentLogin(email, password);
 			    // Applications Summary Page
-			    assertEquals(driver.findElement(By.cssSelector("h2.sv-panel-title")).getText(), "Current applications");
+			    assertEquals(driver.findElement(By.cssSelector("h3.sv-panel-title")).getText(), "Current applications");
 			    assertEquals(driver.findElement(By.id("sitsportalpagetitle")).getText(), "Qualifications and Papers");
-			    driver.findElement(By.linkText("Start a New Application")).click();
+			    driver.findElement(By.linkText("Start a new application")).click();
 			    break;
 		}
 		case "Staff_Search":
@@ -1982,7 +2027,7 @@ public void Auto6TEASecondarySchoolDetails(String getusertype, String getfirstn,
 					staffSearchLogin(getfirstn, getlastn, email, getsecondname, getothersecondname, getdob); //Login steps for Staff Search. using the same for Staff_New case also
 					winhandlebefore_staff = driver.getWindowHandle(); //   get  Driver Window Handle to use at the end, to close student window;
 					getDriverWindowHandle();
-					driver.findElement(By.linkText("Start a New Application")).click(); //
+					driver.findElement(By.linkText("Start a new application")).click(); //
 					switchDriver();	 
 					break;
 		}
@@ -2015,6 +2060,10 @@ public void Auto6TEASecondarySchoolDetails(String getusertype, String getfirstn,
     driver.findElement(By.xpath("//input[@name='APPLY.IPO.SRS.1']")).click();
     courseyear=(String)courseoptions[0][0]; //clicked first course
     //driver.findElement(By.name("APPLY.IPO.SRS.1")).click();
+    
+  //Location and Subject selection
+    locationSubjectSelection(coursename, "Net");
+    
     // Personal Details
     if(getlivinginNZ.equalsIgnoreCase("Yes"))
     {
@@ -2112,7 +2161,7 @@ public void Auto6TEASecondarySchoolDetails(String getusertype, String getfirstn,
     checkLinks10037(residencystatus, getlivinginNZ);
     if (usertype.equals("Student"))    
     {
-    	driver.findElement(By.linkText("Applications")).click();
+    	driver.findElement(By.xpath("//*[@id='PTAD01S']")).click();
     }
     else
     {
@@ -2157,7 +2206,7 @@ public void Auto6TEASecondarySchoolDetails(String getusertype, String getfirstn,
     	{
     		winhandlebefore_staff = driver.getWindowHandle();
     		getDriverWindowHandle();
-    		driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr["+courserownumber+"]/td[5]/a")).click(); //Click the corresponding 'Continue' button
+    		driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+courserownumber+"]/td[5]/a")).click(); //Click the corresponding 'Continue' button
     		switchDriver();
     	}
 		
@@ -2167,7 +2216,7 @@ public void Auto6TEASecondarySchoolDetails(String getusertype, String getfirstn,
     // Declaration page
     driver.findElement(By.id("ADOAP_DECC")).click();
     driver.findElement(By.id("app-btn-next")).click();
-    Thread.sleep(5000); // Two entries coming up
+    Thread.sleep(2000); // Two entries coming up
     // Confirmation page
     if (usertype.equals("Staff_Search") || usertype.equals("Staff_New"))// || usertype.equals("Agent")) 		  
 	{
@@ -2176,7 +2225,7 @@ public void Auto6TEASecondarySchoolDetails(String getusertype, String getfirstn,
 	}
     else if (usertype.equals("Student"))
     {
-    driver.findElement(By.linkText("Applications")).click();
+    driver.findElement(By.xpath("//*[@id='PTAD01S']")).click();
     assertEquals(driver.findElement(By.id("sitsportalpagetitle")).getText(), "Qualifications and Papers");
     }
     
@@ -2206,8 +2255,8 @@ public void Auto6TEASecondarySchoolDetails(String getusertype, String getfirstn,
     //Applications summary page
     // Withdraw user story - 10058
     courserownumber = getSummaryPageCourseRowNumber(coursename);
-	assertEquals(driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr["+courserownumber+"]/td[5]/a[2]")).getText(), "Withdraw");
-	driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr["+courserownumber+"]/td[5]/a[2]")).click();
+	assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+courserownumber+"]/td[5]/a[2]")).getText(), "Withdraw");
+	driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+courserownumber+"]/td[5]/a[2]")).click();
 	//courseyear= driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr["+courserownumber+"]/td[1]")).getText();
    }
    else if (usertype.equals("Staff_Search") || usertype.equals("Staff_New"))
@@ -2215,8 +2264,8 @@ public void Auto6TEASecondarySchoolDetails(String getusertype, String getfirstn,
 	  driver.get(propertyconfig.getApplicationURL());  //URL picked from the Property file
 	  staffSearchLogin(getfirstn, getlastn, getemail, getsecondname, getothersecondname, getdob);
 	  courserownumber = getSummaryPageCourseRowNumber(coursename);
-	  assertEquals(driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr["+courserownumber+"]/td[5]/a[2]")).getText(), "Withdraw");
-	  driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr["+courserownumber+"]/td[5]/a[2]")).click();		
+	  assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+courserownumber+"]/td[5]/a[2]")).getText(), "Withdraw");
+	  driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+courserownumber+"]/td[5]/a[2]")).click();		
    }
 	//Withdraw application page
 	assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[1]/h1")).getText(), "Withdraw Application");
@@ -2238,7 +2287,7 @@ public void Auto6TEASecondarySchoolDetails(String getusertype, String getfirstn,
 	}
 	else if (usertype.equals("Staff_Search") || usertype.equals("Staff_New"))
 	{
-		assertEquals(driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr["+courserownumber+"]/td[4]")).getText(), "Withdrawn");
+		assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+courserownumber+"]/td[4]")).getText(), "Withdrawn");
 	}
     if (usertype.equals("Student")) //check this for staff type
     {
@@ -2248,8 +2297,8 @@ public void Auto6TEASecondarySchoolDetails(String getusertype, String getfirstn,
 	    assertEquals(driver.findElement(By.xpath("//div[@id='sitspagecontent']/div[2]/div/h2")).getText(), "Application details");
 	    assertEquals(driver.findElement(By.xpath("//div[@id='sitspagecontent']/div[2]/div[2]/div/div/a")).getText(), "Current Applications");
 		courserownumber=getSummaryPageCourseRowNumber(coursename);
-		assertEquals(driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr["+courserownumber+"]/td[2]")).getText(), coursename);
-		assertEquals(driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr["+courserownumber+"]/td[4]")).getText(), "Withdrawn");
+		assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+courserownumber+"]/td[2]")).getText(), coursename);
+		assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+courserownumber+"]/td[4]")).getText(), "Withdrawn");
 	}		
 	 //Call SITS //
     Runtime runtimewithdraw = Runtime.getRuntime();
@@ -2294,7 +2343,7 @@ public void Auto8TEAApplicationForMasterOfAppliedPsychology(String getusertype, 
 	  try {		  
 		  logger = ReportScreenshotUtility.report.startTest("Auto8TEAApplicationForMasterOfAppliedPsychology - "+getemail);
 		  exceptionerror="false";
-		  String email=getemail;
+		  //String email=getemail;
 		  String password=getpassword;
 		  String residencystatus=getresidencystatus;
 		  usertype=getusertype;
@@ -2311,9 +2360,9 @@ public void Auto8TEAApplicationForMasterOfAppliedPsychology(String getusertype, 
 					    // Register/Login Page
 						studentLogin(email, password);
 					    // Applications Summary Page
-					    assertEquals(driver.findElement(By.cssSelector("h2.sv-panel-title")).getText(), "Current applications");
+					    assertEquals(driver.findElement(By.cssSelector("h3.sv-panel-title")).getText(), "Current applications");
 					    assertEquals(driver.findElement(By.id("sitsportalpagetitle")).getText(), "Qualifications and Papers");
-					    driver.findElement(By.linkText("Start a New Application")).click(); //
+					    driver.findElement(By.linkText("Start a new application")).click(); //
 					    break;
 				}
 				case "Staff_Search":
@@ -2324,7 +2373,7 @@ public void Auto8TEAApplicationForMasterOfAppliedPsychology(String getusertype, 
 							staffSearchLogin(getfirstn, getlastn, email, getsecondname, getothersecondname, getdob); //Login steps for Staff Search. using the same for Staff_New case also
 							winhandlebefore_staff = driver.getWindowHandle(); //   get  Driver Window Handle to use at the end, to close student window;
 							getDriverWindowHandle();
-							driver.findElement(By.linkText("Start a New Application")).click(); //
+							driver.findElement(By.linkText("Start a new application")).click(); //
 							switchDriver();	 
 							break;
 				}
@@ -2350,9 +2399,9 @@ public void Auto8TEAApplicationForMasterOfAppliedPsychology(String getusertype, 
 			}
     while(i<=3)                    // execute for all 3 courses of Master of Applied Psychology
     {
- //   assertEquals(driver.findElement(By.cssSelector("h2.sv-panel-title")).getText(), "Current applications"); 
+ //   assertEquals(driver.findElement(By.cssSelector("h3.sv-panel-title")).getText(), "Current applications"); 
   //  assertEquals(driver.findElement(By.id("sitsportalpagetitle")).getText(), "Qualifications and Papers"); 
-   // driver.findElement(By.linkText("Start a New Application")).click();
+   // driver.findElement(By.linkText("Start a new application")).click();
     // Qualification Search Page
     driver.findElement(By.id("KEYWORD.IPP.SRS")).clear();
     driver.findElement(By.id("KEYWORD.IPP.SRS")).sendKeys("Applied Psychology");
@@ -2367,10 +2416,14 @@ public void Auto8TEAApplicationForMasterOfAppliedPsychology(String getusertype, 
     case 3: coursename="Master of Applied Psychology in Behaviour Analysis";
     break;
     }
-   // if (usertype.equals("Student"))   	driver.findElement(By.linkText("Start a New Application")).click();   
+   // if (usertype.equals("Student"))   	driver.findElement(By.linkText("Start a new application")).click();   
     driver.findElement(By.linkText(coursename)).click();
     // Qualification Selection Page
     driver.findElement(By.name("APPLY.IPO.SRS.1")).click();
+    
+  //Location and Subject selection
+    locationSubjectSelection(coursename, "Hamilton");
+    
     // Personal details page
     if(getlivinginNZ.equalsIgnoreCase("Yes"))
     {
@@ -2433,8 +2486,8 @@ public void Auto8TEAApplicationForMasterOfAppliedPsychology(String getusertype, 
       if (usertype.equals("Student"))
       {
     	  	// 	Confirmation Page
-    	  	driver.findElement(By.linkText("Applications")).click();
-    	  	driver.findElement(By.linkText("Start a New Application")).click(); //
+    	  	driver.findElement(By.xpath("//*[@id='PTAD01S']")).click();
+    	  	driver.findElement(By.linkText("Start a new application")).click(); //
   	  }
       else if (usertype.equals("Agent"))
       {
@@ -2456,7 +2509,7 @@ public void Auto8TEAApplicationForMasterOfAppliedPsychology(String getusertype, 
 			driver.switchTo().window(winhandlebefore_staff);    // Close the additional student window
 			winhandlebefore_staff = driver.getWindowHandle(); //   get  Driver Window Handle to use at the end, to close student window;
 			getDriverWindowHandle();
-			driver.findElement(By.linkText("Start a New Application")).click(); //
+			driver.findElement(By.linkText("Start a new application")).click(); //
 			switchDriver();	 
   	  }   
             
@@ -2485,7 +2538,7 @@ public void Auto9TEATeachingProgrammeAdditionalInfo(String getusertype, String g
 	  //// 
     try {
     logger = ReportScreenshotUtility.report.startTest("Auto9TEATeachingProgrammeAdditionalInfo - "+getemail);
-    String email=getemail;
+    //String email=getemail;
 	String password=getpassword;
 	String residencystatus=getresidencystatus;
 	
@@ -2503,7 +2556,7 @@ public void Auto9TEATeachingProgrammeAdditionalInfo(String getusertype, String g
 			    // Register/Login Page
 				studentLogin(email, password);
 			    // Applications Summary Page
-			    assertEquals(driver.findElement(By.cssSelector("h2.sv-panel-title")).getText(), "Current applications");
+			    assertEquals(driver.findElement(By.cssSelector("h3.sv-panel-title")).getText(), "Current applications");
 			    assertEquals(driver.findElement(By.id("sitsportalpagetitle")).getText(), "Qualifications and Papers");
 			   
 			    break;
@@ -2516,7 +2569,7 @@ public void Auto9TEATeachingProgrammeAdditionalInfo(String getusertype, String g
 					staffSearchLogin(getfirstn, getlastn, email, getsecondname, getothersecondname, getdob); //Login steps for Staff Search. using the same for Staff_New case also
 					winhandlebefore_staff = driver.getWindowHandle(); //   get  Driver Window Handle to use at the end, to close student window;
 					getDriverWindowHandle();
-					driver.findElement(By.linkText("Start a New Application")).click(); //
+					driver.findElement(By.linkText("Start a new application")).click(); //
 					switchDriver();	 
 					break;
 		}
@@ -2549,7 +2602,7 @@ public void Auto9TEATeachingProgrammeAdditionalInfo(String getusertype, String g
 	
    while (i<=3)
    {
-			if (usertype.equals("Student"))   	driver.findElement(By.linkText("Start a New Application")).click();
+			if (usertype.equals("Student"))   	driver.findElement(By.linkText("Start a new application")).click();
 		    // Qualification Search Page
 		    // ERROR: Caught exception [unknown command [if]]
 			if (i==1)    courselink = "Bachelor of Teaching";
@@ -2565,6 +2618,10 @@ public void Auto9TEATeachingProgrammeAdditionalInfo(String getusertype, String g
 		    // ERROR: Caught exception [Error: locator strategy either id or name must be specified explicitly.]
 		    // Qualification Selection Page
 		    driver.findElement(By.name("APPLY.IPO.SRS.1")).click();
+		    
+		  //Location and Subject selection
+		    locationSubjectSelection(courselink, "Hamilton");
+		    
 		    // Personal details page
 		    if(getlivinginNZ.equalsIgnoreCase("Yes"))
 		    {
@@ -2654,7 +2711,7 @@ public void Auto9TEATeachingProgrammeAdditionalInfo(String getusertype, String g
 		    if (usertype.equals("Student"))
 		    {
 		  	  	// 	Confirmation Page
-		  	  	driver.findElement(By.linkText("Applications")).click();
+		  	  	driver.findElement(By.xpath("//*[@id='PTAD01S']")).click();
 			}
 		    else if (usertype.equals("Agent"))
 		    {
@@ -2676,7 +2733,7 @@ public void Auto9TEATeachingProgrammeAdditionalInfo(String getusertype, String g
 				driver.switchTo().window(winhandlebefore_staff);    // Close the additional student window
 				winhandlebefore_staff = driver.getWindowHandle(); //   get  Driver Window Handle to use at the end, to close student window;
 				getDriverWindowHandle();
-				driver.findElement(By.linkText("Start a New Application")).click(); //
+				driver.findElement(By.linkText("Start a new application")).click(); //
 				switchDriver();	 
 			}	    
 		    
@@ -2735,8 +2792,8 @@ private boolean isElementPresent(By by) {
   @DataProvider(name="ParamData")  //Parameterizing @Test code for the Excel records
 	public Object[][] passData() throws Exception   // Load Data Excel  
 	{	  		  	
-	  	int sheetnumber = 0;
-	  	Calendar cal = Calendar.getInstance();
+	  	int sheetnumber = 0; //Functions specific data
+	  	//Calendar cal = Calendar.getInstance();
 		String excelpath=propertyconfig.getExcelSheetPath();	
 	  	ExcelDataConfig excelconfig = new ExcelDataConfig(excelpath);
 	  	
@@ -2750,12 +2807,7 @@ private boolean isElementPresent(By by) {
 			for (int j=0;j<cols;j++)  //Columns value is one more than the index so less than sign
 			{
 				data[i][j]=excelconfig.getData(sheetnumber, i+1, j);  //Picking data from the 2nd row in excel sheet, so i+1
-				
-				if (j==1 || j==2 || j==8 || j==9)  //parameterise firstname, lastname, email, remail
-				{
-					data[i][j]=mData(data[i][j],cal);
-				}
-				
+					
 				if (j==6)   //As date field is in the 7th col (6th index)
 				{
 					//Calling the function to change the date format from mm/dd/yy to dd/mm/yyyy//
@@ -2766,7 +2818,8 @@ private boolean isElementPresent(By by) {
 					// -----------------------------------------------------------------     //		
 				}
 			}					
-		}		
+		}
+		
 	  	return data;
 	}
   
@@ -2908,7 +2961,7 @@ private boolean isElementPresent(By by) {
 	    switchDriver();
 	    Thread.sleep(500);
 	    assertEquals(driver.getCurrentUrl(), "http://www.waikato.ac.nz/study/apply/accommodation");
-	    assertEquals(driver.getTitle(), "Accommodation : University of Waikato");
+	    assertEquals(driver.getTitle(), "Applying for accommodation : University of Waikato");
 	    ///assertEquals(driver.findElement(By.xpath("//section[@id='content']/h1")).getText(), "Accommodation");
 	    ///assertEquals(driver.findElement(By.xpath("//div[@id='tab-24445']/h2")).getText(), "Apply for Halls of Residence");
 	    switchToEarlierDriver();
@@ -3339,7 +3392,7 @@ private boolean isElementPresent(By by) {
 	          //  System.out.println("Day:"+day+" Month:"+dobmonth+" Year:"+year);
 	        }
 	        Date date = new SimpleDateFormat("MMM", Locale.ENGLISH).parse(dobmonth);
-	        Calendar cal = Calendar.getInstance();
+	        //Calendar cal = Calendar.getInstance();
 	        cal.setTime(date);
 	        int month = cal.get(Calendar.MONTH);
 	       		    	        
@@ -3417,23 +3470,21 @@ private boolean isElementPresent(By by) {
   
   
   public int getSummaryPageCourseRowNumber(String coursen)
-  {
-	  int i=1, rownumber=0;
-	  String coursename=coursen, id=null;
-	 // if (!usertype.equals("Agent")) //|| usertype.equals("Student") || usertype.equals("Student"))
-		//  {
-		  		id="//table[@id='DataTables_Table_0']/tbody/tr["+i+"]/td";
-		  		while(isElementPresent(By.xpath(id)) && (!driver.findElement(By.xpath(id)).getText().equalsIgnoreCase("No information available")))
-		  		{		  		  
-		  		  id="//table[@id='DataTables_Table_0']/tbody/tr["+i+"]/td[2]";		
-		  		  
-		  		  if (driver.findElement(By.xpath(id)).getText().equals(coursename)) 
-		  		  {
-		  			  return i;
-		  		  }			 
-		  		  i++;
-		  		  id="//table[@id='DataTables_Table_0']/tbody/tr["+i+"]/td";
-		  		}	  
+	 {
+		int i=1, rownumber=0;
+		String coursename=coursen, id=null;	
+		id="//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+i+"]/td";
+		while(isElementPresent(By.xpath(id)) && (!driver.findElement(By.xpath(id)).getText().equalsIgnoreCase("No information available")))
+		{		  		  
+		  id="//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+i+"]/td[2]";				  		  
+		  if (driver.findElement(By.xpath(id)).getText().equals(coursename)) 
+		  {
+			  return i;
+		  }			 
+		  i++;
+		  id="//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+i+"]/td";
+		}	 
+		
 		  //}	 
 	/**  if (usertype.equals("Agent")) 								
 		  {
@@ -3492,9 +3543,9 @@ private boolean isElementPresent(By by) {
   {
 	// Register/Login Page
 		 driver.findElement(By.xpath("//div[@id='new_user_section']/div/div/div/div[2]/div[2]/div/a")).click();
-		 assertEquals(driver.findElement(By.cssSelector("p.header-subtitle.sv-hidden-xs")).getText(), "e:Vision");
-		 assertEquals(driver.findElement(By.cssSelector("h1")).getText(), "Log in to SITS e:Vision Portal");
-		 assertEquals(driver.findElement(By.cssSelector("div.sv-page-header.sv-hidden-xs > p")).getText(), "This page is the SITS e:Vision Portal login screen. Please use the form below to supply your login details and click the \"Log in\" button to access the system.");
+		 assertEquals(driver.findElement(By.cssSelector("p.header-subtitle.sv-hidden-xs")).getText(), "MyWaikato (UAT)");
+		 assertEquals(driver.findElement(By.cssSelector("h1")).getText(), "Log in to MyWaikato");
+		 assertEquals(driver.findElement(By.cssSelector("div.sv-page-header.sv-hidden-xs > p")).getText(), "This page is the MyWaikato login screen. Please use the form below to supply your login details and click the \"Log in\" button to access the system.");
 		 assertEquals(driver.findElement(By.cssSelector("h2.sv-panel-title")).getText(), "Portal Login");
 		 assertEquals(driver.findElement(By.cssSelector("label")).getText(), "Username");
 		 driver.findElement(By.id("MUA_CODE.DUMMY.MENSYS")).clear();
@@ -3520,10 +3571,10 @@ private boolean isElementPresent(By by) {
   {
 	  // Register/Login Page
 	    driver.findElement(By.xpath("//div[@id='new_user_section']/div/div/div/div[2]/div[2]/div/a")).click();	
-	  //  assertEquals(driver.findElement(By.cssSelector("img[alt=\"University of Waikato\"]")).getText(), "");  
-	    assertEquals(driver.findElement(By.cssSelector("p.header-subtitle.sv-hidden-xs")).getText(), "MyWaikato"); 
-	    assertEquals(driver.findElement(By.cssSelector("h1")).getText(), "Log in to SITS e:Vision Portal");  
-	    assertEquals(driver.findElement(By.cssSelector("div.sv-page-header.sv-hidden-xs > p")).getText(), "This page is the SITS e:Vision Portal login screen. Please use the form below to supply your login details and click the \"Log in\" button to access the system.");
+	    
+	    assertEquals(driver.findElement(By.cssSelector("p.header-subtitle.sv-hidden-xs")).getText(), "MyWaikato (UAT)"); 
+	    assertEquals(driver.findElement(By.cssSelector("h1")).getText(), "Log in to MyWaikato");  
+	    assertEquals(driver.findElement(By.cssSelector("div.sv-page-header.sv-hidden-xs > p")).getText(), "This page is the MyWaikato login screen. Please use the form below to supply your login details and click the \"Log in\" button to access the system.");
 	    assertEquals(driver.findElement(By.cssSelector("h2.sv-panel-title")).getText(), "Portal Login");
 	    assertEquals(driver.findElement(By.cssSelector("label")).getText(), "Username");
 	    driver.findElement(By.id("MUA_CODE.DUMMY.MENSYS")).clear();
@@ -3546,9 +3597,9 @@ private boolean isElementPresent(By by) {
   {
 	// Register/Login Page
 		 driver.findElement(By.xpath("//div[@id='new_user_section']/div/div/div/div[2]/div[2]/div/a")).click();
-		 assertEquals(driver.findElement(By.cssSelector("p.header-subtitle.sv-hidden-xs")).getText(), "e:Vision");
-		 assertEquals(driver.findElement(By.cssSelector("h1")).getText(), "Log in to SITS e:Vision Portal");
-		 assertEquals(driver.findElement(By.cssSelector("div.sv-page-header.sv-hidden-xs > p")).getText(), "This page is the SITS e:Vision Portal login screen. Please use the form below to supply your login details and click the \"Log in\" button to access the system.");
+		 assertEquals(driver.findElement(By.cssSelector("p.header-subtitle.sv-hidden-xs")).getText(), "My Waikato (UAT)");
+		 assertEquals(driver.findElement(By.cssSelector("h1")).getText(), "Log in to MyWaikato");
+		 assertEquals(driver.findElement(By.cssSelector("div.sv-page-header.sv-hidden-xs > p")).getText(), "This page is the MyWaikato login screen. Please use the form below to supply your login details and click the \"Log in\" button to access the system.");
 		 assertEquals(driver.findElement(By.cssSelector("h2.sv-panel-title")).getText(), "Portal Login");
 		 assertEquals(driver.findElement(By.cssSelector("label")).getText(), "Username");
 		 driver.findElement(By.id("MUA_CODE.DUMMY.MENSYS")).clear();
@@ -3619,7 +3670,7 @@ private boolean isElementPresent(By by) {
   public void viewSubmittedCourseDetails(String coursename, String courseyear, String firstn, String secondname, String othersecondname, String lastn, String prevfamilyname, String nstudentnumber, String gender, String residencystatus, String country, String email, String homephone, String mobile, String contactaddressline1, String contactaddressline2, String contactaddressline3, String contactaddressline4, String city, String postcode, String contactcountry, String livinginNZ, String ethnicity1, String ethnicity2, String ethnicity3, String iwi1, String iwi2, String iwi3, String iwi4)
   {
 	  //View Application details
-	  assertEquals(driver.getTitle(), "View applications full details - MyWaikato");
+	  assertEquals(driver.getTitle(), "View applications full details - MyWaikato (UAT)");
 	  assertEquals(driver.findElement(By.xpath("//div[@id='sitspagecontent']/div/h1")).getText(), coursename+" "+courseyear);
 	  //Personal details
 	  assertEquals(driver.findElement(By.xpath("//div[@id='uow-personal-details']/div/h2")).getText(), "Personal details");
@@ -3768,8 +3819,26 @@ private boolean isElementPresent(By by) {
  		//System.out.print("##################Setup ##################");  
  	 
  	  }
-  
-public Object mData(Object string, Calendar cal)
+
+public void locationSubjectSelection(String coursename, String location)
+{
+	// Location and subject selection	    
+	if (coursename.equals("Bachelor of Business"))
+	{	    	
+		assertEquals(driver.findElement(By.xpath("//*[@id='app_form']/div/div[2]/div/div/fieldset/div/label")).getText(), "Major*");
+		assertEquals(driver.findElement(By.xpath("//*[@id='app_form']/div/div[2]/div/div/fieldset[2]/div/label")).getText(), "Where do you want to study?*");
+		new Select(driver.findElement(By.id("IPQ_ADOAP_MAJ1"))).selectByVisibleText("Digital Business (Hamilton only)");
+	}
+	else
+	{		    
+	    assertEquals(driver.findElement(By.xpath("//*[@id='app_form']/div/div[2]/div/div/fieldset/div/label")).getText(), "Where do you want to study?*");		    
+	}
+	new Select(driver.findElement(By.id("IPQ_ADOAP_LCA"))).selectByVisibleText(location); //Hamilton location
+	assertEquals(driver.findElement(By.xpath("//*[@id='app_form']/div/div[1]/h2")).getText(), "Location and subject selection");
+	driver.findElement(By.id("app-btn-next")).click();
+}
+
+public String mData(String string, Calendar cal)
 {
 	//string=new Timestamp(System.currentTimeMillis()).getTime()+""+cal.get(Calendar.DATE)+string;
 	string=System.currentTimeMillis()+""+cal.get(Calendar.DATE)+string;

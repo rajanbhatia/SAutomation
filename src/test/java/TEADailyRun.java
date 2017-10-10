@@ -17,8 +17,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.AssertJUnit;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
@@ -26,6 +29,9 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
+
+
 
 
 
@@ -51,7 +57,7 @@ public class TEADailyRun {
 	QualSearch qsearch;
 	PersonalDetailsPage pdpage;
 	//SoftAssert softAssert = new SoftAssert(); 
-	
+	WebDriverWait wait = new WebDriverWait(driver, 10);
 	
 	@Test(dataProvider = "ParamData")
 	public void AutoTEAWorkflow(String flag, String getfirstn, String getlastn,String getsecondname,String getothersecondname,String getprevfamilyname, String getdob, String getnstudentnumber, String getemail, String getremail, String getpassword,  String getrpassword, String getqualsearchtype, String getcoursename, String getresidencystatus, String getcountry, String getcontactcountry, String getlivinginNZ, String getethnicity1, String getethnicity2, String getethnicity3, String getiwi1, String getiwi2, String getiwi3, String getiwi4, String gethomephone, String getmobile, String getcontactaddressline1,String getcontactaddressline2,String getcontactaddressline3,String getcontactaddressline4, String getcity, String getpostcode, String getcurrentlyatsecondaryschool, String getcurrentlystudyingtowards, String getagreeNZQAresultscheckbox, String getlastsecschool, String getlastschoolyear, String gethighsecqual, String getprevtertiarystudyatuniv,String getfirstenrolter, String getinstitutiontype, String getinstitutionname, String getoverseasinstitutioncountry, String getqualificationtype, String getqualname, String getyearfrom, String getyearto, String getgender, String getcompletequal, String getanyotherqual) {
@@ -437,7 +443,10 @@ public class TEADailyRun {
     driver.findElement(By.id("ANSWER.TTQ.MENSYS.4.")).click(); //click 'Next' button
     //Enrolment Welcome Page
     assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div[1]/h2")).getText(), "Welcome to your enrolment "+ getfirstn + " " +getlastn);
-    driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div[2]/section[1]/div/div[2]/a")).click(); //click 'Complete now' button for Personal details
+        
+	WebElement completeNowButtonPersonal = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//html/body/div[1]/form/div[2]/div[2]/section[1]/div/div[2]/a")));
+    completeNowButtonPersonal.click();
+	//driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div[2]/section[1]/div/div[2]/a")).click(); //click 'Complete now' button for Personal details
     							
     //Review Personal Details
     assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div/div/div/div[1]/h2")).getText(), "Check and confirm your personal details");
@@ -454,7 +463,7 @@ public class TEADailyRun {
     assertEquals(new Select(driver.findElement(By.id("ANSWER.TTQ.MENSYS.5."))).getFirstSelectedOption().getText(),ethnicity1); // To validate the selected dropdown value
     
     driver.findElement(By.name("NEXT.DUMMY.MENSYS.1")).click(); //click 'Next' button
-    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div[2]/section[1]/div/div[2]/a")).getText(), "Review");
+    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div[2]/section[1]/div/div[2]/a")).getText(), "Review");    
     driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div[2]/section[2]/div/div[2]/a")).click(); //click 'Complete now' button for Contact Details
     
     //Review Contact Details
@@ -536,9 +545,11 @@ public class TEADailyRun {
     //driver.findElement(By.xpath("//*[@id='sme_search_results_grid001']/tbody/tr[6]/td[6]/button")).click();  //Add sixth paper
     //Thread.sleep(1000);    
     driver.findElement(By.id("sme_submit_button")).click(); // click Submit Selections button
-    Thread.sleep(3500);
+    
     //Confirmed Papers
-    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[1]/h1")).getText(), "Confirmed Papers");
+    WebElement confirmedPapersText = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//html/body/div[1]/form/div[1]/h1")));
+    //assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[1]/h1")).getText(), "Confirmed Papers");
+    assertEquals(confirmedPapersText.getText(), "Confirmed Papers");
     driver.findElement(By.name("BP108.DUMMY_B.MENSYS.1")).click(); //Click Next
     Thread.sleep(1000);
     //Review your selection
@@ -600,7 +611,11 @@ public class TEADailyRun {
 	    {
 	    	assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/small")).getText(), "Status: Enrolment approved - unconditional");
 	    	driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[3]/div/div/a")).click(); //click Complete Enrolment
-	  	    driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div[2]/section[6]/div/div[2]/a")).click();  //Click Complete now
+	    	WebDriverWait wait = new WebDriverWait(driver, 10);
+	    	WebElement completeNowButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//html/body/div[1]/form/div[2]/div[2]/section[6]/div/div[2]/a")));
+	    	completeNowButton.click();	//Click Complete now
+	    	//driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div[2]/section[6]/div/div[2]/a")).click();  //Click Complete now
+	  	    
 	  	    	  	    
 	  	    //Offer of Enrolment
 	  	    driver.findElement(By.id("ANSWER.TTQ.MENSYS.2.1")).click();  //accept the terms
@@ -741,10 +756,7 @@ public class TEADailyRun {
 			  		  id="//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+i+"]/td";
 			  		}	 
 		  return rownumber;
-	  }
-	
-	
-	
+	  }		
 	
 	//html/body/div[1]/form/div[2]/div[2]/div/div[2]/div/table/tbody/tr[3]/td[1]/a[2]
 	

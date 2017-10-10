@@ -3,8 +3,17 @@
 <suite name="Suite">
   <test name="Test">
     <classes>
-      <class name="TEADailyRun"/>
-      <class name="UATStudentDataDailyImport"/>
+      <class name="TEAWeeklyRun">
+      		<methods>
+				<include name="Auto1TEASubmitApplication" />
+				<!-- include name="Auto2TEALogin_Confirm_UploadDocs" /-->
+				<include name="Auto4TEASaveContinueDelete" />
+				<!--
+					<exclude name="testMakeOrder" />
+				 -->
+			</methods>
+		</class>
+      <!-- class name="UATStudentDataDailyImport"/-->
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
