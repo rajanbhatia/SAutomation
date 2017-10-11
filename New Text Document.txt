@@ -1,0 +1,1 @@
+-jar C:\jenkins\slave.jar -jnlpUrl https://jenkins.waikato.ac.nz/computer/sits-ci/slave-agent.jnlp -secret b42b09686e3a067a1dea68ba032941e211be34a18ded41cc8a812fcfd462edb6

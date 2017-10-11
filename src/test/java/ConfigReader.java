@@ -90,4 +90,9 @@ public class ConfigReader {
 	{
 		return pro.getProperty("UATStudentDailyImportScriptPath");
 	}
+	
+	public String getDocsPath()
+	{
+		return pro.getProperty("DocsPath");
+	}
 }

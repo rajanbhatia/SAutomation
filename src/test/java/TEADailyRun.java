@@ -1,6 +1,5 @@
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -9,7 +8,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
-
 import org.joda.time.LocalDate;
 import org.joda.time.Period;
 import org.joda.time.PeriodType;
@@ -29,13 +27,6 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-
-
-
-
-
-
-
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 
@@ -57,7 +48,7 @@ public class TEADailyRun {
 	QualSearch qsearch;
 	PersonalDetailsPage pdpage;
 	//SoftAssert softAssert = new SoftAssert(); 
-	WebDriverWait wait = new WebDriverWait(driver, 10);
+	WebDriverWait wait;
 	
 	@Test(dataProvider = "ParamData")
 	public void AutoTEAWorkflow(String flag, String getfirstn, String getlastn,String getsecondname,String getothersecondname,String getprevfamilyname, String getdob, String getnstudentnumber, String getemail, String getremail, String getpassword,  String getrpassword, String getqualsearchtype, String getcoursename, String getresidencystatus, String getcountry, String getcontactcountry, String getlivinginNZ, String getethnicity1, String getethnicity2, String getethnicity3, String getiwi1, String getiwi2, String getiwi3, String getiwi4, String gethomephone, String getmobile, String getcontactaddressline1,String getcontactaddressline2,String getcontactaddressline3,String getcontactaddressline4, String getcity, String getpostcode, String getcurrentlyatsecondaryschool, String getcurrentlystudyingtowards, String getagreeNZQAresultscheckbox, String getlastsecschool, String getlastschoolyear, String gethighsecqual, String getprevtertiarystudyatuniv,String getfirstenrolter, String getinstitutiontype, String getinstitutionname, String getoverseasinstitutioncountry, String getqualificationtype, String getqualname, String getyearfrom, String getyearto, String getgender, String getcompletequal, String getanyotherqual) {
@@ -698,7 +689,11 @@ public class TEADailyRun {
 		  int exitCode;
 		  exitCode = p.waitFor();  //method waitFor() will make the current thread to wait until the external program finishes and returns the exit value.
 		  assertEquals(exitCode, 0);   // This will cause the first test case (or calling test case) to fail if the exit code is not 0. 
-			  // System.out.println("Exited with error code "+exitVal);
+			  
+		
+		  
+		  
+		  // System.out.println("Exited with error code "+exitVal);
 			//  if(found)
 			  //{
 				//  exceptionerror="true";
@@ -839,6 +834,7 @@ public class TEADailyRun {
 		//ReportScreenshotUtility.report.loadConfig(new File(System.getProperty("user.dir")+"/src/main/resources/extent-config.xml")); //Load the config settings frot he report from xml.
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		wait = new WebDriverWait(driver, 10);
 		//driver = new InternetExplorerDriver();
 	    //baseUrl = "http://www.waikato.ac.nz/";
 		//driver = new FirefoxDriver();	

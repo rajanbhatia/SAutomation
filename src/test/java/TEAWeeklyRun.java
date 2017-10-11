@@ -31,7 +31,9 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.AssertJUnit;
 import org.testng.ITestResult;
@@ -72,7 +74,7 @@ public class TEAWeeklyRun {
 	String usertype, stuID;
 	Calendar cal = Calendar.getInstance();
 	//DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MMM/yyyy");
-	
+	WebDriverWait wait;
 	
 @Test(dataProvider = "ParamData") 
 public void Auto1TEASubmitApplication(String getusertype, String getfirstn, String getlastn,String getsecondname,String getothersecondname,String getprevfamilyname, String getdob, String getnstudentnumber, String getemail, String getremail, String getpassword,  String getrpassword, String getqualsearchtype, String getcoursename, String getresidencystatus, String getcountry, String getcontactcountry, String getlivinginNZ, String getethnicity1, String getethnicity2, String getethnicity3, String getiwi1, String getiwi2, String getiwi3, String getiwi4, String gethomephone, String getmobile, String getcontactaddressline1,String getcontactaddressline2,String getcontactaddressline3,String getcontactaddressline4, String getcity, String getpostcode, String getcurrentlyatsecondaryschool, String getcurrentlystudyingtowards, String getagreeNZQAresultscheckbox, String getlastsecschool, String getlastschoolyear, String gethighsecqual, String getprevtertiarystudyatuniv,String getfirstenrolter, String getinstitutiontype, String getinstitutionname, String getoverseasinstitutioncountry, String getqualificationtype, String getqualname, String getyearfrom, String getyearto, String getgender, String getcompletequal, String getanyotherqual) {
@@ -89,8 +91,6 @@ public void Auto1TEASubmitApplication(String getusertype, String getfirstn, Stri
     // ERROR: Caught exception [unknown command [forXml]]
 	try {
 		String courseyear, livinginNZcode, currentlyatsecondaryschoolcode=null, prevtertiarystudyatunivcode=null, completequalcode="", anyotherqualcode="";		
-		logger = ReportScreenshotUtility.report.startTest("Auto1TEASubmitApplication - "+getemail);
-		exceptionerror="false";
 		if (getemail.equals(getremail))
 		{
 			getemail=mData(getemail,cal);  //change data
@@ -103,7 +103,9 @@ public void Auto1TEASubmitApplication(String getusertype, String getfirstn, Stri
 		}
 		getfirstn=mData(getfirstn,cal);
 		getlastn=mData(getlastn,cal);
-		
+		logger = ReportScreenshotUtility.report.startTest("Auto1TEASubmitApplication - "+getemail);
+		exceptionerror="false";
+		System.out.println(getlastn+", "+getemail);
 		usertype=getusertype;
 		firstn = getfirstn;
 	    String firstname = getfirstn.toUpperCase();
@@ -161,7 +163,7 @@ public void Auto1TEASubmitApplication(String getusertype, String getfirstn, Stri
 		int courserownumber=1;
 		
 		
-		System.out.println(getlastn+", "+getemail);
+		
 		
 	    String appurl= propertyconfig.getApplicationURL();
 	    driver.get(appurl);  //URL picked from the Property file	
@@ -185,7 +187,6 @@ public void Auto1TEASubmitApplication(String getusertype, String getfirstn, Stri
 			    assertEquals(driver.findElement(By.xpath("//div[@id='new_user_section']/div/div/div/div/div/h2")).getText(), "Create a new user");
 			    assertEquals(driver.findElement(By.xpath("//div[@id='new_user_section']/div/div/div/div[2]/div/h2")).getText(), "I'm a current student or have studied here before");
 			    assertTrue(isElementPresent(By.xpath("//div[@id='new_user_section']/div/div/div/div[2]/div[2]/div/a")));
-			  
 			    assertEquals(driver.findElement(By.xpath("//div[@id='new_user_section']/div/div/div/div[2]/div[2]/div/a")).getText(), "Login");
 			    assertEquals(driver.findElement(By.cssSelector("h2.sv-col-md-3.sv-col-xs-12")).getText(), "Get in touch with us");
 			    assertEquals(driver.findElement(By.cssSelector("p.sv-col-md-3.sv-col-xs-6 > span")).getText(), "In New Zealand");
@@ -1124,8 +1125,12 @@ driver.findElement(By.id("KEYWORD.IPP.SRS")).clear();
 			driver.findElement(By.id("app-btn-next")).click();
 			// Contact details Page
 			driver.findElement(By.id("app-btn-next")).click();
+			
+			
 			// Education Page
-			driver.findElement(By.id("ADOAP_EDSSQ2")).click();   //Overriding it as user story 10046 (10428) is updated with this check (student not at secondary school))
+			WebElement currSchoolNoRadiobutton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("ADOAP_EDSSQ2")));
+			//driver.findElement(By.id("ADOAP_EDSSQ2")).click();   //Overriding it as user story 10046 (10428) is updated with this check (student not at secondary school))
+			currSchoolNoRadiobutton.click();	//Overriding it as user story 10046 (10428) is updated with this check (student not at secondary school))
 			driver.findElement(By.id("ADOAP_EDPTS2")).click();
 			driver.findElement(By.id("app-btn-next")).click();
 			if (residencystatus.equals("Other") || (residencystatus.equals("Australian Citizen") && getlivinginNZ.equalsIgnoreCase("No")) || (residencystatus.equalsIgnoreCase("Australian Permanent Resident") && getlivinginNZ.equals("No")) || (residencystatus.equalsIgnoreCase("Australian and NZ Permanent Resident") && getlivinginNZ.equalsIgnoreCase("No")))
@@ -1148,8 +1153,9 @@ driver.findElement(By.id("KEYWORD.IPP.SRS")).clear();
 				{
 					  driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset[1]/div[2]/div/div/table/tbody/tr/td/button")).click();
 				}**/
+			String docspath = propertyconfig.getDocsPath();
 			fileInput = driver.findElement(By.id("FILEUPLOAD-ADOAP_UPST-1"));
-			fileInput.sendKeys("C:\\Users\\rbhatia\\Google Drive\\Project\\Testing\\TEA\\Sprint2\\Docs to Upload for Testing\\Test Doc to Upload.docx");
+			fileInput.sendKeys(docspath+"\\Test Doc to Upload.docx");
 				//driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset/div[2]/div/div/table/tbody/tr/td/input")).sendKeys("C:\\Users\\rbhatia\\Google Drive\\Project\\Automation\\TEA\\Sprint2\\Docs to Upload for Testing\\Test Doc to Upload.docx");
 				//driver.findElement(By.id("FILEUPLOAD-ADOAP_UPST-1")).sendKeys("C:/Users/rbhatia/Google Drive/Project/Automation/TEA/Sprint2/Docs to Upload for Testing/Test Doc to Upload.docx");
 			assertEquals(driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset/div[2]/div/div/table/tbody/tr/th/a")).getText(), "Test Doc to Upload.docx");
@@ -1235,9 +1241,9 @@ assertEquals(driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/
 {
 	  driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset[1]/div[2]/div/div/table/tbody/tr/td/button")).click();
 }**/
-
+String docspath = propertyconfig.getDocsPath();
 fileInput = driver.findElement(By.id("FILEUPLOAD-ADOAP_UPST-1"));
-fileInput.sendKeys("C:\\Users\\rbhatia\\Google Drive\\Project\\Testing\\TEA\\Sprint2\\Docs to Upload for Testing\\user_manual.pdf");
+fileInput.sendKeys(docspath+"\\user_manual.pdf");
 //driver.findElement(By.id("FILEUPLOAD-ADOAP_UPST-1")).sendKeys("C:\\Users\\rbhatia\\Google Drive\\Project\\Automation\\TEA\\Sprint2\\Docs to Upload for Testing\\user_manual.pdf");
 assertEquals(driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset/div[2]/div/div/table/tbody/tr/th/a")).getText(), "user_manual.pdf");
 driver.findElement(By.id("app-btn-next")).click();
@@ -1299,18 +1305,18 @@ assertNotEquals(driver.findElement(By.cssSelector("BODY")).getText(), "We need t
 // Warning: verifyTextNotPresent may require manual changes
 assertNotEquals(driver.findElement(By.cssSelector("BODY")).getText(),"Student statement*");
 fileInput = driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset/div[2]/div/div/table/tbody/tr/td/div/label/input"));
-fileInput.sendKeys("C:\\Users\\rbhatia\\Google Drive\\Project\\Testing\\TEA\\Sprint2\\Docs to Upload for Testing\\Project Structure v1.5.jpg");
+fileInput.sendKeys(docspath+"\\Project Structure v1.5.jpg");
 // driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset/div[2]/div/div/table/tbody/tr/td/div/label/input")).clear();
-//driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset/div[2]/div/div/table/tbody/tr/td/div/label/input")).sendKeys("C:\\Users\\rbhatia\\Google Drive\\Project\\Testing\\TEA\\Sprint2\\Docs to Upload for Testing\\Project Structure v1.5.jpg");
+//driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset/div[2]/div/div/table/tbody/tr/td/div/label/input")).sendKeys(docspath+"\\Project Structure v1.5.jpg");
 assertEquals(driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset/div[2]/div/div/table/tbody/tr/th/a")).getText(), "Project Structure v1.5.jpg");
 //driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset/div[2]/div/div/table/tbody/tr/td/button")).click();
 //driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset/div[2]/div/div/table/tbody/tr/td/div/label/input")).clear();
-driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset/div[2]/div/div/table/tbody/tr/td/div/label/input")).sendKeys("C:\\Users\\rbhatia\\Google Drive\\Project\\Testing\\TEA\\Sprint2\\Docs to Upload for Testing\\RACI Matrix.png");
+driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset/div[2]/div/div/table/tbody/tr/td/div/label/input")).sendKeys(docspath+"\\RACI Matrix.png");
 assertEquals(driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset/div[2]/div/div/table/tbody/tr[2]/th/a")).getText(), "RACI Matrix.png");
 //driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset/div[2]/div/div/table/tbody/tr/td/button")).click();
 //driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset/div[2]/div/div/table/tbody/tr/td/div/label/input")).clear();
 //getDriverWindowHandle();
-driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset/div[2]/div/div/table/tbody/tr/td/div/label/input")).sendKeys("C:\\Users\\rbhatia\\Google Drive\\Project\\Testing\\TEA\\Sprint2\\Docs to Upload for Testing\\Framework Build Oversize.docx");
+driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset/div[2]/div/div/table/tbody/tr/td/div/label/input")).sendKeys(docspath+"\\Framework Build Oversize.docx");
 assertEquals(driver.findElement(By.id("sits_dialog")).getText(), "MAX filesize exceeded - allowed size: 5000kb");
 //driver.findElement(By.xpath("(//button[@type='button'])[4]")).click();
 //driver.findElement(By.className("ui-button-text")).click();
@@ -1322,13 +1328,13 @@ driver.findElement(By.xpath("//html/body/div[3]/div[3]/div/button")).click();
 	  driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset[2]/div[2]/div/div/table/tbody/tr/td/button")).click();
 }**/
 
-driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset[2]/div[2]/div/div/table/tbody/tr/td/div/label/input")).sendKeys("C:\\Users\\rbhatia\\Google Drive\\Project\\Testing\\TEA\\Sprint2\\Docs to Upload for Testing\\Project Structure v1.5.jpg");
+driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset[2]/div[2]/div/div/table/tbody/tr/td/div/label/input")).sendKeys(docspath+"\\Project Structure v1.5.jpg");
 assertEquals(driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset[2]/div[2]/div/div/table/tbody/tr/th/a")).getText(), "Project Structure v1.5.jpg");
 //driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset[2]/div[2]/div/div/table/tbody/tr/td/button")).click();
-driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset[2]/div[2]/div/div/table/tbody/tr/td/div/label/input")).sendKeys("C:\\Users\\rbhatia\\Google Drive\\Project\\Testing\\TEA\\Sprint2\\Docs to Upload for Testing\\RACI Matrix.png");
+driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset[2]/div[2]/div/div/table/tbody/tr/td/div/label/input")).sendKeys(docspath+"\\RACI Matrix.png");
 assertEquals(driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset[2]/div[2]/div/div/table/tbody/tr[2]/th/a")).getText(), "RACI Matrix.png");
 driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset[2]/div[2]/div/div/table/tbody/tr/td/button")).click(); //Delete the second doc as only 2 docs are allowed for English requirement
-driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset[2]/div[2]/div/div/table/tbody/tr/td/div/label/input")).sendKeys("C:\\Users\\rbhatia\\Google Drive\\Project\\Testing\\TEA\\Sprint2\\Docs to Upload for Testing\\Framework Build Oversize.docx");
+driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset[2]/div[2]/div/div/table/tbody/tr/td/div/label/input")).sendKeys(docspath+"\\Framework Build Oversize.docx");
 assertEquals(driver.findElement(By.id("sits_dialog")).getText(), "MAX filesize exceeded - allowed size: 5000kb");
 driver.findElement(By.xpath("//html/body/div[3]/div[3]/div/button")).click();
 driver.findElement(By.id("app-btn-save")).click();
@@ -1492,7 +1498,9 @@ public void Auto4TEASaveContinueDelete(String getusertype, String getfirstn, Str
 	    //new Select(driver.findElement(By.id("SELECTION.CRITERIA.SRS.1-1"))).selectByVisibleText("Bachelors Degree");
 	    new Select(driver.findElement(By.id("SELECTION.CRITERIA.SRS.1-1"))).selectByVisibleText("Diploma");
 	    driver.findElement(By.id("BP102.DUMMY_B.MENSYS")).click();
-	    driver.findElement(By.linkText(coursename)).click();
+	    WebElement courseNameLink = wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText(coursename)));
+	    //driver.findElement(By.linkText(coursename)).click();
+	    courseNameLink.click();
 	    // Qualification Selection Page
 	    assertEquals(driver.findElement(By.cssSelector("h2.sv-panel-title")).getText(), "Apply for the qualification: "+coursename);
 	    Object courseoptions[][]= courseChoice();
@@ -1780,6 +1788,7 @@ public void Auto4TEASaveContinueDelete(String getusertype, String getfirstn, Str
 	    driver.findElement(By.id("app-btn-next")).click();
 	    driver.findElement(By.id("app-btn-next")).click();
 	    driver.findElement(By.id("app-btn-next")).click();
+	    
 	    // Education Page
 	            
 	    
@@ -1788,13 +1797,13 @@ public void Auto4TEASaveContinueDelete(String getusertype, String getfirstn, Str
 	    	assertTrue(driver.findElement(By.id("ADOAP_EDSSQ1")).isSelected());
 	    	assertEquals(new Select(driver.findElement(By.id("IPQ_ADOAP_CSTY"))).getFirstSelectedOption().getText(), currentlystudyingtowards);
 	    	//assertEquals(driver.findElement(By.xpath("IPQ_ADOAP_CSTY")).getText(),currentlystudyingtowards);
-	    	if (agreeNZQAresultscheckbox.equals("Yes"))
+	    	if(agreeNZQAresultscheckbox.equalsIgnoreCase("Yes") && !driver.findElement(By.id("IPQ_ADOAP_EDCB")).isSelected()) 
 	    	{
-	    		assertTrue(driver.findElement(By.id("IPQ_ADOAP_EDCB")).isSelected());
+	    		driver.findElement(By.id("IPQ_ADOAP_EDCB")).click();  //check it
 	    	}
-	    	else
+	    	else if(agreeNZQAresultscheckbox.equalsIgnoreCase("No") && driver.findElement(By.id("IPQ_ADOAP_EDCB")).isSelected()) 
 	    	{
-	    		assertFalse(driver.findElement(By.id("IPQ_ADOAP_EDCB")).isSelected());
+	    		driver.findElement(By.id("IPQ_ADOAP_EDCB")).click();  //Uncheck it
 	    	}
 	    }
 	    else
@@ -1870,8 +1879,9 @@ public void Auto4TEASaveContinueDelete(String getusertype, String getfirstn, Str
 	    }
 	  // Documents Page  
 	  assertTrue(isElementPresent(By.xpath("//button[@id='app-btn-save']")));  
-	  assertEquals(driver.findElement(By.xpath("//button[@id='app-btn-save']")).getText(), "Save and return later");  
-	  driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset/div[2]/div/div/table/tbody/tr/td/div/label/input")).sendKeys("C:\\Users\\rbhatia\\Google Drive\\Project\\Testing\\TEA\\Sprint2\\Docs to Upload for Testing\\Test Doc to Upload.docx");
+	  assertEquals(driver.findElement(By.xpath("//button[@id='app-btn-save']")).getText(), "Save and return later");
+	  String docspath = propertyconfig.getDocsPath();
+	  driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset/div[2]/div/div/table/tbody/tr/td/div/label/input")).sendKeys(docspath+"\\Test Doc to Upload.docx");
 	  driver.findElement(By.id("app-btn-next")).click();
 	  // Declarations Page 
 	  assertTrue(isElementPresent(By.xpath("//button[@id='app-btn-save']"))); 
@@ -1888,7 +1898,7 @@ public void Auto4TEASaveContinueDelete(String getusertype, String getfirstn, Str
 	    else if (usertype.equals("Student"))
 	    {
 	    	// Saving Confirmation Page
-	  	  	driver.findElement(By.xpath("//*[@id='PTAD01S']")).click();
+	  	  	driver.findElement(By.linkText("Applications")).click();
 	    }
 	  if (usertype.equals("Agent"))
 	   	{
@@ -1947,8 +1957,8 @@ public void Auto4TEASaveContinueDelete(String getusertype, String getfirstn, Str
 	    Runtime runtimedelete = Runtime.getRuntime();
 		String scriptpathdelete=propertyconfig.getCourseDeleteScriptPath();
 		Process pDelete = null;
-	    System.out.println("Script: "+scriptpathdelete+" "+"\""+getfirstn+"\""+" "+"\""+getlastn+"\""+" "+"\""+getcontactcountry+"\""+" "+"\""+getdob+"\""+" "+"\""+coursename+"\""+" "+"\""+localDate.toString("dd/MMM/yyyy")+"\""+" "+"\""+getusertype+"\"");  
-    	pDelete = runtimedelete.exec(scriptpathdelete+" "+"\""+getfirstn+"\""+" "+"\""+getlastn+"\""+" "+"\""+getcontactcountry+"\""+" "+"\""+getdob+"\""+" "+"\""+coursename+"\""+" "+"\""+localDate.toString("dd/MMM/yyyy")+"\""+" "+"\""+getusertype+"\"");  
+	    System.out.println("Script: "+scriptpathdelete+" "+"\""+firstn+"\""+" "+"\""+lastn+"\""+" "+"\""+getcontactcountry+"\""+" "+"\""+getdob+"\""+" "+"\""+coursename+"\""+" "+"\""+localDate.toString("dd/MMM/yyyy")+"\""+" "+"\""+getusertype+"\"");  
+    	pDelete = runtimedelete.exec(scriptpathdelete+" "+"\""+firstn+"\""+" "+"\""+lastn+"\""+" "+"\""+getcontactcountry+"\""+" "+"\""+getdob+"\""+" "+"\""+coursename+"\""+" "+"\""+localDate.toString("dd/MMM/yyyy")+"\""+" "+"\""+getusertype+"\"");  
     	
     	BufferedReader inputdelete = new BufferedReader(new InputStreamReader(pDelete.getInputStream()));
 		String line;
@@ -3798,6 +3808,7 @@ private boolean isElementPresent(By by) {
 		//ScreenshotUtility.report.loadConfig(new File(System.getProperty("user.dir")+"/extent-config.xml")); //Load the config settings frot he report from xml.
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		wait = new WebDriverWait(driver, 10);
 		//driver = new InternetExplorerDriver();
 	    //baseUrl = "http://www.waikato.ac.nz/";
 		//driver = new FirefoxDriver();	 
