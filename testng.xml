@@ -7,7 +7,12 @@
       		<methods>
 				<include name="Auto1TEASubmitApplication" />
 				<!-- include name="Auto2TEALogin_Confirm_UploadDocs" /-->
-				<include name="Auto4TEASaveContinueDelete" />
+				<!-- include name="Auto4TEASaveContinueDelete" /-->
+				<!-- include name ="Auto6TEASecondarySchoolDetails" /-->
+				<include name ="Auto8TEAApplicationForMasterOfAppliedPsychology" />
+				<include name ="Auto9TEATeachingProgrammeAdditionalInfo" />
+				
+				
 				<!--
 					<exclude name="testMakeOrder" />
 				 -->

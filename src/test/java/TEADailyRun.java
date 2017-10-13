@@ -341,11 +341,12 @@ public class TEADailyRun {
 	    driver.findElement(By.id("ADOAP_DECC")).click();
 	    assertEquals(driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset/div[2]/div/div/label/strong")).getText(),"I have read and agreed to the above declaration.*");
         driver.findElement(By.xpath("//button[@id='app-btn-next']")).click();
+        Thread.sleep(1000);
 	    // 	Confirmation Page     
 	    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div/div[1]/ol/li[2]")).getText(), coursename + " " + courseyear);
 	    assertEquals(driver.findElement(By.xpath("//div/div/p")).getText(), "Logged in as: "+getfirstn+" "+getlastn);
 	    assertEquals(driver.findElement(By.cssSelector("h2.sv-panel-title")).getText(), "Your application has been submitted");
-	    Thread.sleep(4000);
+	    Thread.sleep(3000);
     // Check Studylink link for Story# 10050 (Residency status- All but not 'Other')
             
     // ERROR: Caught exception [ERROR: Unsupported command [selectWindow |  | ]]
@@ -544,7 +545,9 @@ public class TEADailyRun {
     driver.findElement(By.name("BP108.DUMMY_B.MENSYS.1")).click(); //Click Next
     Thread.sleep(1000);
     //Review your selection
-    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div/div[1]/h2")).getText(), "Review your selections");
+    WebElement reviewSelectionsText = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//html/body/div[1]/form/div[2]/div/div/div[1]/h2")));
+    //assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div/div[1]/h2")).getText(), "Review your selections");
+    assertEquals(reviewSelectionsText.getText(), "Review your selections");
     driver.findElement(By.id("ANSWER.TTQ.MENSYS.6.")).click(); //click Confirm Selections
     
     //Enrolment Declaration
@@ -554,7 +557,9 @@ public class TEADailyRun {
     driver.findElement(By.name("NEXT.DUMMY.MENSYS.1")).click();	//Click Next button on the What to expect next
     
     //Paper selections confirmed
-    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[1]/p")).getText(), "Paper selections confirmed");
+    WebElement paperSelectionsConfirmedText = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//html/body/div[1]/div[1]/p")));
+    //assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[1]/p")).getText(), "Paper selections confirmed");
+    assertEquals(paperSelectionsConfirmedText.getText(), "Paper selections confirmed");
     assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[4]/div/div/div[4]/div/div/div[2]/div[1]/div/h3")).getText(), courseyear);
     assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[4]/div/div/div[4]/div/div/div[2]/div[1]/h3")).getText(), coursename);
     assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[4]/div/div/div[4]/div/div/div[2]/div[1]/small")).getText(), "Major : Music");
@@ -689,11 +694,7 @@ public class TEADailyRun {
 		  int exitCode;
 		  exitCode = p.waitFor();  //method waitFor() will make the current thread to wait until the external program finishes and returns the exit value.
 		  assertEquals(exitCode, 0);   // This will cause the first test case (or calling test case) to fail if the exit code is not 0. 
-			  
-		
-		  
-		  
-		  // System.out.println("Exited with error code "+exitVal);
+			  // System.out.println("Exited with error code "+exitVal);
 			//  if(found)
 			  //{
 				//  exceptionerror="true";
