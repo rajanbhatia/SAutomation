@@ -956,7 +956,7 @@ public void Auto2TEALogin_Confirm_UploadDocs(String getusertype, String getfirst
 // //Course selected:  	Bachelor of Laws, Music and Certificate of University Preparation
 // BUGS: 11108
 try {
- logger = ReportScreenshotUtility.report.startTest("Auto2TEALogin_Confirm_UploadDocs - "+getemail);
+ logger = ReportScreenshotUtility.report.startTest("Auto2TEALogin_Confirm_UploadDocs - "+email);
  String password, coursename, courseyear, qualsearchtype, residencystatus, clchkcoursename="";
  //String email=getemail;  //Use global as data is changing on rum time
  password=getpassword;
@@ -1368,7 +1368,7 @@ public void Auto4TEASaveContinueDelete(String getusertype, String getfirstn, Str
 	  
 	  // Bug:11235
 		try {
-		logger = ReportScreenshotUtility.report.startTest("Auto4TEASaveContinueDelete - "+getemail);
+		logger = ReportScreenshotUtility.report.startTest("Auto4TEASaveContinueDelete - "+email);
 		Thread.sleep(1000);
 		driver.get(propertyconfig.getApplicationURL());  //URL picked from the Property file
 		exceptionerror="false";
@@ -2003,7 +2003,7 @@ public void Auto6TEASecondarySchoolDetailsWithdraw(String getusertype, String ge
     // //Using 'TEA-Submit Application' test script variables: email, password.
     // //Create its own coursename variable. (Bachelor of Engineering)
 	try {
-	logger = ReportScreenshotUtility.report.startTest("Auto6TEASecondarySchoolDetailsWithdraw - "+getemail);
+	logger = ReportScreenshotUtility.report.startTest("Auto6TEASecondarySchoolDetailsWithdraw - "+email);
 	exceptionerror="false";
 	String courseyear = null;
 	//String email=getemail;
@@ -2351,7 +2351,7 @@ public void Auto8TEAApplicationForMasterOfAppliedPsychology(String getusertype, 
     
     // Register/Login Page
 	  try {		  
-		  logger = ReportScreenshotUtility.report.startTest("Auto8TEAApplicationForMasterOfAppliedPsychology - "+getemail);
+		  logger = ReportScreenshotUtility.report.startTest("Auto8TEAApplicationForMasterOfAppliedPsychology - "+email);
 		  exceptionerror="false";
 		  //String email=getemail;
 		  String password=getpassword;
@@ -2456,7 +2456,11 @@ public void Auto8TEAApplicationForMasterOfAppliedPsychology(String getusertype, 
     {
     	 driver.findElement(By.id("ADOAP_INTAG1_4")).click();    	 
     }
-      assertEquals(driver.findElement(By.xpath("//form[@id='app_form']/div/div/h2")).getText(), "Additional info");
+    WebElement additionalInfoText = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form[@id='app_form']/div/div/h2")));
+    //assertEquals(driver.findElement(By.xpath("//form[@id='app_form']/div/div/h2")).getText(), "Additional info");
+    assertEquals(additionalInfoText.getText(),"Additional info");
+    
+     
       assertEquals(driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/h3")).getText(), "Master of Applied Psychology");
       assertEquals(driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/p")).getText(), "Because you are applying for a Master of Applied Psychology (MAppPsy), you also need to download the applicable MAppPsy form below. Then, please continue with your online application.");
       assertEquals(driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/p[2]/b")).getText(), "Please note: Guidelines for enrolling into the MAppPsy can be found in the Year 1 MAppPsy application form.");
@@ -2547,7 +2551,7 @@ public void Auto9TEATeachingProgrammeAdditionalInfo(String getusertype, String g
     // //Course selected:  	Bachelor of Teaching, Master of Teaching and Learning, Graduate Diploma of Teaching
 	  //// 
     try {
-    logger = ReportScreenshotUtility.report.startTest("Auto9TEATeachingProgrammeAdditionalInfo - "+getemail);
+    logger = ReportScreenshotUtility.report.startTest("Auto9TEATeachingProgrammeAdditionalInfo - "+email);
     //String email=getemail;
 	String password=getpassword;
 	String residencystatus=getresidencystatus;
@@ -2708,8 +2712,11 @@ public void Auto9TEATeachingProgrammeAdditionalInfo(String getusertype, String g
 		    switchToEarlierDriver();
 		    driver.findElement(By.id("app-btn-next")).click();
 		    //Documents page
-		    driver.findElement(By.id("app-btn-next")).click();
-		    // Declaration Page
+		    WebElement nextButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("app-btn-next")));
+		    //driver.findElement(By.id("app-btn-next")).click();
+		    nextButton.click();
+		    
+		    // Declaration Page		    
 		    driver.findElement(By.id("ADOAP_DECC")).click();
 		    driver.findElement(By.xpath("//button[@id='app-btn-next']")).click();
 		    // Confirmation Page
@@ -3789,8 +3796,7 @@ private boolean isElementPresent(By by) {
 			  else
 			  {
 				  assertEquals(driver.findElement(By.xpath("//div[@id='uow-personal-details']/div[2]/dl[2]/dd[3]")).getText(), iwi1+"\n"+iwi2);
-			  }
-			  
+			  }			  
 		  }
 		  else
 		  {
