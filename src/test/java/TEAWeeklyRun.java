@@ -239,7 +239,7 @@ public void Auto1TEASubmitApplication(String getusertype, String getfirstn, Stri
 			staffSearchLogin(firstn, lastn, email, secondname, othersecondname, dob); //Login steps for Staff Search.
 			winhandlebefore_staff = driver.getWindowHandle(); //   get  Driver Window Handle to use at the end, to close student window;
 			getDriverWindowHandle();
-			driver.findElement(By.linkText("Start a new application")).click(); //
+			driver.findElement(By.linkText("Start a New Application")).click(); //
 			switchDriver();					 
 			break;
 		}
@@ -248,12 +248,12 @@ public void Auto1TEASubmitApplication(String getusertype, String getfirstn, Stri
 			// Register/Login Page
 			 driver.findElement(By.xpath("//div[@id='new_user_section']/div/div/div/div[2]/div[2]/div/a")).click();
 			 assertEquals(driver.findElement(By.cssSelector("p.header-subtitle.sv-hidden-xs")).getText(), "MyWaikato (UAT)");
-			 assertEquals(driver.findElement(By.cssSelector("h1")).getText(), "Log in to SITS MyWaikato");
+			 assertEquals(driver.findElement(By.cssSelector("h1")).getText(), "Log in to MyWaikato");
 			 assertEquals(driver.findElement(By.cssSelector("div.sv-page-header.sv-hidden-xs > p")).getText(), "This page is the MyWaikato login screen. Please use the form below to supply your login details and click the \"Log in\" button to access the system.");
 			 assertEquals(driver.findElement(By.cssSelector("h2.sv-panel-title")).getText(), "Portal Login");
 			 assertEquals(driver.findElement(By.cssSelector("label")).getText(), "Username");
 			 driver.findElement(By.id("MUA_CODE.DUMMY.MENSYS")).clear();
-			 driver.findElement(By.id("MUA_CODE.DUMMY.MENSYS")).sendKeys("STAFF"); //provide staff  credentials
+			 driver.findElement(By.id("MUA_CODE.DUMMY.MENSYS")).sendKeys("testuser"); //provide staff  credentials
 			 assertEquals(driver.findElement(By.xpath("//div[2]/label")).getText(), "Password");
 			 driver.findElement(By.id("PASSWORD.DUMMY.MENSYS")).clear();
 			 driver.findElement(By.id("PASSWORD.DUMMY.MENSYS")).sendKeys("Testing@2");  // provide staff account password
@@ -997,8 +997,8 @@ try {
 		 ///assertEquals(driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr/td[4]")).getText(), "Applicant in Clearing");
 		///assertEquals(driver.findElement(By.linkText("Withdraw")).getText(), "Withdraw");
 		 //}
-		assertEquals(driver.findElement(By.cssSelector(".sv-btn")).getText(), "Start a new application");
-		 driver.findElement(By.linkText("Start a new application")).click();
+		//assertEquals(driver.findElement(By.cssSelector(".sv-btn")).getText(), "Start a New Application");
+		 driver.findElement(By.linkText("Start a New Application")).click();
 		 break;
  	}
  	case "Agent":
@@ -1025,19 +1025,19 @@ try {
  	case "Staff_Search":
  	{
  		staffSearchLogin(firstn, lastn, email, getsecondname, getothersecondname, getdob);
- 		courserownumber=getSummaryPageCourseRowNumber(coursename);
+ 		courserownumber=getSummaryPageCourseRowNumberStaffSearch(coursename);
 		 //if (courserownumber==0) logger.log(LogStatus.INFO,"Course record not found on the Applications Summary page.");
 		 //else
 		 //{
-		assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+courserownumber+"]/td[2]")).getText(), coursename);
-		assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+courserownumber+"]/td[4]")).getText(), "Applicant");
+		assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div[2]/div/table/tbody/tr["+courserownumber+"]/td[2]")).getText(), coursename);
+		assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div[2]/div/table/tbody/tr["+courserownumber+"]/td[4]")).getText(), "Applicant");
 		 //assertEquals(driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr["+courserownumber+"]/td[4]")).getText(), "Incomplete");
 		 //assertEquals(driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr["+courserownumber+"]/td[5]/a[2]")).getText(), "Delete"); Delete won't come after submission
-		assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+courserownumber+"]/td[5]/a")).getText(), "View");
-		assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+courserownumber+"]/td[5]/a[2]")).getText(), "Withdraw");
+		assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div[2]/div/table/tbody/tr["+courserownumber+"]/td[5]/a")).getText(), "View");
+		assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div[2]/div/table/tbody/tr["+courserownumber+"]/td[5]/a[2]")).getText(), "Withdraw");
 		winhandlebefore_staff = driver.getWindowHandle(); //   get  Driver Window Handle to use at the end, to close student window;
 		getDriverWindowHandle();
-		driver.findElement(By.linkText("Start a new application")).click(); //
+		driver.findElement(By.linkText("Start a New Application")).click(); //
 		switchDriver();	 
  	 	break;
  	}
@@ -1174,13 +1174,13 @@ driver.findElement(By.id("KEYWORD.IPP.SRS")).clear();
 				driver.switchTo().window(winhandlebefore_staff);    // Close the additional student window
 				winhandlebefore_staff = driver.getWindowHandle(); //   get  Driver Window Handle to use at the end, to close student window;
 				getDriverWindowHandle();
-				driver.findElement(By.linkText("Start a new application")).click(); //
+				driver.findElement(By.linkText("Start a New Application")).click(); //
 				switchDriver();	 
 			}
 			else if (usertype.equalsIgnoreCase("Student"))
 			{
 				driver.findElement(By.linkText("Applications")).click();
-				driver.findElement(By.linkText("Start a new application")).click();
+				driver.findElement(By.linkText("Start a New Application")).click();
 			}
 			else if (usertype.equalsIgnoreCase("Agent"))
 			{
@@ -1255,7 +1255,7 @@ driver.findElement(By.xpath("//button[@id='app-btn-next']")).click();
 
 //driver.findElement(By.xpath("//form[@id='app_form']/div/div[3]/div/button")).click();
 driver.findElement(By.linkText("Applications")).click();
-driver.findElement(By.linkText("Start a new application")).click();
+driver.findElement(By.linkText("Start a New Application")).click();
 // Qualification Search Page
 new Select(driver.findElement(By.id("SELECTION.CRITERIA.SRS.1-1"))).selectByVisibleText("Bachelors Degree");
 driver.findElement(By.id("BP102.DUMMY_B.MENSYS")).click();
@@ -1435,7 +1435,7 @@ public void Auto4TEASaveContinueDelete(String getusertype, String getfirstn, Str
 				staffSearchLogin(firstn, lastn, email, secondname, othersecondname, getdob); //Login steps for Staff Search. using the same for Staff_New case also
 				winhandlebefore_staff = driver.getWindowHandle(); //   get  Driver Window Handle to use at the end, to close student window;
 				getDriverWindowHandle();
-				driver.findElement(By.linkText("Start a new application")).click(); //
+				driver.findElement(By.linkText("Start a New Application")).click(); //
 				switchDriver();	 
 				break;
 	    	}
@@ -1445,7 +1445,7 @@ public void Auto4TEASaveContinueDelete(String getusertype, String getfirstn, Str
 		    {
 		  	  // Register/Login Page
 		    	studentLogin(email, password);
-			    driver.findElement(By.linkText("Start a new application")).click();
+			    driver.findElement(By.linkText("Start a New Application")).click();
 			    break;
 		    }
 	    case "Agent":
@@ -1657,7 +1657,7 @@ public void Auto4TEASaveContinueDelete(String getusertype, String getfirstn, Str
 				 driver.findElement(By.xpath("//div[@id='new_user_section']/div/div/div/div[2]/div[2]/div/a")).click();
 		
 				 driver.findElement(By.id("MUA_CODE.DUMMY.MENSYS")).clear();
-				 driver.findElement(By.id("MUA_CODE.DUMMY.MENSYS")).sendKeys("STAFF"); //provide staff  credentials
+				 driver.findElement(By.id("MUA_CODE.DUMMY.MENSYS")).sendKeys("testuser"); //provide staff  credentials
 		
 				 driver.findElement(By.id("PASSWORD.DUMMY.MENSYS")).clear();
 				 driver.findElement(By.id("PASSWORD.DUMMY.MENSYS")).sendKeys("Testing@2");  // provide staff account password
@@ -1704,7 +1704,7 @@ public void Auto4TEASaveContinueDelete(String getusertype, String getfirstn, Str
 					}
 				 }
 				assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[1]/h1")).getText(),"Student Maintenance");
-				assertEquals(driver.findElement(By.xpath("//html/body/div[1]/ul/li/a")).getText(),"Qualifications and Papers");
+				assertEquals(driver.findElement(By.xpath("//html/body/div[1]/ul/li/a")).getText(),"Applications");
 				break;
 	    	}
 	    case "Agent":
@@ -1726,7 +1726,7 @@ public void Auto4TEASaveContinueDelete(String getusertype, String getfirstn, Str
     	}
 	    
 	    }
-	    if (usertype.equals("Staff_Search") || usertype.equals("Staff_New") || usertype.equals("Student"))
+	    if(usertype.equals("Student"))
 	    {
 		    // Applications Summary Page
 		    courserownumber=getSummaryPageCourseRowNumber(coursename);
@@ -1742,6 +1742,23 @@ public void Auto4TEASaveContinueDelete(String getusertype, String getfirstn, Str
 		    // Education Page
 		    switchDriver();	 
 	    }
+	    else if (usertype.equals("Staff_Search") || usertype.equals("Staff_New"))
+	    {
+	    	 // Applications Summary Page
+		    courserownumber=getSummaryPageCourseRowNumberStaffSearch(coursename);
+		   // if (courserownumber==0) logger.log(LogStatus.INFO,"Course record not found on the Applications Summary page.");
+		    //else
+		    //{
+		    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div[2]/div/table/tbody/tr["+courserownumber+"]/td[2]")).getText(), coursename);
+		    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div[2]/div/table/tbody/tr["+courserownumber+"]/td[4]")).getText(), "Incomplete");
+		    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div[2]/div/table/tbody/tr["+courserownumber+"]/td[5]/a[2]")).getText(), "Delete");
+		    getDriverWindowHandle();
+		    driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div[2]/div/table/tbody/tr["+courserownumber+"]/td[5]/a")).click(); //Click the corresponding 'Continue' button
+			//}
+		    // Education Page
+		    switchDriver();
+	    }
+	    
 	    driver.findElement(By.xpath("//html/body/div[1]/div/ul/li[2]/a/span[2]/h4")).click();  //Click on personal details link
 	    // Personal details page	
 	    assertEquals(driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset/div[2]/div")).getText(),firstn.toUpperCase());
@@ -1920,7 +1937,7 @@ public void Auto4TEASaveContinueDelete(String getusertype, String getfirstn, Str
 	    		//switchDriver();  // Staff login results in another window getting opened.
 	    		
 	   }
-	  else
+	  else if(usertype.equals("Student"))
 	  {
 	    // Warning: verifyTextPresent may require manual changes
 	    courserownumber=getSummaryPageCourseRowNumber(coursename);
@@ -1934,6 +1951,14 @@ public void Auto4TEASaveContinueDelete(String getusertype, String getfirstn, Str
 	    //getyear =  driver.findElement(By.xpath("//table[@id='DataTables_Table_0']/tbody/tr["+courserownumber+"]/td")).getText();
 	    //Implementing Story# 10117(S2); Auto: 5 TEA-DeleteApplication
 	    driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+courserownumber+"]/td[5]/a[2]")).click(); //Click the corresponding 'Delete' button
+	  }
+	  else if(usertype.equals("Staff_Search") || usertype.equals("Staff_New"))
+	  {
+		  courserownumber=getSummaryPageCourseRowNumberStaffSearch(coursename);
+		  assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div[2]/div/table/tbody/tr["+courserownumber+"]/td[2]")).getText(),coursename);
+		  assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div[2]/div/table/tbody/tr["+courserownumber+"]/td[4]")).getText(), "Incomplete");
+		  //Implementing Story# 10117(S2); Auto: 5 TEA-DeleteApplication
+		  driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div[2]/div/table/tbody/tr["+courserownumber+"]/td[5]/a[2]")).click(); //Click the corresponding 'Delete' button
 	  }
 	    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[1]/h1")).getText(), "Delete Application");
 	    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div/div[1]/h2")).getText(), "Confirm deletion");
@@ -2025,7 +2050,7 @@ public void Auto6TEASecondarySchoolDetailsWithdraw(String getusertype, String ge
 			    // Applications Summary Page
 			    assertEquals(driver.findElement(By.cssSelector("h3.sv-panel-title")).getText(), "Current applications");
 			    assertEquals(driver.findElement(By.id("sitsportalpagetitle")).getText(), "Qualifications and Papers");
-			    driver.findElement(By.linkText("Start a new application")).click();
+			    driver.findElement(By.linkText("Start a New Application")).click();
 			    break;
 		}
 		case "Staff_Search":
@@ -2033,10 +2058,10 @@ public void Auto6TEASecondarySchoolDetailsWithdraw(String getusertype, String ge
 		{
 		    				
 		    		// Register/Login Page
-					staffSearchLogin(getfirstn, getlastn, email, getsecondname, getothersecondname, getdob); //Login steps for Staff Search. using the same for Staff_New case also
+					staffSearchLogin(firstn, lastn, email, getsecondname, getothersecondname, getdob); //Login steps for Staff Search. using the same for Staff_New case also
 					winhandlebefore_staff = driver.getWindowHandle(); //   get  Driver Window Handle to use at the end, to close student window;
 					getDriverWindowHandle();
-					driver.findElement(By.linkText("Start a new application")).click(); //
+					driver.findElement(By.linkText("Start a New Application")).click(); //
 					switchDriver();	 
 					break;
 		}
@@ -2209,14 +2234,14 @@ public void Auto6TEASecondarySchoolDetailsWithdraw(String getusertype, String ge
 	else if (usertype.equals("Staff_Search") || usertype.equals("Staff_New"))
 	{
 		driver.get(propertyconfig.getApplicationURL());  //URL picked from the Property file
-		staffSearchLogin(getfirstn, getlastn, getemail, getsecondname, getothersecondname, getdob);
-		courserownumber = getSummaryPageCourseRowNumber(coursename);
+		staffSearchLogin(firstn, lastn, email, getsecondname, getothersecondname, getdob);
+		courserownumber = getSummaryPageCourseRowNumberStaffSearch(coursename);
     	if (courserownumber==0) logger.log(LogStatus.INFO,"Course record not found on the Applications Summary page.");
     	else
     	{
     		winhandlebefore_staff = driver.getWindowHandle();
     		getDriverWindowHandle();
-    		driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+courserownumber+"]/td[5]/a")).click(); //Click the corresponding 'Continue' button
+    		driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div[2]/div/table/tbody/tr["+courserownumber+"]/td[5]/a")).click(); //Click the corresponding 'Continue' button
     		switchDriver();
     	}
 		
@@ -2272,10 +2297,10 @@ public void Auto6TEASecondarySchoolDetailsWithdraw(String getusertype, String ge
    else if (usertype.equals("Staff_Search") || usertype.equals("Staff_New"))
    {
 	  driver.get(propertyconfig.getApplicationURL());  //URL picked from the Property file
-	  staffSearchLogin(getfirstn, getlastn, getemail, getsecondname, getothersecondname, getdob);
-	  courserownumber = getSummaryPageCourseRowNumber(coursename);
-	  assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+courserownumber+"]/td[5]/a[2]")).getText(), "Withdraw");
-	  driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+courserownumber+"]/td[5]/a[2]")).click();		
+	  staffSearchLogin(firstn, lastn, email, getsecondname, getothersecondname, getdob);
+	  courserownumber = getSummaryPageCourseRowNumberStaffSearch(coursename);
+	  assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div[2]/div/table/tbody/tr["+courserownumber+"]/td[5]/a[2]")).getText(), "Withdraw");
+	  driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div[2]/div/table/tbody/tr["+courserownumber+"]/td[5]/a[2]")).click();		
    }
 	//Withdraw application page
 	assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[1]/h1")).getText(), "Withdraw Application");
@@ -2297,7 +2322,7 @@ public void Auto6TEASecondarySchoolDetailsWithdraw(String getusertype, String ge
 	}
 	else if (usertype.equals("Staff_Search") || usertype.equals("Staff_New"))
 	{
-		assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+courserownumber+"]/td[4]")).getText(), "Withdrawn");
+		assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div[2]/div/table/tbody/tr["+courserownumber+"]/td[4]")).getText(), "Withdrawn");
 	}
     if (usertype.equals("Student")) //check this for staff type
     {
@@ -2372,7 +2397,7 @@ public void Auto8TEAApplicationForMasterOfAppliedPsychology(String getusertype, 
 					    // Applications Summary Page
 					    assertEquals(driver.findElement(By.cssSelector("h3.sv-panel-title")).getText(), "Current applications");
 					    assertEquals(driver.findElement(By.id("sitsportalpagetitle")).getText(), "Qualifications and Papers");
-					    driver.findElement(By.linkText("Start a new application")).click(); //
+					    driver.findElement(By.linkText("Start a New Application")).click(); //
 					    break;
 				}
 				case "Staff_Search":
@@ -2380,10 +2405,10 @@ public void Auto8TEAApplicationForMasterOfAppliedPsychology(String getusertype, 
 				{
 				    				
 				    		// Register/Login Page
-							staffSearchLogin(getfirstn, getlastn, email, getsecondname, getothersecondname, getdob); //Login steps for Staff Search. using the same for Staff_New case also
+							staffSearchLogin(firstn, lastn, email, getsecondname, getothersecondname, getdob); //Login steps for Staff Search. using the same for Staff_New case also
 							winhandlebefore_staff = driver.getWindowHandle(); //   get  Driver Window Handle to use at the end, to close student window;
 							getDriverWindowHandle();
-							driver.findElement(By.linkText("Start a new application")).click(); //
+							driver.findElement(By.linkText("Start a New Application")).click(); //
 							switchDriver();	 
 							break;
 				}
@@ -2501,7 +2526,7 @@ public void Auto8TEAApplicationForMasterOfAppliedPsychology(String getusertype, 
       {
     	  	// 	Confirmation Page
     	  	driver.findElement(By.linkText("Applications")).click();
-    	  	driver.findElement(By.linkText("Start a new application")).click(); //
+    	  	driver.findElement(By.linkText("Start a New Application")).click(); //
   	  }
       else if (usertype.equals("Agent"))
       {
@@ -2523,7 +2548,7 @@ public void Auto8TEAApplicationForMasterOfAppliedPsychology(String getusertype, 
 			driver.switchTo().window(winhandlebefore_staff);    // Close the additional student window
 			winhandlebefore_staff = driver.getWindowHandle(); //   get  Driver Window Handle to use at the end, to close student window;
 			getDriverWindowHandle();
-			driver.findElement(By.linkText("Start a new application")).click(); //
+			driver.findElement(By.linkText("Start a New Application")).click(); //
 			switchDriver();	 
   	  }   
             
@@ -2580,10 +2605,10 @@ public void Auto9TEATeachingProgrammeAdditionalInfo(String getusertype, String g
 		{
 		    				
 		    		// Register/Login Page
-					staffSearchLogin(getfirstn, getlastn, email, getsecondname, getothersecondname, getdob); //Login steps for Staff Search. using the same for Staff_New case also
+					staffSearchLogin(firstn, lastn, email, getsecondname, getothersecondname, getdob); //Login steps for Staff Search. using the same for Staff_New case also
 					winhandlebefore_staff = driver.getWindowHandle(); //   get  Driver Window Handle to use at the end, to close student window;
 					getDriverWindowHandle();
-					driver.findElement(By.linkText("Start a new application")).click(); //
+					driver.findElement(By.linkText("Start a New Application")).click(); //
 					switchDriver();	 
 					break;
 		}
@@ -2616,7 +2641,7 @@ public void Auto9TEATeachingProgrammeAdditionalInfo(String getusertype, String g
 	
    while (i<=3)
    {
-			if (usertype.equals("Student"))   	driver.findElement(By.linkText("Start a new application")).click();
+			if (usertype.equals("Student"))   	driver.findElement(By.linkText("Start a New Application")).click();
 		    // Qualification Search Page
 		    // ERROR: Caught exception [unknown command [if]]
 			if (i==1)    courselink = "Bachelor of Teaching";
@@ -2750,7 +2775,7 @@ public void Auto9TEATeachingProgrammeAdditionalInfo(String getusertype, String g
 				driver.switchTo().window(winhandlebefore_staff);    // Close the additional student window
 				winhandlebefore_staff = driver.getWindowHandle(); //   get  Driver Window Handle to use at the end, to close student window;
 				getDriverWindowHandle();
-				driver.findElement(By.linkText("Start a new application")).click(); //
+				driver.findElement(By.linkText("Start a New Application")).click(); //
 				switchDriver();	 
 			}	    
 		    
@@ -3208,6 +3233,8 @@ private boolean isElementPresent(By by) {
 	  	 String screenshot_path = ReportScreenshotUtility.captureScreenshot(driver,propertyconfig.getScreenShotPath(),result.getName());   //Take screenshot if Test Case fails
 	  	 String image=logger.addScreenCapture(screenshot_path);
 	  	 logger.log(LogStatus.FAIL, "Failed", image);
+	  	 String pagesource=driver.getPageSource();
+	  	 logger.log(LogStatus.FAIL, "Failed", pagesource);
 	  	 if(ITestResult.FAILURE==result.getStatus())		logger.log(LogStatus.FAIL, "Exception Message", result.getThrowable());
 	  	 if (exceptionerror=="true")  logger.log(LogStatus.FAIL, "Exception Message", errormessage);
 	  }
@@ -3500,20 +3527,25 @@ private boolean isElementPresent(By by) {
   
   
   public int getSummaryPageCourseRowNumber(String coursen)
-	 {
+  {
 		int i=1, rownumber=0;
-		String coursename=coursen, id=null;	
-		id="//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+i+"]/td";
-		while(isElementPresent(By.xpath(id)) && (!driver.findElement(By.xpath(id)).getText().equalsIgnoreCase("No information available")))
-		{		 		  
-		  id="//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+i+"]/td[2]";				  		  
-		  if (driver.findElement(By.xpath(id)).getText().equals(coursename)) 
-		  {
-			  return i;
-		  }			 
-		  i++;
-		  id="//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+i+"]/td";
-		}	 
+		String coursename=coursen, id=null;
+		 
+		
+			id="//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+i+"]/td";
+			while(isElementPresent(By.xpath(id)) && (!driver.findElement(By.xpath(id)).getText().equalsIgnoreCase("No information available")))
+			{		 		  
+			  id="//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+i+"]/td[2]";				  		  
+			  if (driver.findElement(By.xpath(id)).getText().equals(coursename)) 
+			  {
+				  return i;
+			  }			 
+			  i++;
+			  id="//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/table/tbody/tr["+i+"]/td";
+			}	 
+		
+		
+		
 		
 		  //}	 
 	/**  if (usertype.equals("Agent")) 								
@@ -3535,6 +3567,26 @@ private boolean isElementPresent(By by) {
 	  
 	  return rownumber;
   }
+  
+  
+  public int getSummaryPageCourseRowNumberStaffSearch(String coursen)
+  {
+		int i=1, rownumber=0;
+		String coursename=coursen, id=null;
+		id="//html/body/div[1]/form/div[2]/div/div[2]/div/table/tbody/tr["+i+"]/td";
+		while(isElementPresent(By.xpath(id)) && (!driver.findElement(By.xpath(id)).getText().equalsIgnoreCase("No information available")))
+		{		 		  
+		  id="//html/body/div[1]/form/div[2]/div/div[2]/div/table/tbody/tr["+i+"]/td[2]";	  		  
+		  if (driver.findElement(By.xpath(id)).getText().equals(coursename)) 
+		  {
+			  return i;
+		  }			 
+		  i++;
+		  id="//html/body/div[1]/form/div[2]/div/div[2]/div/table/tbody/tr["+i+"]/td";	
+		}	  
+		return rownumber;
+  }
+  
   
   public int getWithdrawnPageCourseRowNumber(String coursen)
 	 {
@@ -3651,13 +3703,13 @@ private boolean isElementPresent(By by) {
   {
 	// Register/Login Page
 		 driver.findElement(By.xpath("//div[@id='new_user_section']/div/div/div/div[2]/div[2]/div/a")).click();
-		 assertEquals(driver.findElement(By.cssSelector("p.header-subtitle.sv-hidden-xs")).getText(), "My Waikato (UAT)");
+		 assertEquals(driver.findElement(By.cssSelector("p.header-subtitle.sv-hidden-xs")).getText(), "MyWaikato (UAT)");
 		 assertEquals(driver.findElement(By.cssSelector("h1")).getText(), "Log in to MyWaikato");
 		 assertEquals(driver.findElement(By.cssSelector("div.sv-page-header.sv-hidden-xs > p")).getText(), "This page is the MyWaikato login screen. Please use the form below to supply your login details and click the \"Log in\" button to access the system.");
 		 assertEquals(driver.findElement(By.cssSelector("h2.sv-panel-title")).getText(), "Portal Login");
 		 assertEquals(driver.findElement(By.cssSelector("label")).getText(), "Username");
 		 driver.findElement(By.id("MUA_CODE.DUMMY.MENSYS")).clear();
-		 driver.findElement(By.id("MUA_CODE.DUMMY.MENSYS")).sendKeys("STAFF"); //provide staff  credentials
+		 driver.findElement(By.id("MUA_CODE.DUMMY.MENSYS")).sendKeys("testuser"); //provide staff  credentials
 		 assertEquals(driver.findElement(By.xpath("//div[2]/label")).getText(), "Password");
 		 driver.findElement(By.id("PASSWORD.DUMMY.MENSYS")).clear();
 		 driver.findElement(By.id("PASSWORD.DUMMY.MENSYS")).sendKeys("Testing@2");  // provide staff account password
