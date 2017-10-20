@@ -2,30 +2,30 @@
 <testng-results skipped="0" failed="0" ignored="0" total="6" passed="6">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="487837" started-at="2017-10-12T21:31:52Z" finished-at="2017-10-12T21:40:00Z">
+  <suite name="Suite" duration-ms="593001" started-at="2017-10-20T02:13:16Z" finished-at="2017-10-20T02:23:09Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="487837" started-at="2017-10-12T21:31:52Z" finished-at="2017-10-12T21:40:00Z">
+    <test name="Test" duration-ms="593001" started-at="2017-10-20T02:13:16Z" finished-at="2017-10-20T02:23:09Z">
       <class name="TEAWeeklyRun">
-        <test-method status="PASS" signature="setUp()[pri:0, instance:TEAWeeklyRun@2d6eabae]" name="setUp" is-config="true" duration-ms="8128" started-at="2017-10-13T10:31:52Z" finished-at="2017-10-13T10:32:01Z">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:TEAWeeklyRun@48503868]" name="setUp" is-config="true" duration-ms="5248" started-at="2017-10-20T15:13:16Z" finished-at="2017-10-20T15:13:21Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="Auto1TEASubmitApplication(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:TEAWeeklyRun@2d6eabae]" name="Auto1TEASubmitApplication" duration-ms="87293" started-at="2017-10-13T10:32:03Z" data-provider="ParamData" finished-at="2017-10-13T10:33:30Z">
+        <test-method status="PASS" signature="Auto1TEASubmitApplication(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:TEAWeeklyRun@48503868]" name="Auto1TEASubmitApplication" duration-ms="134905" started-at="2017-10-20T15:13:22Z" data-provider="ParamData" finished-at="2017-10-20T15:15:37Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[Student]]>
+                <![CDATA[Staff_New]]>
               </value>
             </param>
             <param index="1">
               <value>
-                <![CDATA[Jane50]]>
+                <![CDATA[Jane]]>
               </value>
             </param>
             <param index="2">
               <value>
-                <![CDATA[Mickey50]]>
+                <![CDATA[Mickey]]>
               </value>
             </param>
             <param index="3">
@@ -55,12 +55,12 @@
             </param>
             <param index="8">
               <value>
-                <![CDATA[jmickey150@fake.com]]>
+                <![CDATA[jmickey@fake.com]]>
               </value>
             </param>
             <param index="9">
               <value>
-                <![CDATA[jmickey150@fake.com]]>
+                <![CDATA[jmickey@fake.com]]>
               </value>
             </param>
             <param index="10">
@@ -272,32 +272,32 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Auto1TEASubmitApplication -->
-        <test-method status="PASS" signature="tearD(org.testng.ITestResult)[pri:0, instance:TEAWeeklyRun@2d6eabae]" name="tearD" is-config="true" duration-ms="502" started-at="2017-10-13T10:33:30Z" finished-at="2017-10-13T10:33:31Z">
+        <test-method status="PASS" signature="tearD(org.testng.ITestResult)[pri:0, instance:TEAWeeklyRun@48503868]" name="tearD" is-config="true" duration-ms="491" started-at="2017-10-20T15:15:37Z" finished-at="2017-10-20T15:15:38Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=Auto1TEASubmitApplication status=SUCCESS method=TEAWeeklyRun.Auto1TEASubmitApplication(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:TEAWeeklyRun@2d6eabae] output={null}]]]>
+                <![CDATA[[TestResult name=Auto1TEASubmitApplication status=SUCCESS method=TEAWeeklyRun.Auto1TEASubmitApplication(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:TEAWeeklyRun@48503868] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearD -->
-        <test-method status="PASS" signature="Auto2TEALogin_Confirm_UploadDocs(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:TEAWeeklyRun@2d6eabae]" name="Auto2TEALogin_Confirm_UploadDocs" duration-ms="103412" started-at="2017-10-13T10:33:31Z" data-provider="ParamData" finished-at="2017-10-13T10:35:15Z">
+        <test-method status="PASS" signature="Auto2TEALogin_Confirm_UploadDocs(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:TEAWeeklyRun@48503868]" name="Auto2TEALogin_Confirm_UploadDocs" duration-ms="120731" started-at="2017-10-20T15:15:38Z" data-provider="ParamData" finished-at="2017-10-20T15:17:39Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[Student]]>
+                <![CDATA[Staff_New]]>
               </value>
             </param>
             <param index="1">
               <value>
-                <![CDATA[Jane50]]>
+                <![CDATA[Jane]]>
               </value>
             </param>
             <param index="2">
               <value>
-                <![CDATA[Mickey50]]>
+                <![CDATA[Mickey]]>
               </value>
             </param>
             <param index="3">
@@ -327,12 +327,12 @@
             </param>
             <param index="8">
               <value>
-                <![CDATA[jmickey150@fake.com]]>
+                <![CDATA[jmickey@fake.com]]>
               </value>
             </param>
             <param index="9">
               <value>
-                <![CDATA[jmickey150@fake.com]]>
+                <![CDATA[jmickey@fake.com]]>
               </value>
             </param>
             <param index="10">
@@ -544,32 +544,32 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Auto2TEALogin_Confirm_UploadDocs -->
-        <test-method status="PASS" signature="tearD(org.testng.ITestResult)[pri:0, instance:TEAWeeklyRun@2d6eabae]" name="tearD" is-config="true" duration-ms="164" started-at="2017-10-13T10:35:15Z" finished-at="2017-10-13T10:35:15Z">
+        <test-method status="PASS" signature="tearD(org.testng.ITestResult)[pri:0, instance:TEAWeeklyRun@48503868]" name="tearD" is-config="true" duration-ms="69" started-at="2017-10-20T15:17:39Z" finished-at="2017-10-20T15:17:39Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=Auto2TEALogin_Confirm_UploadDocs status=SUCCESS method=TEAWeeklyRun.Auto2TEALogin_Confirm_UploadDocs(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:TEAWeeklyRun@2d6eabae] output={null}]]]>
+                <![CDATA[[TestResult name=Auto2TEALogin_Confirm_UploadDocs status=SUCCESS method=TEAWeeklyRun.Auto2TEALogin_Confirm_UploadDocs(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:TEAWeeklyRun@48503868] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearD -->
-        <test-method status="PASS" signature="Auto4TEASaveContinueDelete(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:TEAWeeklyRun@2d6eabae]" name="Auto4TEASaveContinueDelete" duration-ms="83370" started-at="2017-10-13T10:35:15Z" data-provider="ParamData" finished-at="2017-10-13T10:36:39Z">
+        <test-method status="PASS" signature="Auto4TEASaveContinueDelete(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:TEAWeeklyRun@48503868]" name="Auto4TEASaveContinueDelete" duration-ms="89979" started-at="2017-10-20T15:17:39Z" data-provider="ParamData" finished-at="2017-10-20T15:19:09Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[Student]]>
+                <![CDATA[Staff_New]]>
               </value>
             </param>
             <param index="1">
               <value>
-                <![CDATA[Jane50]]>
+                <![CDATA[Jane]]>
               </value>
             </param>
             <param index="2">
               <value>
-                <![CDATA[Mickey50]]>
+                <![CDATA[Mickey]]>
               </value>
             </param>
             <param index="3">
@@ -599,12 +599,12 @@
             </param>
             <param index="8">
               <value>
-                <![CDATA[jmickey150@fake.com]]>
+                <![CDATA[jmickey@fake.com]]>
               </value>
             </param>
             <param index="9">
               <value>
-                <![CDATA[jmickey150@fake.com]]>
+                <![CDATA[jmickey@fake.com]]>
               </value>
             </param>
             <param index="10">
@@ -816,32 +816,32 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Auto4TEASaveContinueDelete -->
-        <test-method status="PASS" signature="tearD(org.testng.ITestResult)[pri:0, instance:TEAWeeklyRun@2d6eabae]" name="tearD" is-config="true" duration-ms="89" started-at="2017-10-13T10:36:39Z" finished-at="2017-10-13T10:36:39Z">
+        <test-method status="PASS" signature="tearD(org.testng.ITestResult)[pri:0, instance:TEAWeeklyRun@48503868]" name="tearD" is-config="true" duration-ms="126" started-at="2017-10-20T15:19:09Z" finished-at="2017-10-20T15:19:09Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=Auto4TEASaveContinueDelete status=SUCCESS method=TEAWeeklyRun.Auto4TEASaveContinueDelete(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:TEAWeeklyRun@2d6eabae] output={null}]]]>
+                <![CDATA[[TestResult name=Auto4TEASaveContinueDelete status=SUCCESS method=TEAWeeklyRun.Auto4TEASaveContinueDelete(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:TEAWeeklyRun@48503868] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearD -->
-        <test-method status="PASS" signature="Auto6TEASecondarySchoolDetails(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:TEAWeeklyRun@2d6eabae]" name="Auto6TEASecondarySchoolDetails" duration-ms="76693" started-at="2017-10-13T10:36:39Z" data-provider="ParamData" finished-at="2017-10-13T10:37:56Z">
+        <test-method status="PASS" signature="Auto6TEASecondarySchoolDetailsWithdraw(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:TEAWeeklyRun@48503868]" name="Auto6TEASecondarySchoolDetailsWithdraw" duration-ms="84782" started-at="2017-10-20T15:19:10Z" data-provider="ParamData" finished-at="2017-10-20T15:20:35Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[Student]]>
+                <![CDATA[Staff_New]]>
               </value>
             </param>
             <param index="1">
               <value>
-                <![CDATA[Jane50]]>
+                <![CDATA[Jane]]>
               </value>
             </param>
             <param index="2">
               <value>
-                <![CDATA[Mickey50]]>
+                <![CDATA[Mickey]]>
               </value>
             </param>
             <param index="3">
@@ -871,12 +871,12 @@
             </param>
             <param index="8">
               <value>
-                <![CDATA[jmickey150@fake.com]]>
+                <![CDATA[jmickey@fake.com]]>
               </value>
             </param>
             <param index="9">
               <value>
-                <![CDATA[jmickey150@fake.com]]>
+                <![CDATA[jmickey@fake.com]]>
               </value>
             </param>
             <param index="10">
@@ -1087,33 +1087,33 @@
           </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- Auto6TEASecondarySchoolDetails -->
-        <test-method status="PASS" signature="tearD(org.testng.ITestResult)[pri:0, instance:TEAWeeklyRun@2d6eabae]" name="tearD" is-config="true" duration-ms="96" started-at="2017-10-13T10:37:56Z" finished-at="2017-10-13T10:37:56Z">
+        </test-method> <!-- Auto6TEASecondarySchoolDetailsWithdraw -->
+        <test-method status="PASS" signature="tearD(org.testng.ITestResult)[pri:0, instance:TEAWeeklyRun@48503868]" name="tearD" is-config="true" duration-ms="79" started-at="2017-10-20T15:20:35Z" finished-at="2017-10-20T15:20:35Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=Auto6TEASecondarySchoolDetails status=SUCCESS method=TEAWeeklyRun.Auto6TEASecondarySchoolDetails(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:TEAWeeklyRun@2d6eabae] output={null}]]]>
+                <![CDATA[[TestResult name=Auto6TEASecondarySchoolDetailsWithdraw status=SUCCESS method=TEAWeeklyRun.Auto6TEASecondarySchoolDetailsWithdraw(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:TEAWeeklyRun@48503868] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearD -->
-        <test-method status="PASS" signature="Auto8TEAApplicationForMasterOfAppliedPsychology(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:TEAWeeklyRun@2d6eabae]" name="Auto8TEAApplicationForMasterOfAppliedPsychology" duration-ms="55895" started-at="2017-10-13T10:37:56Z" data-provider="ParamData" finished-at="2017-10-13T10:38:52Z">
+        <test-method status="PASS" signature="Auto8TEAApplicationForMasterOfAppliedPsychology(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:TEAWeeklyRun@48503868]" name="Auto8TEAApplicationForMasterOfAppliedPsychology" duration-ms="72549" started-at="2017-10-20T15:20:35Z" data-provider="ParamData" finished-at="2017-10-20T15:21:47Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[Student]]>
+                <![CDATA[Staff_New]]>
               </value>
             </param>
             <param index="1">
               <value>
-                <![CDATA[Jane50]]>
+                <![CDATA[Jane]]>
               </value>
             </param>
             <param index="2">
               <value>
-                <![CDATA[Mickey50]]>
+                <![CDATA[Mickey]]>
               </value>
             </param>
             <param index="3">
@@ -1143,12 +1143,12 @@
             </param>
             <param index="8">
               <value>
-                <![CDATA[jmickey150@fake.com]]>
+                <![CDATA[jmickey@fake.com]]>
               </value>
             </param>
             <param index="9">
               <value>
-                <![CDATA[jmickey150@fake.com]]>
+                <![CDATA[jmickey@fake.com]]>
               </value>
             </param>
             <param index="10">
@@ -1360,32 +1360,32 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Auto8TEAApplicationForMasterOfAppliedPsychology -->
-        <test-method status="PASS" signature="tearD(org.testng.ITestResult)[pri:0, instance:TEAWeeklyRun@2d6eabae]" name="tearD" is-config="true" duration-ms="96" started-at="2017-10-13T10:38:52Z" finished-at="2017-10-13T10:38:52Z">
+        <test-method status="PASS" signature="tearD(org.testng.ITestResult)[pri:0, instance:TEAWeeklyRun@48503868]" name="tearD" is-config="true" duration-ms="65" started-at="2017-10-20T15:21:47Z" finished-at="2017-10-20T15:21:48Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=Auto8TEAApplicationForMasterOfAppliedPsychology status=SUCCESS method=TEAWeeklyRun.Auto8TEAApplicationForMasterOfAppliedPsychology(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:TEAWeeklyRun@2d6eabae] output={null}]]]>
+                <![CDATA[[TestResult name=Auto8TEAApplicationForMasterOfAppliedPsychology status=SUCCESS method=TEAWeeklyRun.Auto8TEAApplicationForMasterOfAppliedPsychology(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:TEAWeeklyRun@48503868] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearD -->
-        <test-method status="PASS" signature="Auto9TEATeachingProgrammeAdditionalInfo(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:TEAWeeklyRun@2d6eabae]" name="Auto9TEATeachingProgrammeAdditionalInfo" duration-ms="63962" started-at="2017-10-13T10:38:53Z" data-provider="ParamData" finished-at="2017-10-13T10:39:57Z">
+        <test-method status="PASS" signature="Auto9TEATeachingProgrammeAdditionalInfo(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:TEAWeeklyRun@48503868]" name="Auto9TEATeachingProgrammeAdditionalInfo" duration-ms="79096" started-at="2017-10-20T15:21:48Z" data-provider="ParamData" finished-at="2017-10-20T15:23:07Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[Student]]>
+                <![CDATA[Staff_New]]>
               </value>
             </param>
             <param index="1">
               <value>
-                <![CDATA[Jane50]]>
+                <![CDATA[Jane]]>
               </value>
             </param>
             <param index="2">
               <value>
-                <![CDATA[Mickey50]]>
+                <![CDATA[Mickey]]>
               </value>
             </param>
             <param index="3">
@@ -1415,12 +1415,12 @@
             </param>
             <param index="8">
               <value>
-                <![CDATA[jmickey150@fake.com]]>
+                <![CDATA[jmickey@fake.com]]>
               </value>
             </param>
             <param index="9">
               <value>
-                <![CDATA[jmickey150@fake.com]]>
+                <![CDATA[jmickey@fake.com]]>
               </value>
             </param>
             <param index="10">
@@ -1632,22 +1632,22 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Auto9TEATeachingProgrammeAdditionalInfo -->
-        <test-method status="PASS" signature="tearD(org.testng.ITestResult)[pri:0, instance:TEAWeeklyRun@2d6eabae]" name="tearD" is-config="true" duration-ms="81" started-at="2017-10-13T10:39:57Z" finished-at="2017-10-13T10:39:57Z">
+        <test-method status="PASS" signature="tearD(org.testng.ITestResult)[pri:0, instance:TEAWeeklyRun@48503868]" name="tearD" is-config="true" duration-ms="54" started-at="2017-10-20T15:23:07Z" finished-at="2017-10-20T15:23:07Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=Auto9TEATeachingProgrammeAdditionalInfo status=SUCCESS method=TEAWeeklyRun.Auto9TEATeachingProgrammeAdditionalInfo(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:TEAWeeklyRun@2d6eabae] output={null}]]]>
+                <![CDATA[[TestResult name=Auto9TEATeachingProgrammeAdditionalInfo status=SUCCESS method=TEAWeeklyRun.Auto9TEATeachingProgrammeAdditionalInfo(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:TEAWeeklyRun@48503868] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearD -->
-        <test-method status="PASS" signature="tearDown()[pri:0, instance:TEAWeeklyRun@2d6eabae]" name="tearDown" is-config="true" duration-ms="3676" started-at="2017-10-13T10:39:57Z" finished-at="2017-10-13T10:40:00Z">
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:TEAWeeklyRun@48503868]" name="tearDown" is-config="true" duration-ms="1631" started-at="2017-10-20T15:23:07Z" finished-at="2017-10-20T15:23:09Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
       </class> <!-- TEAWeeklyRun -->
-    </test> <!-- Default test -->
-  </suite> <!-- Default suite -->
+    </test> <!-- Test -->
+  </suite> <!-- Suite -->
 </testng-results>

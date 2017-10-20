@@ -8,7 +8,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
-
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -19,7 +18,7 @@ import org.joda.time.LocalDate;
 import org.joda.time.Period;
 import org.joda.time.PeriodType;
 import org.openqa.selenium.By;
-
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -836,7 +835,7 @@ public void Auto1TEASubmitApplication(String getusertype, String getfirstn, Stri
     switchDriver();
     Thread.sleep(2000);
     assertEquals(driver.getCurrentUrl(),"http://www.waikato.ac.nz/official-info/index/docs/privacyact");
-    assertEquals(driver.getTitle(),"Personal Information and the Privacy Act 1993 - Official Information Index : University of Waikato");
+    assertEquals(driver.getTitle(),"Privacy of Personal Information (Students) - Official Information Index : University of Waikato");
    /// assertEquals(driver.findElement(By.xpath("//div[@id='content_div_58399']/h1")).getText(), "Personal Information and the Privacy Act 1993");
     switchToEarlierDriver();
     // ERROR: Caught exception [ERROR: Unsupported command [selectWindow |  | ]]
@@ -998,7 +997,7 @@ try {
 		///assertEquals(driver.findElement(By.linkText("Withdraw")).getText(), "Withdraw");
 		 //}
 		//assertEquals(driver.findElement(By.cssSelector(".sv-btn")).getText(), "Start a New Application");
-		 driver.findElement(By.linkText("Start a New Application")).click();
+		 driver.findElement(By.linkText("Start a new application")).click();
 		 break;
  	}
  	case "Agent":
@@ -1172,15 +1171,22 @@ driver.findElement(By.id("KEYWORD.IPP.SRS")).clear();
 			{
 				driver.close();
 				driver.switchTo().window(winhandlebefore_staff);    // Close the additional student window
-				winhandlebefore_staff = driver.getWindowHandle(); //   get  Driver Window Handle to use at the end, to close student window;
+				driver.get(propertyconfig.getApplicationURL());  //URL picked from the Property file
+				
+				//winhandlebefore_staff = driver.getWindowHandle(); //   get  Driver Window Handle to use at the end, to close student window;
+				//getDriverWindowHandle();
+				//driver.findElement(By.linkText("Start a New Application")).click(); //
+				//switchDriver();
+				staffSearchLogin(firstn, lastn, email, getsecondname, getothersecondname, getdob);
+				winhandlebefore_staff = driver.getWindowHandle(); // get Driver Window Handle to use at the end, to close student window;
 				getDriverWindowHandle();
 				driver.findElement(By.linkText("Start a New Application")).click(); //
-				switchDriver();	 
+				switchDriver();
 			}
 			else if (usertype.equalsIgnoreCase("Student"))
 			{
 				driver.findElement(By.linkText("Applications")).click();
-				driver.findElement(By.linkText("Start a New Application")).click();
+				driver.findElement(By.linkText("Start a new application")).click();
 			}
 			else if (usertype.equalsIgnoreCase("Agent"))
 			{
@@ -1254,8 +1260,28 @@ driver.findElement(By.xpath("//button[@id='app-btn-next']")).click();
 
 
 //driver.findElement(By.xpath("//form[@id='app_form']/div/div[3]/div/button")).click();
-driver.findElement(By.linkText("Applications")).click();
-driver.findElement(By.linkText("Start a New Application")).click();
+if (usertype.equalsIgnoreCase("Staff_Search") || usertype.equalsIgnoreCase("Staff_New"))
+{
+	driver.close();
+	driver.switchTo().window(winhandlebefore_staff);    // Close the additional student window
+	driver.get(propertyconfig.getApplicationURL());  //URL picked from the Property file
+	
+	//winhandlebefore_staff = driver.getWindowHandle(); //   get  Driver Window Handle to use at the end, to close student window;
+	//getDriverWindowHandle();
+	//driver.findElement(By.linkText("Start a New Application")).click(); //
+	//switchDriver();
+	staffSearchLogin(firstn, lastn, email, getsecondname, getothersecondname, getdob);
+	winhandlebefore_staff = driver.getWindowHandle(); // get Driver Window Handle to use at the end, to close student window;
+	getDriverWindowHandle();
+	driver.findElement(By.linkText("Start a New Application")).click(); //
+	switchDriver();
+}
+else if (usertype.equalsIgnoreCase("Student"))
+{
+	driver.findElement(By.linkText("Applications")).click();
+	driver.findElement(By.linkText("Start a new application")).click();
+}
+
 // Qualification Search Page
 new Select(driver.findElement(By.id("SELECTION.CRITERIA.SRS.1-1"))).selectByVisibleText("Bachelors Degree");
 driver.findElement(By.id("BP102.DUMMY_B.MENSYS")).click();
@@ -1445,7 +1471,7 @@ public void Auto4TEASaveContinueDelete(String getusertype, String getfirstn, Str
 		    {
 		  	  // Register/Login Page
 		    	studentLogin(email, password);
-			    driver.findElement(By.linkText("Start a New Application")).click();
+			    driver.findElement(By.linkText("Start a new application")).click();
 			    break;
 		    }
 	    case "Agent":
@@ -1810,7 +1836,8 @@ public void Auto4TEASaveContinueDelete(String getusertype, String getfirstn, Str
 	    
 	    if (currentlyatsecondaryschool.equals("Yes"))
 	    {
-	    	assertTrue(driver.findElement(By.id("ADOAP_EDSSQ1")).isSelected());
+	    	//assertTrue(driver.findElement(By.id("ADOAP_EDSSQ1")).isSelected());
+	    	driver.findElement(By.id("ADOAP_EDSSQ1")).click();
 	    	assertEquals(new Select(driver.findElement(By.id("IPQ_ADOAP_CSTY"))).getFirstSelectedOption().getText(), currentlystudyingtowards);
 	    	//assertEquals(driver.findElement(By.xpath("IPQ_ADOAP_CSTY")).getText(),currentlystudyingtowards);
 	    	if(agreeNZQAresultscheckbox.equalsIgnoreCase("Yes") && !driver.findElement(By.id("IPQ_ADOAP_EDCB")).isSelected()) 
@@ -1824,7 +1851,8 @@ public void Auto4TEASaveContinueDelete(String getusertype, String getfirstn, Str
 	    }
 	    else
 	    {
-	    	assertTrue(driver.findElement(By.id("ADOAP_EDSSQ2")).isSelected());	
+	    	//assertTrue(driver.findElement(By.id("ADOAP_EDSSQ2")).isSelected());
+	    	driver.findElement(By.id("ADOAP_EDSSQ2")).click();
 	    }
 	    assertEquals(new Select(driver.findElement(By.id("IPQ_ADOAP_EDLSCL"))).getFirstSelectedOption().getAttribute("value"), codes.getLastsecschoolcode(lastsecschool));  //comparing the country code to validate the country ###
 	    //assertEquals(driver.findElement(By.xpath("//div[@id='IPQ_ADOAP_EDLSCL_chosen']/a/span")).getText(),lastsecschool);
@@ -1954,6 +1982,8 @@ public void Auto4TEASaveContinueDelete(String getusertype, String getfirstn, Str
 	  }
 	  else if(usertype.equals("Staff_Search") || usertype.equals("Staff_New"))
 	  {
+		  driver.get(propertyconfig.getApplicationURL()); 
+		  staffSearchLogin(firstn, lastn, email, secondname, othersecondname, dob);
 		  courserownumber=getSummaryPageCourseRowNumberStaffSearch(coursename);
 		  assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div[2]/div/table/tbody/tr["+courserownumber+"]/td[2]")).getText(),coursename);
 		  assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div[2]/div/table/tbody/tr["+courserownumber+"]/td[4]")).getText(), "Incomplete");
@@ -1967,14 +1997,19 @@ public void Auto4TEASaveContinueDelete(String getusertype, String getfirstn, Str
 	    // Applications Summary Page
 	    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[1]/p")).getText(), "Application deleted");
 	    
-	    if (usertype.equals("Agent"))
+	    if(usertype.equals("Agent"))
 	    {
 	    	linkrownumber=getLinkRowNumberForAgent(stuID, coursename); 
 	    	assertEquals(linkrownumber,0);
 	    }
-	    else
+	    else if(usertype.equals("Student"))
 	    {
 	    	courserownumber=getSummaryPageCourseRowNumber(coursename);
+	    	assertEquals(courserownumber,0);
+	    }
+	    else if(usertype.equals("Staff_Search") || usertype.equals("Staff_New"))
+	    {
+	    	courserownumber=getSummaryPageCourseRowNumberStaffSearch(coursename);
 	    	assertEquals(courserownumber,0);
 	    }
 	    //Call SITS //
@@ -2050,7 +2085,7 @@ public void Auto6TEASecondarySchoolDetailsWithdraw(String getusertype, String ge
 			    // Applications Summary Page
 			    assertEquals(driver.findElement(By.cssSelector("h3.sv-panel-title")).getText(), "Current applications");
 			    assertEquals(driver.findElement(By.id("sitsportalpagetitle")).getText(), "Qualifications and Papers");
-			    driver.findElement(By.linkText("Start a New Application")).click();
+			    driver.findElement(By.linkText("Start a new application")).click();
 			    break;
 		}
 		case "Staff_Search":
@@ -2315,13 +2350,15 @@ public void Auto6TEASecondarySchoolDetailsWithdraw(String getusertype, String ge
 	
 	//Application summary page
 	assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[1]/p")).getText(), "Application withdrawn");
-	courserownumber=getSummaryPageCourseRowNumber(coursename);
+	//courserownumber=getSummaryPageCourseRowNumber(coursename);
 	if (usertype.equals("Student") || usertype.equals("Agent"))
 	{				
+		courserownumber=getSummaryPageCourseRowNumber(coursename);
 		assertEquals(courserownumber,0);  // application not visible
 	}
 	else if (usertype.equals("Staff_Search") || usertype.equals("Staff_New"))
 	{
+		courserownumber=getSummaryPageCourseRowNumberStaffSearch(coursename);
 		assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div[2]/div/table/tbody/tr["+courserownumber+"]/td[4]")).getText(), "Withdrawn");
 	}
     if (usertype.equals("Student")) //check this for staff type
@@ -2397,13 +2434,12 @@ public void Auto8TEAApplicationForMasterOfAppliedPsychology(String getusertype, 
 					    // Applications Summary Page
 					    assertEquals(driver.findElement(By.cssSelector("h3.sv-panel-title")).getText(), "Current applications");
 					    assertEquals(driver.findElement(By.id("sitsportalpagetitle")).getText(), "Qualifications and Papers");
-					    driver.findElement(By.linkText("Start a New Application")).click(); //
+					    driver.findElement(By.linkText("Start a new application")).click(); //
 					    break;
 				}
 				case "Staff_Search":
 				case "Staff_New":
 				{
-				    				
 				    		// Register/Login Page
 							staffSearchLogin(firstn, lastn, email, getsecondname, getothersecondname, getdob); //Login steps for Staff Search. using the same for Staff_New case also
 							winhandlebefore_staff = driver.getWindowHandle(); //   get  Driver Window Handle to use at the end, to close student window;
@@ -2522,13 +2558,13 @@ public void Auto8TEAApplicationForMasterOfAppliedPsychology(String getusertype, 
       //assertEquals(driver.findElement(By.xpath("//div[@id='pageContainer1']/div[2]/div")).getText(), "Masters Enrolment and Supervisors' Approval Form");  
       switchToEarlierDriver();
       driver.findElement(By.id("app-btn-save")).click();
-      if (usertype.equals("Student"))
+      if(usertype.equals("Student"))
       {
     	  	// 	Confirmation Page
     	  	driver.findElement(By.linkText("Applications")).click();
-    	  	driver.findElement(By.linkText("Start a New Application")).click(); //
+    	  	driver.findElement(By.linkText("Start a new application")).click(); //
   	  }
-      else if (usertype.equals("Agent"))
+      else if(usertype.equals("Agent"))
       {
     	  	driver.close();
     	  	driver.switchTo().window(winhandlebefore_staff);    // Close the additional student window
@@ -2542,14 +2578,17 @@ public void Auto8TEAApplicationForMasterOfAppliedPsychology(String getusertype, 
 			driver.findElement(By.xpath("//table[@id='uow-applications']/tbody/tr["+linkrownumber+"]/td[6]/a[3]")).click();
 			switchDriver();  // login results in another window getting opened.    	  
       }
-      else
+      else if(usertype.equals("Staff_Search") || usertype.equals("Staff_New"))
   	  {
     	 	driver.close();
 			driver.switchTo().window(winhandlebefore_staff);    // Close the additional student window
-			winhandlebefore_staff = driver.getWindowHandle(); //   get  Driver Window Handle to use at the end, to close student window;
+			driver.get(propertyconfig.getApplicationURL());
+			staffSearchLogin(firstn, lastn, email, getsecondname, getothersecondname, getdob);
+			winhandlebefore_staff = driver.getWindowHandle(); // get Driver Window Handle to use at the end, to close student window;
 			getDriverWindowHandle();
 			driver.findElement(By.linkText("Start a New Application")).click(); //
-			switchDriver();	 
+			switchDriver();
+			
   	  }   
             
       // Application Summary Page
@@ -2641,7 +2680,7 @@ public void Auto9TEATeachingProgrammeAdditionalInfo(String getusertype, String g
 	
    while (i<=3)
    {
-			if (usertype.equals("Student"))   	driver.findElement(By.linkText("Start a New Application")).click();
+			if (usertype.equals("Student"))   	driver.findElement(By.linkText("Start a new application")).click();
 		    // Qualification Search Page
 		    // ERROR: Caught exception [unknown command [if]]
 			if (i==1)    courselink = "Bachelor of Teaching";
@@ -2769,15 +2808,18 @@ public void Auto9TEATeachingProgrammeAdditionalInfo(String getusertype, String g
 					driver.findElement(By.xpath("//table[@id='uow-applications']/tbody/tr["+linkrownumber+"]/td[6]/a[3]")).click();
 					switchDriver();  // login results in another window getting opened.    	  
 		    }
-		    else 		  
-			{
-		  	 	driver.close();
-				driver.switchTo().window(winhandlebefore_staff);    // Close the additional student window
-				winhandlebefore_staff = driver.getWindowHandle(); //   get  Driver Window Handle to use at the end, to close student window;
-				getDriverWindowHandle();
-				driver.findElement(By.linkText("Start a New Application")).click(); //
-				switchDriver();	 
-			}	    
+		    else if(usertype.equals("Staff_Search") || usertype.equals("Staff_New"))
+		    {
+		    	 	driver.close();
+					driver.switchTo().window(winhandlebefore_staff);    // Close the additional student window
+					driver.get(propertyconfig.getApplicationURL());
+					staffSearchLogin(firstn, lastn, email, getsecondname, getothersecondname, getdob);
+					winhandlebefore_staff = driver.getWindowHandle(); // get Driver Window Handle to use at the end, to close student window;
+					getDriverWindowHandle();
+					driver.findElement(By.linkText("Start a New Application")).click(); //
+					switchDriver();
+					
+		  	 }       
 		    
 		    // Application Summary Page
 		    // ERROR: Caught exception [ERROR: Unsupported command [getEval | storedVars.i=storedVars.i+1 | ]]
@@ -3233,10 +3275,11 @@ private boolean isElementPresent(By by) {
 	  	 String screenshot_path = ReportScreenshotUtility.captureScreenshot(driver,propertyconfig.getScreenShotPath(),result.getName());   //Take screenshot if Test Case fails
 	  	 String image=logger.addScreenCapture(screenshot_path);
 	  	 logger.log(LogStatus.FAIL, "Failed", image);
-	  	 String pagesource=driver.getPageSource();
-	  	 logger.log(LogStatus.FAIL, "Failed", pagesource);
+	  	 
 	  	 if(ITestResult.FAILURE==result.getStatus())		logger.log(LogStatus.FAIL, "Exception Message", result.getThrowable());
 	  	 if (exceptionerror=="true")  logger.log(LogStatus.FAIL, "Exception Message", errormessage);
+	  	 System.out.println(driver.getPageSource());
+	  	
 	  }
 	  else if (ITestResult.SUCCESS==result.getStatus() && (exceptionerror.equals("false")))   //Check if Test case has passed
 	  {
