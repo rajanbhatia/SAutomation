@@ -498,7 +498,7 @@ public class TEADailyRun {
     assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div/div/div/div[2]/div/div/fieldset/div/label")).getText(), "Major*");
     //new Select(driver.findElement(By.id("ANSWER.TTQ.MENSYS.2."))).selectByIndex(1); // select the first element
     if (coursename.equals("Bachelor of Business"))		new Select(driver.findElement(By.id("ANSWER.TTQ.MENSYS.2."))).selectByVisibleText("Digital Business (Hamilton)"); // select major for Bachelor of Business
-    
+    else if (coursename.equals("Bachelor of Arts"))		new Select(driver.findElement(By.id("ANSWER.TTQ.MENSYS.2."))).selectByVisibleText("Economics (Hamilton)"); // select major for Bachelor of Arts
     driver.findElement(By.name("NEXT.DUMMY.MENSYS.1")).click(); // click Next
     
     //Back to Enrolment page
@@ -525,8 +525,21 @@ public class TEADailyRun {
     //driver.findElement(By.id("sme_search_advanced001_value1")).sendKeys("HAM");
     driver.findElement(By.id("sme_search_button001")).click(); //Paper Search
     Thread.sleep(500);
-    driver.findElement(By.xpath("//*[@id='sme_search_results_grid001']/tbody/tr[1]/td[6]/button")).click();  //Add first paper
-    Thread.sleep(1000);			
+    if (coursename.equals("Bachelor of Business"))
+    {
+    	driver.findElement(By.xpath("//*[@id='sme_search_results_grid001']/tbody/tr[1]/td[6]/button")).click();  //Add first paper
+        Thread.sleep(1000);	
+    }
+    else if (coursename.equals("Bachelor of Arts"))
+    {
+    	driver.findElement(By.xpath("//*[@id='sme_search_results_grid001']/tbody/tr[1]/td[6]/button")).click();  //Add first paper
+        Thread.sleep(1000);	
+        driver.findElement(By.xpath("//*[@id='sme_search_results_grid001']/tbody/tr[4]/td[6]/button")).click();  //Add fourth paper
+        Thread.sleep(1000);
+    }
+
+    //driver.findElement(By.xpath("//*[@id='sme_search_results_grid001']/tbody/tr[1]/td[6]/button")).click();  //Add first paper
+    //Thread.sleep(1000);			
     //driver.findElement(By.xpath("//*[@id='sme_search_results_grid001']/tbody/tr[2]/td[6]/button")).click();  //Add second paper
     //Thread.sleep(1000);
     //driver.findElement(By.xpath("//*[@id='sme_search_results_grid001']/tbody/tr[3]/td[6]/button")).click();  //Add third paper
@@ -569,6 +582,10 @@ public class TEADailyRun {
     {
     	assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[4]/div/div/div[4]/div/div/div[2]/div[1]/small")).getText(), "Major : Digital Business");
     }
+    else if(coursename.equals("Bachelor of Arts"))
+    {
+    	assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[4]/div/div/div[4]/div/div/div[2]/div[1]/small")).getText(), "Major : Economics");
+    } 
     assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[4]/div/div/div[4]/div/div/div[2]/div[2]/small")).getText(), "Status: Pending approval");
     
     //Login as a staff
@@ -589,12 +606,25 @@ public class TEADailyRun {
 	    //Enrolment Approval
 	    assertEquals(driver.findElement(By.xpath("/html/body/div[1]/div[2]/div[2]/div/div[1]/dl/dd[1]")).getText(), stuID);	    										
 	  
-	    driver.findElement(By.xpath("//html/body/div[1]/form/div[1]/div[4]/table/tbody/tr[1]/td[10]/a[1]/i")).click(); //tick the papers
-	    Thread.sleep(1500);
-	    //driver.findElement(By.xpath("//html/body/div[1]/form/div[1]/div[4]/table/tbody/tr[2]/td[10]/a[1]/i")).click();//tick the papers
-	    //Thread.sleep(1500);
-	    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[1]/div[4]/table/tbody/tr[1]/td[9]/span")).getText(), "Approved"); //Papers approved
-	    //assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[1]/div[4]/table/tbody/tr[2]/td[9]/span")).getText(), "Approved"); //Papers approved
+	   
+	    
+	    if (coursename.equals("Bachelor of Business"))	// 1 paper
+	    {
+	    	driver.findElement(By.xpath("//html/body/div[1]/form/div[1]/div[4]/table/tbody/tr[1]/td[10]/a[1]/i")).click(); //tick the papers
+	 	    Thread.sleep(1500);
+	    	assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[1]/div[4]/table/tbody/tr[1]/td[9]/span")).getText(), "Approved"); //Papers approved
+		    //assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[1]/div[4]/table/tbody/tr[2]/td[9]/span")).getText(), "Approved"); //Papers approved
+	    }
+	    else if(coursename.equals("Bachelor of Arts")) // 2 papers
+	    {
+	    	driver.findElement(By.xpath("//html/body/div[1]/form/div[1]/div[4]/table/tbody/tr[1]/td[10]/a[1]/i")).click(); //tick the papers
+	    	Thread.sleep(1500);
+	    	driver.findElement(By.xpath("//html/body/div[1]/form/div[1]/div[4]/table/tbody/tr[2]/td[10]/a[1]/i")).click();//tick the papers
+		    Thread.sleep(1500);
+	    	assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[1]/div[4]/table/tbody/tr[1]/td[9]/span")).getText(), "Approved"); //Papers approved
+		    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[1]/div[4]/table/tbody/tr[2]/td[9]/span")).getText(), "Approved"); //Papers approved
+	    } 
+	    
 	    driver.findElement(By.id("ANSWER.TTQ.MENSYS.5.")).click(); //click Approve
 	    
 	    //Confirm
@@ -630,9 +660,7 @@ public class TEADailyRun {
 	  	    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[3]/div/div[2]/div/table/tbody/tr[2]/td[8]/span")).getText(), "Enrolled"); //check 2 papers
 	    }
 	    
-	  
-	  
-	  
+	  	  
 	    
     System.out.println("TEA - Smoke Workflow test case executed - "+getemail);
     System.out.println("--------------------------------------------------");

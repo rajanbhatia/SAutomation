@@ -23,7 +23,7 @@ public class UATStudentDataDailyImport {
 	@Test
 	public void CallUATStudentDailyImport()
 	{
-		try 
+		try
 		{
 			ReportScreenshotUtility.GetExtent();
 			logger = ReportScreenshotUtility.report.startTest("UATStudentDataDailyImport");
@@ -41,8 +41,7 @@ public class UATStudentDataDailyImport {
 			  exitCode = p.waitFor();  //method waitFor() will make the current thread to wait until the external program finishes and returns the exit value.
 			  assertEquals(exitCode, 0); 
 			}
-		} catch (Exception e) {
-	
+		} catch (Exception e) {	
 			e.getMessage();
 		}		
 	}
