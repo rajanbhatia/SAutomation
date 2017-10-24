@@ -147,16 +147,15 @@ public class TEADailyRun {
 	    else coursemonth=""+month1;
 	    
 	    // Location and subject selection	    
-	    if (coursename.equals("Bachelor of Business"))
+/**	    if (coursename.equals("Bachelor of Business"))
 	    {	    	
 	    	assertEquals(driver.findElement(By.xpath("//*[@id='app_form']/div/div[2]/div/div/fieldset/div/label")).getText(), "Major*");
 	    	assertEquals(driver.findElement(By.xpath("//*[@id='app_form']/div/div[2]/div/div/fieldset[2]/div/label")).getText(), "Where do you want to study?*");
 	    	new Select(driver.findElement(By.id("IPQ_ADOAP_MAJ1"))).selectByVisibleText("Digital Business (Hamilton only)");
-	    }
-	    else
-	    {		    
-		    assertEquals(driver.findElement(By.xpath("//*[@id='app_form']/div/div[2]/div/div/fieldset/div/label")).getText(), "Where do you want to study?*");		    
-	    }
+	    }**/
+	    
+	    assertEquals(driver.findElement(By.xpath("//*[@id='app_form']/div/div[2]/div/div/fieldset/div/label")).getText(), "Where do you want to study?*");		    
+	    
 	    new Select(driver.findElement(By.id("IPQ_ADOAP_LCA"))).selectByVisibleText("Hamilton"); //Hamilton location
 	    assertEquals(driver.findElement(By.xpath("//*[@id='app_form']/div/div[1]/h2")).getText(), "Location and subject selection");
 	    driver.findElement(By.id("app-btn-next")).click();
@@ -409,11 +408,12 @@ public class TEADailyRun {
  
     //Offer confirmation page
     assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div/div[1]/h2")).getText(), "Offer accepted");
-    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div/div[2]/div/div/fieldset/p[1]")).getText(), "You have accepted the offer! This is final confirmation towards accepting your offer to study at the University of Waikato.");
-    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div/div[2]/div/div/fieldset/p[2]")).getText(), "You will recieve further information from the University soon.");
+    assertEquals(driver.findElement(By.xpath("/html/body/div[1]/form/div[2]/div/div/div[2]/div/div/fieldset/div/p[1]")).getText(), "Thanks for accepting your Offer of Place to the "+coursename+" for 2018.");
+    										
+  /**  assertEquals(driver.findElement(By.xpath("/html/body/div[1]/form/div[2]/div/div/div[2]/div/div/fieldset/div/p[2]")).getText(), "You can now choose papers and complete your enrolment.");
     assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div/div[2]/div/div/fieldset/p[3]")).getText(), "If you wish to find out more about the student experience at the University please click here.");
-    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div/div[2]/div/div/fieldset/p[4]")).getText(), "If you are an international applicant and would like additional information about studying abroad please click here.");
-    driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div/div[3]/div/input")).click();   //Exit
+    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div/div[2]/div/div/fieldset/p[4]")).getText(), "If you are an international applicant and would like additional information about studying abroad please click here.");**/
+    driver.findElement(By.name("SAVEX.DUMMY.MENSYS.1")).click();   //Exit
     //Application Summary page//
     
     // Call SITS again to check the data
@@ -497,7 +497,8 @@ public class TEADailyRun {
     assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div/h1")).getText(), "Subject Selection");
     assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div/div/div/div[2]/div/div/fieldset/div/label")).getText(), "Major*");
     //new Select(driver.findElement(By.id("ANSWER.TTQ.MENSYS.2."))).selectByIndex(1); // select the first element
-    new Select(driver.findElement(By.id("ANSWER.TTQ.MENSYS.2."))).selectByVisibleText("Music (Hamilton)"); // select Music as major
+    if (coursename.equals("Bachelor of Business"))		new Select(driver.findElement(By.id("ANSWER.TTQ.MENSYS.2."))).selectByVisibleText("Digital Business (Hamilton)"); // select major for Bachelor of Business
+    
     driver.findElement(By.name("NEXT.DUMMY.MENSYS.1")).click(); // click Next
     
     //Back to Enrolment page
@@ -506,8 +507,8 @@ public class TEADailyRun {
     driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div[2]/section[5]/div/div[2]/a")).click();  // click Complete Now button 
    
     //Paper Selection page
-    driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div/div[2]/div/div/fieldset/div[1]/div[2]/a")).click(); // Add papers 
-    						
+    driver.findElement(By.xpath("/html/body/div[1]/form/div[2]/div[2]/a")).click(); // Add papers 
+    							
     //Pre Paper Selection page
     driver.findElement(By.name("NEXT.DUMMY.MENSYS.1")).click(); // click Next  
     
@@ -519,19 +520,19 @@ public class TEADailyRun {
     //driver.findElement(By.id("sme_global_search_box")).sendKeys("music"); //Global search text
     driver.findElement(By.id("sme_view_list_button_001")).click(); //click View List
     //driver.findElement(By.xpath("//*[@id='sme_search_link001']")).click(); //Show Advanced option
-    driver.findElement(By.id("sme_search_box001")).sendKeys("music");
+    ///driver.findElement(By.id("sme_search_box001")).sendKeys("music");
     //new Select(driver.findElement(By.id("sme_search_advanced001_field1"))).selectByVisibleText("Location");
     //driver.findElement(By.id("sme_search_advanced001_value1")).sendKeys("HAM");
     driver.findElement(By.id("sme_search_button001")).click(); //Paper Search
     Thread.sleep(500);
     driver.findElement(By.xpath("//*[@id='sme_search_results_grid001']/tbody/tr[1]/td[6]/button")).click();  //Add first paper
-    Thread.sleep(1000);			//*[@id="sme_search_results_grid001"]/tbody/tr[1]/td[6]/button
+    Thread.sleep(1000);			
     //driver.findElement(By.xpath("//*[@id='sme_search_results_grid001']/tbody/tr[2]/td[6]/button")).click();  //Add second paper
     //Thread.sleep(1000);
     //driver.findElement(By.xpath("//*[@id='sme_search_results_grid001']/tbody/tr[3]/td[6]/button")).click();  //Add third paper
     //Thread.sleep(1000);
-    driver.findElement(By.xpath("//*[@id='sme_search_results_grid001']/tbody/tr[4]/td[6]/button")).click();  //Add fourth paper
-    Thread.sleep(1000);
+   // driver.findElement(By.xpath("//*[@id='sme_search_results_grid001']/tbody/tr[4]/td[6]/button")).click();  //Add fourth paper
+    //Thread.sleep(1000);
     //driver.findElement(By.xpath("//*[@id='sme_search_results_grid001']/tbody/tr[5]/td[6]/button")).click();  //Add fifth paper
     //Thread.sleep(1000);
     //driver.findElement(By.xpath("//*[@id='sme_search_results_grid001']/tbody/tr[6]/td[6]/button")).click();  //Add sixth paper
@@ -545,10 +546,12 @@ public class TEADailyRun {
     driver.findElement(By.name("BP108.DUMMY_B.MENSYS.1")).click(); //Click Next
     Thread.sleep(1000);
     //Review your selection
+    /**
     WebElement reviewSelectionsText = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//html/body/div[1]/form/div[2]/div/div/div[1]/h2")));
+    																								
     //assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div/div[1]/h2")).getText(), "Review your selections");
-    assertEquals(reviewSelectionsText.getText(), "Review your selections");
-    driver.findElement(By.id("ANSWER.TTQ.MENSYS.6.")).click(); //click Confirm Selections
+    assertEquals(reviewSelectionsText.getText(), "Review your selections");**/
+    driver.findElement(By.id("ANSWER.TTQ.MENSYS.3.")).click(); //click Confirm Selections
     
     //Enrolment Declaration
     assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[1]/h1")).getText(), "Enrolment Declaration");  
@@ -562,7 +565,10 @@ public class TEADailyRun {
     assertEquals(paperSelectionsConfirmedText.getText(), "Paper selections confirmed");
     assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[4]/div/div/div[4]/div/div/div[2]/div[1]/div/h3")).getText(), courseyear);
     assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[4]/div/div/div[4]/div/div/div[2]/div[1]/h3")).getText(), coursename);
-    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[4]/div/div/div[4]/div/div/div[2]/div[1]/small")).getText(), "Major : Music");
+    if (coursename.equals("Bachelor of Business"))
+    {
+    	assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[4]/div/div/div[4]/div/div/div[2]/div[1]/small")).getText(), "Major : Digital Business");
+    }
     assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[4]/div/div/div[4]/div/div/div[2]/div[2]/small")).getText(), "Status: Pending approval");
     
     //Login as a staff
@@ -576,18 +582,19 @@ public class TEADailyRun {
 	    
 	    new Select(driver.findElement(By.id("ANSWER.TTQ.MENSYS.6."))).selectByVisibleText("Pending approval"); 
 	    new Select(driver.findElement(By.id("ANSWER.TTQ.MENSYS.10."))).selectByVisibleText("2018");
-	    driver.findElement(By.id("ANSWER.TTQ.MENSYS.13.")).click();	//click Search button
+	    driver.findElement(By.id("ANSWER.TTQ.MENSYS.15.")).click();	//click Search button
 	    Thread.sleep(2000);
 	    driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[1]/a[2]")).click(); //click on StuID
-	  //*[@id="DataTables_Table_0"]/tbody/tr[2]/td[1]/a[2]
+
 	    //Enrolment Approval
-	    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[2]/div[2]/div/div[1]/dl/dd[1]")).getText(), stuID);
+	    assertEquals(driver.findElement(By.xpath("/html/body/div[1]/div[2]/div[2]/div/div[1]/dl/dd[1]")).getText(), stuID);	    										
+	  
 	    driver.findElement(By.xpath("//html/body/div[1]/form/div[1]/div[4]/table/tbody/tr[1]/td[10]/a[1]/i")).click(); //tick the papers
 	    Thread.sleep(1500);
-	    driver.findElement(By.xpath("//html/body/div[1]/form/div[1]/div[4]/table/tbody/tr[2]/td[10]/a[1]/i")).click();//tick the papers
-	    Thread.sleep(1500);
+	    //driver.findElement(By.xpath("//html/body/div[1]/form/div[1]/div[4]/table/tbody/tr[2]/td[10]/a[1]/i")).click();//tick the papers
+	    //Thread.sleep(1500);
 	    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[1]/div[4]/table/tbody/tr[1]/td[9]/span")).getText(), "Approved"); //Papers approved
-	    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[1]/div[4]/table/tbody/tr[2]/td[9]/span")).getText(), "Approved"); //Papers approved
+	    //assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[1]/div[4]/table/tbody/tr[2]/td[9]/span")).getText(), "Approved"); //Papers approved
 	    driver.findElement(By.id("ANSWER.TTQ.MENSYS.5.")).click(); //click Approve
 	    
 	    //Confirm
@@ -601,18 +608,17 @@ public class TEADailyRun {
 	    driver.findElement(By.id("PTAD01S")).click(); //click 'Qualifications and Papers' link
 	    if (currentlystudyingtowards.equalsIgnoreCase("NCEA Level 3 Certificate"))   // Student getting conditional offer only and no option to accept as results are not in yet.
 	    {
-	    	assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/small")).getText(), "Status: Enrolment approved - conditional");
+	    	assertEquals(driver.findElement(By.xpath("/html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/small")).getText(), "Status: Enrolment approved - conditional");
 	    }
 	    else
 	    {
-	    	assertEquals(driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/small")).getText(), "Status: Enrolment approved - unconditional");
+	    	assertEquals(driver.findElement(By.xpath("/html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[2]/small")).getText(), "Status: Enrolment approved - unconditional");
 	    	driver.findElement(By.xpath("//html/body/div[1]/div[3]/div/div/div[4]/div/div/div[2]/div[3]/div/div/a")).click(); //click Complete Enrolment
 	    	WebDriverWait wait = new WebDriverWait(driver, 10);
 	    	WebElement completeNowButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//html/body/div[1]/form/div[2]/div[2]/section[6]/div/div[2]/a")));
 	    	completeNowButton.click();	//Click Complete now
 	    	//driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div[2]/section[6]/div/div[2]/a")).click();  //Click Complete now
-	  	    
-	  	    	  	    
+	  	   	  	    	  	    
 	  	    //Offer of Enrolment
 	  	    driver.findElement(By.id("ANSWER.TTQ.MENSYS.2.1")).click();  //accept the terms
 	  	    new Select(driver.findElement(By.id("ANSWER.TTQ.MENSYS.4."))).selectByVisibleText("Student Loan"); //Payment option
