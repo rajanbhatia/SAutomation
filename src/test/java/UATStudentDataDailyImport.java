@@ -1,19 +1,14 @@
 
 
 import static org.testng.Assert.assertEquals;
-
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
-
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
-
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
-
 
 public class UATStudentDataDailyImport {
 	public ExtentTest logger;
@@ -40,7 +35,7 @@ public class UATStudentDataDailyImport {
 			  int exitCode;
 			  exitCode = p.waitFor();  //method waitFor() will make the current thread to wait until the external program finishes and returns the exit value.
 			  assertEquals(exitCode, 0); 
-			  System.out.println(" file executed.");
+			  
 			  System.out.println("UATStudentDataDailyImport test case executed.");
 			  System.out.println("--------------------------------------------------");
 			  logger.log(LogStatus.INFO,"UATStudentDataDailyImport test case executed.");
