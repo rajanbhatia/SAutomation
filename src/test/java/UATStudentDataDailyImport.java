@@ -40,6 +40,10 @@ public class UATStudentDataDailyImport {
 			  int exitCode;
 			  exitCode = p.waitFor();  //method waitFor() will make the current thread to wait until the external program finishes and returns the exit value.
 			  assertEquals(exitCode, 0); 
+			  System.out.println(" file executed.");
+			  System.out.println("UATStudentDataDailyImport test case executed.");
+			  System.out.println("--------------------------------------------------");
+			  logger.log(LogStatus.INFO,"UATStudentDataDailyImport test case executed.");
 			}
 		} catch (Exception e) {	
 			e.getMessage();
