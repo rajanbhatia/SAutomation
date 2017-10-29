@@ -44,7 +44,7 @@ import com.relevantcodes.extentreports.LogStatus;
 //import test.resources.ReportScreenshotUtility;
 //import test.ClearanceChecks;
 
-public class TEAWeeklyRun {
+public class TEAFunctional {
 	//1,2,8,9 Auto test cases
 	//private boolean acceptNextAlert = true;
 	//private StringBuffer verificationErrors = new StringBuffer();

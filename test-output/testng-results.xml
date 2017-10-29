@@ -1,41 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="6" passed="6">
+<testng-results skipped="0" failed="1" ignored="0" total="2" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="2271139" started-at="2017-10-24T01:51:27Z" finished-at="2017-10-24T02:29:18Z">
+  <suite name="Default suite" duration-ms="28652" started-at="2017-10-27T02:54:08Z" finished-at="2017-10-27T02:54:36Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="2271139" started-at="2017-10-24T01:51:27Z" finished-at="2017-10-24T02:29:18Z">
-      <class name="TEAWeeklyRun">
-        <test-method status="PASS" signature="setUp()[pri:0, instance:TEAWeeklyRun@2d6eabae]" name="setUp" is-config="true" duration-ms="5510" started-at="2017-10-24T14:51:27Z" finished-at="2017-10-24T14:51:32Z">
+    <test name="Default test" duration-ms="28652" started-at="2017-10-27T02:54:08Z" finished-at="2017-10-27T02:54:36Z">
+      <class name="TEADailyRun">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:TEADailyRun@d44fc21]" name="setUp" is-config="true" duration-ms="5787" started-at="2017-10-27T15:54:08Z" finished-at="2017-10-27T15:54:14Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="Auto1TEASubmitApplication(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:TEAWeeklyRun@2d6eabae]" name="Auto1TEASubmitApplication" duration-ms="149166" started-at="2017-10-24T14:51:34Z" data-provider="ParamData" finished-at="2017-10-24T14:54:03Z">
+        <test-method status="FAIL" signature="AutoTEAWorkflow(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:TEADailyRun@d44fc21]" name="AutoTEAWorkflow" duration-ms="14613" started-at="2017-10-27T15:54:15Z" data-provider="ParamData" finished-at="2017-10-27T15:54:30Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[Staff_New]]>
+                <![CDATA[Existing]]>
               </value>
             </param>
             <param index="1">
               <value>
-                <![CDATA[Jane]]>
+                <![CDATA[150840459971819Kim
+]]>
               </value>
             </param>
             <param index="2">
               <value>
-                <![CDATA[Mickey]]>
+                <![CDATA[150840459971819John]]>
               </value>
             </param>
             <param index="3">
               <value>
-                <![CDATA[Sam]]>
+                <![CDATA[]]>
               </value>
             </param>
             <param index="4">
               <value>
-                <![CDATA[John]]>
+                <![CDATA[]]>
               </value>
             </param>
             <param index="5">
@@ -45,22 +46,22 @@
             </param>
             <param index="6">
               <value>
-                <![CDATA[12/Jul/1950]]>
+                <![CDATA[12/Jan/1983]]>
               </value>
             </param>
             <param index="7">
               <value>
-                <![CDATA[1239566]]>
+                <![CDATA[12246148]]>
               </value>
             </param>
             <param index="8">
               <value>
-                <![CDATA[jmickey@fake.com]]>
+                <![CDATA[150840459971819kjohn1@fake.com]]>
               </value>
             </param>
             <param index="9">
               <value>
-                <![CDATA[jmickey@fake.com]]>
+                <![CDATA[150840459971819kjohn1@fake.com]]>
               </value>
             </param>
             <param index="10">
@@ -75,27 +76,27 @@
             </param>
             <param index="12">
               <value>
-                <![CDATA[Individual paper credit]]>
+                <![CDATA[Bachelors Degree]]>
               </value>
             </param>
             <param index="13">
               <value>
-                <![CDATA[Individual Paper Credit]]>
+                <![CDATA[Bachelor of Business]]>
               </value>
             </param>
             <param index="14">
               <value>
-                <![CDATA[Cook Islands]]>
+                <![CDATA[Other]]>
               </value>
             </param>
             <param index="15">
               <value>
-                <![CDATA[Cook Islands]]>
+                <![CDATA[Uganda]]>
               </value>
             </param>
             <param index="16">
               <value>
-                <![CDATA[New Zealand]]>
+                <![CDATA[Canada]]>
               </value>
             </param>
             <param index="17">
@@ -105,22 +106,22 @@
             </param>
             <param index="18">
               <value>
-                <![CDATA[Latin American]]>
+                <![CDATA[British/Irish]]>
               </value>
             </param>
             <param index="19">
               <value>
-                <![CDATA[Japanese]]>
+                <![CDATA[Indian]]>
               </value>
             </param>
             <param index="20">
               <value>
-                <![CDATA[Korean]]>
+                <![CDATA[]]>
               </value>
             </param>
             <param index="21">
               <value>
-                <![CDATA[Rangitane (Manawatu)]]>
+                <![CDATA[Te Arawa]]>
               </value>
             </param>
             <param index="22">
@@ -130,22 +131,22 @@
             </param>
             <param index="23">
               <value>
-                <![CDATA[Tainui]]>
+                <![CDATA[]]>
               </value>
             </param>
             <param index="24">
               <value>
-                <![CDATA[Tuhoe]]>
+                <![CDATA[]]>
               </value>
             </param>
             <param index="25">
               <value>
-                <![CDATA[87854537]]>
+                <![CDATA[87854522]]>
               </value>
             </param>
             <param index="26">
               <value>
-                <![CDATA[221234572]]>
+                <![CDATA[221234567]]>
               </value>
             </param>
             <param index="27">
@@ -170,12 +171,12 @@
             </param>
             <param index="31">
               <value>
-                <![CDATA[Hamilton]]>
+                <![CDATA[Wellington]]>
               </value>
             </param>
             <param index="32">
               <value>
-                <![CDATA[3211]]>
+                <![CDATA[6104]]>
               </value>
             </param>
             <param index="33">
@@ -185,17 +186,17 @@
             </param>
             <param index="34">
               <value>
-                <![CDATA[NCEA Level 3 Certificate]]>
+                <![CDATA[Cambridge International Exams]]>
               </value>
             </param>
             <param index="35">
               <value>
-                <![CDATA[Yes]]>
+                <![CDATA[No]]>
               </value>
             </param>
             <param index="36">
               <value>
-                <![CDATA[Papakura High School]]>
+                <![CDATA[ACG Senior College]]>
               </value>
             </param>
             <param index="37">
@@ -205,27 +206,27 @@
             </param>
             <param index="38">
               <value>
-                <![CDATA[NCEA Level 1 Certificate]]>
+                <![CDATA[University Entrance (before 1986)]]>
               </value>
             </param>
             <param index="39">
               <value>
-                <![CDATA[No]]>
+                <![CDATA[Yes]]>
               </value>
             </param>
             <param index="40">
               <value>
-                <![CDATA[]]>
+                <![CDATA[2011]]>
               </value>
             </param>
             <param index="41">
               <value>
-                <![CDATA[]]>
+                <![CDATA[New Zealand University]]>
               </value>
             </param>
             <param index="42">
               <value>
-                <![CDATA[]]>
+                <![CDATA[ATC New Zealand]]>
               </value>
             </param>
             <param index="43">
@@ -235,79 +236,122 @@
             </param>
             <param index="44">
               <value>
-                <![CDATA[]]>
+                <![CDATA[Bachelors Degree]]>
               </value>
             </param>
             <param index="45">
               <value>
-                <![CDATA[]]>
+                <![CDATA[National Diploma in Computing]]>
               </value>
             </param>
             <param index="46">
               <value>
-                <![CDATA[]]>
+                <![CDATA[2010]]>
               </value>
             </param>
             <param index="47">
               <value>
-                <![CDATA[]]>
+                <![CDATA[2014]]>
               </value>
             </param>
             <param index="48">
               <value>
-                <![CDATA[Female]]>
+                <![CDATA[Male]]>
               </value>
             </param>
             <param index="49">
               <value>
-                <![CDATA[]]>
+                <![CDATA[No]]>
               </value>
             </param>
             <param index="50">
               <value>
-                <![CDATA[]]>
+                <![CDATA[No]]>
               </value>
             </param>
           </params>
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[expected [Logged in as: 150840459971819Kim
+ 150840459971819John] but found [Logged in as: 150840459971819Kim 150840459971819John]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: expected [Logged in as: 150840459971819Kim
+ 150840459971819John] but found [Logged in as: 150840459971819Kim 150840459971819John]
+	at org.testng.Assert.fail(Assert.java:93)
+	at org.testng.Assert.failNotEquals(Assert.java:512)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:134)
+	at org.testng.Assert.assertEquals(Assert.java:115)
+	at org.testng.Assert.assertEquals(Assert.java:189)
+	at org.testng.Assert.assertEquals(Assert.java:199)
+	at TEADailyRun.AutoTEAWorkflow(TEADailyRun.java:164)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:108)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:661)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:869)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1193)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:126)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+	at org.testng.TestRunner.privateRun(TestRunner.java:744)
+	at org.testng.TestRunner.run(TestRunner.java:602)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:380)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:375)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:289)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1226)
+	at org.testng.TestNG.runSuites(TestNG.java:1144)
+	at org.testng.TestNG.run(TestNG.java:1115)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:132)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:230)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:76)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- Auto1TEASubmitApplication -->
-        <test-method status="PASS" signature="tearD(org.testng.ITestResult)[pri:0, instance:TEAWeeklyRun@2d6eabae]" name="tearD" is-config="true" duration-ms="473" started-at="2017-10-24T14:54:03Z" finished-at="2017-10-24T14:54:03Z">
+        </test-method> <!-- AutoTEAWorkflow -->
+        <test-method status="PASS" signature="tearD(org.testng.ITestResult)[pri:0, instance:TEADailyRun@d44fc21]" name="tearD" is-config="true" duration-ms="903" started-at="2017-10-27T15:54:30Z" finished-at="2017-10-27T15:54:31Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=Auto1TEASubmitApplication status=SUCCESS method=TEAWeeklyRun.Auto1TEASubmitApplication(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:TEAWeeklyRun@2d6eabae] output={null}]]]>
+                <![CDATA[[TestResult name=AutoTEAWorkflow status=FAILURE method=TEADailyRun.AutoTEAWorkflow(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:TEADailyRun@d44fc21] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearD -->
-        <test-method status="PASS" signature="Auto2TEALogin_Confirm_UploadDocs(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:TEAWeeklyRun@2d6eabae]" name="Auto2TEALogin_Confirm_UploadDocs" duration-ms="134953" started-at="2017-10-24T14:54:04Z" data-provider="ParamData" finished-at="2017-10-24T14:56:19Z">
+        <test-method status="PASS" signature="AutoTEAWorkflow(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:TEADailyRun@d44fc21]" name="AutoTEAWorkflow" duration-ms="3832" started-at="2017-10-27T15:54:31Z" data-provider="ParamData" finished-at="2017-10-27T15:54:35Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[Staff_New]]>
+                <![CDATA[New]]>
               </value>
             </param>
             <param index="1">
               <value>
-                <![CDATA[Jane]]>
+                <![CDATA[Kim]]>
               </value>
             </param>
             <param index="2">
               <value>
-                <![CDATA[Mickey]]>
+                <![CDATA[John]]>
               </value>
             </param>
             <param index="3">
               <value>
-                <![CDATA[Sam]]>
+                <![CDATA[]]>
               </value>
             </param>
             <param index="4">
               <value>
-                <![CDATA[John]]>
+                <![CDATA[]]>
               </value>
             </param>
             <param index="5">
@@ -317,22 +361,22 @@
             </param>
             <param index="6">
               <value>
-                <![CDATA[12/Jul/1950]]>
+                <![CDATA[12/Jan/1983]]>
               </value>
             </param>
             <param index="7">
               <value>
-                <![CDATA[1239566]]>
+                <![CDATA[12246148]]>
               </value>
             </param>
             <param index="8">
               <value>
-                <![CDATA[jmickey@fake.com]]>
+                <![CDATA[kjohn1@fake.com]]>
               </value>
             </param>
             <param index="9">
               <value>
-                <![CDATA[jmickey@fake.com]]>
+                <![CDATA[kjohn1@fake.com]]>
               </value>
             </param>
             <param index="10">
@@ -347,27 +391,27 @@
             </param>
             <param index="12">
               <value>
-                <![CDATA[Individual paper credit]]>
+                <![CDATA[Bachelors Degree]]>
               </value>
             </param>
             <param index="13">
               <value>
-                <![CDATA[Individual Paper Credit]]>
+                <![CDATA[Bachelor of Business]]>
               </value>
             </param>
             <param index="14">
               <value>
-                <![CDATA[Cook Islands]]>
+                <![CDATA[Other]]>
               </value>
             </param>
             <param index="15">
               <value>
-                <![CDATA[Cook Islands]]>
+                <![CDATA[Uganda]]>
               </value>
             </param>
             <param index="16">
               <value>
-                <![CDATA[New Zealand]]>
+                <![CDATA[Canada]]>
               </value>
             </param>
             <param index="17">
@@ -377,22 +421,22 @@
             </param>
             <param index="18">
               <value>
-                <![CDATA[Latin American]]>
+                <![CDATA[British/Irish]]>
               </value>
             </param>
             <param index="19">
               <value>
-                <![CDATA[Japanese]]>
+                <![CDATA[Indian]]>
               </value>
             </param>
             <param index="20">
               <value>
-                <![CDATA[Korean]]>
+                <![CDATA[]]>
               </value>
             </param>
             <param index="21">
               <value>
-                <![CDATA[Rangitane (Manawatu)]]>
+                <![CDATA[Te Arawa]]>
               </value>
             </param>
             <param index="22">
@@ -402,22 +446,22 @@
             </param>
             <param index="23">
               <value>
-                <![CDATA[Tainui]]>
+                <![CDATA[]]>
               </value>
             </param>
             <param index="24">
               <value>
-                <![CDATA[Tuhoe]]>
+                <![CDATA[]]>
               </value>
             </param>
             <param index="25">
               <value>
-                <![CDATA[87854537]]>
+                <![CDATA[87854522]]>
               </value>
             </param>
             <param index="26">
               <value>
-                <![CDATA[221234572]]>
+                <![CDATA[221234567]]>
               </value>
             </param>
             <param index="27">
@@ -442,12 +486,12 @@
             </param>
             <param index="31">
               <value>
-                <![CDATA[Hamilton]]>
+                <![CDATA[Wellington]]>
               </value>
             </param>
             <param index="32">
               <value>
-                <![CDATA[3211]]>
+                <![CDATA[6104]]>
               </value>
             </param>
             <param index="33">
@@ -457,17 +501,17 @@
             </param>
             <param index="34">
               <value>
-                <![CDATA[NCEA Level 3 Certificate]]>
+                <![CDATA[Cambridge International Exams]]>
               </value>
             </param>
             <param index="35">
               <value>
-                <![CDATA[Yes]]>
+                <![CDATA[No]]>
               </value>
             </param>
             <param index="36">
               <value>
-                <![CDATA[Papakura High School]]>
+                <![CDATA[ACG Senior College]]>
               </value>
             </param>
             <param index="37">
@@ -477,27 +521,27 @@
             </param>
             <param index="38">
               <value>
-                <![CDATA[NCEA Level 1 Certificate]]>
+                <![CDATA[University Entrance (before 1986)]]>
               </value>
             </param>
             <param index="39">
               <value>
-                <![CDATA[No]]>
+                <![CDATA[Yes]]>
               </value>
             </param>
             <param index="40">
               <value>
-                <![CDATA[]]>
+                <![CDATA[2011]]>
               </value>
             </param>
             <param index="41">
               <value>
-                <![CDATA[]]>
+                <![CDATA[New Zealand University]]>
               </value>
             </param>
             <param index="42">
               <value>
-                <![CDATA[]]>
+                <![CDATA[ATC New Zealand]]>
               </value>
             </param>
             <param index="43">
@@ -507,1147 +551,59 @@
             </param>
             <param index="44">
               <value>
-                <![CDATA[]]>
+                <![CDATA[Bachelors Degree]]>
               </value>
             </param>
             <param index="45">
               <value>
-                <![CDATA[]]>
+                <![CDATA[National Diploma in Computing]]>
               </value>
             </param>
             <param index="46">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="47">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="48">
-              <value>
-                <![CDATA[Female]]>
-              </value>
-            </param>
-            <param index="49">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="50">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- Auto2TEALogin_Confirm_UploadDocs -->
-        <test-method status="PASS" signature="tearD(org.testng.ITestResult)[pri:0, instance:TEAWeeklyRun@2d6eabae]" name="tearD" is-config="true" duration-ms="90" started-at="2017-10-24T14:56:19Z" finished-at="2017-10-24T14:56:19Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=Auto2TEALogin_Confirm_UploadDocs status=SUCCESS method=TEAWeeklyRun.Auto2TEALogin_Confirm_UploadDocs(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:TEAWeeklyRun@2d6eabae] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearD -->
-        <test-method status="PASS" signature="Auto4TEASaveContinueDelete(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:TEAWeeklyRun@2d6eabae]" name="Auto4TEASaveContinueDelete" duration-ms="1626756" started-at="2017-10-24T14:56:19Z" data-provider="ParamData" finished-at="2017-10-24T15:23:26Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[Staff_New]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[Jane]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[Mickey]]>
-              </value>
-            </param>
-            <param index="3">
-              <value>
-                <![CDATA[Sam]]>
-              </value>
-            </param>
-            <param index="4">
-              <value>
-                <![CDATA[John]]>
-              </value>
-            </param>
-            <param index="5">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="6">
-              <value>
-                <![CDATA[12/Jul/1950]]>
-              </value>
-            </param>
-            <param index="7">
-              <value>
-                <![CDATA[1239566]]>
-              </value>
-            </param>
-            <param index="8">
-              <value>
-                <![CDATA[jmickey@fake.com]]>
-              </value>
-            </param>
-            <param index="9">
-              <value>
-                <![CDATA[jmickey@fake.com]]>
-              </value>
-            </param>
-            <param index="10">
-              <value>
-                <![CDATA[Testing@1]]>
-              </value>
-            </param>
-            <param index="11">
-              <value>
-                <![CDATA[Testing@1]]>
-              </value>
-            </param>
-            <param index="12">
-              <value>
-                <![CDATA[Individual paper credit]]>
-              </value>
-            </param>
-            <param index="13">
-              <value>
-                <![CDATA[Individual Paper Credit]]>
-              </value>
-            </param>
-            <param index="14">
-              <value>
-                <![CDATA[Cook Islands]]>
-              </value>
-            </param>
-            <param index="15">
-              <value>
-                <![CDATA[Cook Islands]]>
-              </value>
-            </param>
-            <param index="16">
-              <value>
-                <![CDATA[New Zealand]]>
-              </value>
-            </param>
-            <param index="17">
-              <value>
-                <![CDATA[Yes]]>
-              </value>
-            </param>
-            <param index="18">
-              <value>
-                <![CDATA[Latin American]]>
-              </value>
-            </param>
-            <param index="19">
-              <value>
-                <![CDATA[Japanese]]>
-              </value>
-            </param>
-            <param index="20">
-              <value>
-                <![CDATA[Korean]]>
-              </value>
-            </param>
-            <param index="21">
-              <value>
-                <![CDATA[Rangitane (Manawatu)]]>
-              </value>
-            </param>
-            <param index="22">
-              <value>
-                <![CDATA[Nga Maihi]]>
-              </value>
-            </param>
-            <param index="23">
-              <value>
-                <![CDATA[Tainui]]>
-              </value>
-            </param>
-            <param index="24">
-              <value>
-                <![CDATA[Tuhoe]]>
-              </value>
-            </param>
-            <param index="25">
-              <value>
-                <![CDATA[87854537]]>
-              </value>
-            </param>
-            <param index="26">
-              <value>
-                <![CDATA[221234572]]>
-              </value>
-            </param>
-            <param index="27">
-              <value>
-                <![CDATA[Student Address 1]]>
-              </value>
-            </param>
-            <param index="28">
-              <value>
-                <![CDATA[Student Address 2]]>
-              </value>
-            </param>
-            <param index="29">
-              <value>
-                <![CDATA[Student Address 3]]>
-              </value>
-            </param>
-            <param index="30">
-              <value>
-                <![CDATA[Student Address 4]]>
-              </value>
-            </param>
-            <param index="31">
-              <value>
-                <![CDATA[Hamilton]]>
-              </value>
-            </param>
-            <param index="32">
-              <value>
-                <![CDATA[3211]]>
-              </value>
-            </param>
-            <param index="33">
-              <value>
-                <![CDATA[Yes]]>
-              </value>
-            </param>
-            <param index="34">
-              <value>
-                <![CDATA[NCEA Level 3 Certificate]]>
-              </value>
-            </param>
-            <param index="35">
-              <value>
-                <![CDATA[Yes]]>
-              </value>
-            </param>
-            <param index="36">
-              <value>
-                <![CDATA[Papakura High School]]>
-              </value>
-            </param>
-            <param index="37">
               <value>
                 <![CDATA[2010]]>
               </value>
             </param>
-            <param index="38">
-              <value>
-                <![CDATA[NCEA Level 1 Certificate]]>
-              </value>
-            </param>
-            <param index="39">
-              <value>
-                <![CDATA[No]]>
-              </value>
-            </param>
-            <param index="40">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="41">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="42">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="43">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="44">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="45">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="46">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
             <param index="47">
               <value>
-                <![CDATA[]]>
+                <![CDATA[2014]]>
               </value>
             </param>
             <param index="48">
               <value>
-                <![CDATA[Female]]>
+                <![CDATA[Male]]>
               </value>
             </param>
             <param index="49">
               <value>
-                <![CDATA[]]>
+                <![CDATA[No]]>
               </value>
             </param>
             <param index="50">
               <value>
-                <![CDATA[]]>
+                <![CDATA[No]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- Auto4TEASaveContinueDelete -->
-        <test-method status="PASS" signature="tearD(org.testng.ITestResult)[pri:0, instance:TEAWeeklyRun@2d6eabae]" name="tearD" is-config="true" duration-ms="164" started-at="2017-10-24T15:23:26Z" finished-at="2017-10-24T15:23:26Z">
+        </test-method> <!-- AutoTEAWorkflow -->
+        <test-method status="PASS" signature="tearD(org.testng.ITestResult)[pri:0, instance:TEADailyRun@d44fc21]" name="tearD" is-config="true" duration-ms="221" started-at="2017-10-27T15:54:35Z" finished-at="2017-10-27T15:54:35Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=Auto4TEASaveContinueDelete status=SUCCESS method=TEAWeeklyRun.Auto4TEASaveContinueDelete(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:TEAWeeklyRun@2d6eabae] output={null}]]]>
+                <![CDATA[[TestResult name=AutoTEAWorkflow status=SUCCESS method=TEADailyRun.AutoTEAWorkflow(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:TEADailyRun@d44fc21] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearD -->
-        <test-method status="PASS" signature="Auto6TEASecondarySchoolDetailsWithdraw(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:TEAWeeklyRun@2d6eabae]" name="Auto6TEASecondarySchoolDetailsWithdraw" duration-ms="220856" started-at="2017-10-24T15:23:27Z" data-provider="ParamData" finished-at="2017-10-24T15:27:08Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[Staff_New]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[Jane]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[Mickey]]>
-              </value>
-            </param>
-            <param index="3">
-              <value>
-                <![CDATA[Sam]]>
-              </value>
-            </param>
-            <param index="4">
-              <value>
-                <![CDATA[John]]>
-              </value>
-            </param>
-            <param index="5">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="6">
-              <value>
-                <![CDATA[12/Jul/1950]]>
-              </value>
-            </param>
-            <param index="7">
-              <value>
-                <![CDATA[1239566]]>
-              </value>
-            </param>
-            <param index="8">
-              <value>
-                <![CDATA[jmickey@fake.com]]>
-              </value>
-            </param>
-            <param index="9">
-              <value>
-                <![CDATA[jmickey@fake.com]]>
-              </value>
-            </param>
-            <param index="10">
-              <value>
-                <![CDATA[Testing@1]]>
-              </value>
-            </param>
-            <param index="11">
-              <value>
-                <![CDATA[Testing@1]]>
-              </value>
-            </param>
-            <param index="12">
-              <value>
-                <![CDATA[Individual paper credit]]>
-              </value>
-            </param>
-            <param index="13">
-              <value>
-                <![CDATA[Individual Paper Credit]]>
-              </value>
-            </param>
-            <param index="14">
-              <value>
-                <![CDATA[Cook Islands]]>
-              </value>
-            </param>
-            <param index="15">
-              <value>
-                <![CDATA[Cook Islands]]>
-              </value>
-            </param>
-            <param index="16">
-              <value>
-                <![CDATA[New Zealand]]>
-              </value>
-            </param>
-            <param index="17">
-              <value>
-                <![CDATA[Yes]]>
-              </value>
-            </param>
-            <param index="18">
-              <value>
-                <![CDATA[Latin American]]>
-              </value>
-            </param>
-            <param index="19">
-              <value>
-                <![CDATA[Japanese]]>
-              </value>
-            </param>
-            <param index="20">
-              <value>
-                <![CDATA[Korean]]>
-              </value>
-            </param>
-            <param index="21">
-              <value>
-                <![CDATA[Rangitane (Manawatu)]]>
-              </value>
-            </param>
-            <param index="22">
-              <value>
-                <![CDATA[Nga Maihi]]>
-              </value>
-            </param>
-            <param index="23">
-              <value>
-                <![CDATA[Tainui]]>
-              </value>
-            </param>
-            <param index="24">
-              <value>
-                <![CDATA[Tuhoe]]>
-              </value>
-            </param>
-            <param index="25">
-              <value>
-                <![CDATA[87854537]]>
-              </value>
-            </param>
-            <param index="26">
-              <value>
-                <![CDATA[221234572]]>
-              </value>
-            </param>
-            <param index="27">
-              <value>
-                <![CDATA[Student Address 1]]>
-              </value>
-            </param>
-            <param index="28">
-              <value>
-                <![CDATA[Student Address 2]]>
-              </value>
-            </param>
-            <param index="29">
-              <value>
-                <![CDATA[Student Address 3]]>
-              </value>
-            </param>
-            <param index="30">
-              <value>
-                <![CDATA[Student Address 4]]>
-              </value>
-            </param>
-            <param index="31">
-              <value>
-                <![CDATA[Hamilton]]>
-              </value>
-            </param>
-            <param index="32">
-              <value>
-                <![CDATA[3211]]>
-              </value>
-            </param>
-            <param index="33">
-              <value>
-                <![CDATA[Yes]]>
-              </value>
-            </param>
-            <param index="34">
-              <value>
-                <![CDATA[NCEA Level 3 Certificate]]>
-              </value>
-            </param>
-            <param index="35">
-              <value>
-                <![CDATA[Yes]]>
-              </value>
-            </param>
-            <param index="36">
-              <value>
-                <![CDATA[Papakura High School]]>
-              </value>
-            </param>
-            <param index="37">
-              <value>
-                <![CDATA[2010]]>
-              </value>
-            </param>
-            <param index="38">
-              <value>
-                <![CDATA[NCEA Level 1 Certificate]]>
-              </value>
-            </param>
-            <param index="39">
-              <value>
-                <![CDATA[No]]>
-              </value>
-            </param>
-            <param index="40">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="41">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="42">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="43">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="44">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="45">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="46">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="47">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="48">
-              <value>
-                <![CDATA[Female]]>
-              </value>
-            </param>
-            <param index="49">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="50">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- Auto6TEASecondarySchoolDetailsWithdraw -->
-        <test-method status="PASS" signature="tearD(org.testng.ITestResult)[pri:0, instance:TEAWeeklyRun@2d6eabae]" name="tearD" is-config="true" duration-ms="90" started-at="2017-10-24T15:27:08Z" finished-at="2017-10-24T15:27:08Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=Auto6TEASecondarySchoolDetailsWithdraw status=SUCCESS method=TEAWeeklyRun.Auto6TEASecondarySchoolDetailsWithdraw(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:TEAWeeklyRun@2d6eabae] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearD -->
-        <test-method status="PASS" signature="Auto8TEAApplicationForMasterOfAppliedPsychology(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:TEAWeeklyRun@2d6eabae]" name="Auto8TEAApplicationForMasterOfAppliedPsychology" duration-ms="76143" started-at="2017-10-24T15:27:08Z" data-provider="ParamData" finished-at="2017-10-24T15:28:24Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[Staff_New]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[Jane]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[Mickey]]>
-              </value>
-            </param>
-            <param index="3">
-              <value>
-                <![CDATA[Sam]]>
-              </value>
-            </param>
-            <param index="4">
-              <value>
-                <![CDATA[John]]>
-              </value>
-            </param>
-            <param index="5">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="6">
-              <value>
-                <![CDATA[12/Jul/1950]]>
-              </value>
-            </param>
-            <param index="7">
-              <value>
-                <![CDATA[1239566]]>
-              </value>
-            </param>
-            <param index="8">
-              <value>
-                <![CDATA[jmickey@fake.com]]>
-              </value>
-            </param>
-            <param index="9">
-              <value>
-                <![CDATA[jmickey@fake.com]]>
-              </value>
-            </param>
-            <param index="10">
-              <value>
-                <![CDATA[Testing@1]]>
-              </value>
-            </param>
-            <param index="11">
-              <value>
-                <![CDATA[Testing@1]]>
-              </value>
-            </param>
-            <param index="12">
-              <value>
-                <![CDATA[Individual paper credit]]>
-              </value>
-            </param>
-            <param index="13">
-              <value>
-                <![CDATA[Individual Paper Credit]]>
-              </value>
-            </param>
-            <param index="14">
-              <value>
-                <![CDATA[Cook Islands]]>
-              </value>
-            </param>
-            <param index="15">
-              <value>
-                <![CDATA[Cook Islands]]>
-              </value>
-            </param>
-            <param index="16">
-              <value>
-                <![CDATA[New Zealand]]>
-              </value>
-            </param>
-            <param index="17">
-              <value>
-                <![CDATA[Yes]]>
-              </value>
-            </param>
-            <param index="18">
-              <value>
-                <![CDATA[Latin American]]>
-              </value>
-            </param>
-            <param index="19">
-              <value>
-                <![CDATA[Japanese]]>
-              </value>
-            </param>
-            <param index="20">
-              <value>
-                <![CDATA[Korean]]>
-              </value>
-            </param>
-            <param index="21">
-              <value>
-                <![CDATA[Rangitane (Manawatu)]]>
-              </value>
-            </param>
-            <param index="22">
-              <value>
-                <![CDATA[Nga Maihi]]>
-              </value>
-            </param>
-            <param index="23">
-              <value>
-                <![CDATA[Tainui]]>
-              </value>
-            </param>
-            <param index="24">
-              <value>
-                <![CDATA[Tuhoe]]>
-              </value>
-            </param>
-            <param index="25">
-              <value>
-                <![CDATA[87854537]]>
-              </value>
-            </param>
-            <param index="26">
-              <value>
-                <![CDATA[221234572]]>
-              </value>
-            </param>
-            <param index="27">
-              <value>
-                <![CDATA[Student Address 1]]>
-              </value>
-            </param>
-            <param index="28">
-              <value>
-                <![CDATA[Student Address 2]]>
-              </value>
-            </param>
-            <param index="29">
-              <value>
-                <![CDATA[Student Address 3]]>
-              </value>
-            </param>
-            <param index="30">
-              <value>
-                <![CDATA[Student Address 4]]>
-              </value>
-            </param>
-            <param index="31">
-              <value>
-                <![CDATA[Hamilton]]>
-              </value>
-            </param>
-            <param index="32">
-              <value>
-                <![CDATA[3211]]>
-              </value>
-            </param>
-            <param index="33">
-              <value>
-                <![CDATA[Yes]]>
-              </value>
-            </param>
-            <param index="34">
-              <value>
-                <![CDATA[NCEA Level 3 Certificate]]>
-              </value>
-            </param>
-            <param index="35">
-              <value>
-                <![CDATA[Yes]]>
-              </value>
-            </param>
-            <param index="36">
-              <value>
-                <![CDATA[Papakura High School]]>
-              </value>
-            </param>
-            <param index="37">
-              <value>
-                <![CDATA[2010]]>
-              </value>
-            </param>
-            <param index="38">
-              <value>
-                <![CDATA[NCEA Level 1 Certificate]]>
-              </value>
-            </param>
-            <param index="39">
-              <value>
-                <![CDATA[No]]>
-              </value>
-            </param>
-            <param index="40">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="41">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="42">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="43">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="44">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="45">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="46">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="47">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="48">
-              <value>
-                <![CDATA[Female]]>
-              </value>
-            </param>
-            <param index="49">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="50">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- Auto8TEAApplicationForMasterOfAppliedPsychology -->
-        <test-method status="PASS" signature="tearD(org.testng.ITestResult)[pri:0, instance:TEAWeeklyRun@2d6eabae]" name="tearD" is-config="true" duration-ms="98" started-at="2017-10-24T15:28:24Z" finished-at="2017-10-24T15:28:25Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=Auto8TEAApplicationForMasterOfAppliedPsychology status=SUCCESS method=TEAWeeklyRun.Auto8TEAApplicationForMasterOfAppliedPsychology(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:TEAWeeklyRun@2d6eabae] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearD -->
-        <test-method status="PASS" signature="Auto9TEATeachingProgrammeAdditionalInfo(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:TEAWeeklyRun@2d6eabae]" name="Auto9TEATeachingProgrammeAdditionalInfo" duration-ms="50243" started-at="2017-10-24T15:28:25Z" data-provider="ParamData" finished-at="2017-10-24T15:29:15Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[Staff_New]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[Jane]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[Mickey]]>
-              </value>
-            </param>
-            <param index="3">
-              <value>
-                <![CDATA[Sam]]>
-              </value>
-            </param>
-            <param index="4">
-              <value>
-                <![CDATA[John]]>
-              </value>
-            </param>
-            <param index="5">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="6">
-              <value>
-                <![CDATA[12/Jul/1950]]>
-              </value>
-            </param>
-            <param index="7">
-              <value>
-                <![CDATA[1239566]]>
-              </value>
-            </param>
-            <param index="8">
-              <value>
-                <![CDATA[jmickey@fake.com]]>
-              </value>
-            </param>
-            <param index="9">
-              <value>
-                <![CDATA[jmickey@fake.com]]>
-              </value>
-            </param>
-            <param index="10">
-              <value>
-                <![CDATA[Testing@1]]>
-              </value>
-            </param>
-            <param index="11">
-              <value>
-                <![CDATA[Testing@1]]>
-              </value>
-            </param>
-            <param index="12">
-              <value>
-                <![CDATA[Individual paper credit]]>
-              </value>
-            </param>
-            <param index="13">
-              <value>
-                <![CDATA[Individual Paper Credit]]>
-              </value>
-            </param>
-            <param index="14">
-              <value>
-                <![CDATA[Cook Islands]]>
-              </value>
-            </param>
-            <param index="15">
-              <value>
-                <![CDATA[Cook Islands]]>
-              </value>
-            </param>
-            <param index="16">
-              <value>
-                <![CDATA[New Zealand]]>
-              </value>
-            </param>
-            <param index="17">
-              <value>
-                <![CDATA[Yes]]>
-              </value>
-            </param>
-            <param index="18">
-              <value>
-                <![CDATA[Latin American]]>
-              </value>
-            </param>
-            <param index="19">
-              <value>
-                <![CDATA[Japanese]]>
-              </value>
-            </param>
-            <param index="20">
-              <value>
-                <![CDATA[Korean]]>
-              </value>
-            </param>
-            <param index="21">
-              <value>
-                <![CDATA[Rangitane (Manawatu)]]>
-              </value>
-            </param>
-            <param index="22">
-              <value>
-                <![CDATA[Nga Maihi]]>
-              </value>
-            </param>
-            <param index="23">
-              <value>
-                <![CDATA[Tainui]]>
-              </value>
-            </param>
-            <param index="24">
-              <value>
-                <![CDATA[Tuhoe]]>
-              </value>
-            </param>
-            <param index="25">
-              <value>
-                <![CDATA[87854537]]>
-              </value>
-            </param>
-            <param index="26">
-              <value>
-                <![CDATA[221234572]]>
-              </value>
-            </param>
-            <param index="27">
-              <value>
-                <![CDATA[Student Address 1]]>
-              </value>
-            </param>
-            <param index="28">
-              <value>
-                <![CDATA[Student Address 2]]>
-              </value>
-            </param>
-            <param index="29">
-              <value>
-                <![CDATA[Student Address 3]]>
-              </value>
-            </param>
-            <param index="30">
-              <value>
-                <![CDATA[Student Address 4]]>
-              </value>
-            </param>
-            <param index="31">
-              <value>
-                <![CDATA[Hamilton]]>
-              </value>
-            </param>
-            <param index="32">
-              <value>
-                <![CDATA[3211]]>
-              </value>
-            </param>
-            <param index="33">
-              <value>
-                <![CDATA[Yes]]>
-              </value>
-            </param>
-            <param index="34">
-              <value>
-                <![CDATA[NCEA Level 3 Certificate]]>
-              </value>
-            </param>
-            <param index="35">
-              <value>
-                <![CDATA[Yes]]>
-              </value>
-            </param>
-            <param index="36">
-              <value>
-                <![CDATA[Papakura High School]]>
-              </value>
-            </param>
-            <param index="37">
-              <value>
-                <![CDATA[2010]]>
-              </value>
-            </param>
-            <param index="38">
-              <value>
-                <![CDATA[NCEA Level 1 Certificate]]>
-              </value>
-            </param>
-            <param index="39">
-              <value>
-                <![CDATA[No]]>
-              </value>
-            </param>
-            <param index="40">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="41">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="42">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="43">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="44">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="45">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="46">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="47">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="48">
-              <value>
-                <![CDATA[Female]]>
-              </value>
-            </param>
-            <param index="49">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="50">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- Auto9TEATeachingProgrammeAdditionalInfo -->
-        <test-method status="PASS" signature="tearD(org.testng.ITestResult)[pri:0, instance:TEAWeeklyRun@2d6eabae]" name="tearD" is-config="true" duration-ms="482" started-at="2017-10-24T15:29:15Z" finished-at="2017-10-24T15:29:16Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=Auto9TEATeachingProgrammeAdditionalInfo status=SUCCESS method=TEAWeeklyRun.Auto9TEATeachingProgrammeAdditionalInfo(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:TEAWeeklyRun@2d6eabae] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearD -->
-        <test-method status="PASS" signature="tearDown()[pri:0, instance:TEAWeeklyRun@2d6eabae]" name="tearDown" is-config="true" duration-ms="2107" started-at="2017-10-24T15:29:16Z" finished-at="2017-10-24T15:29:18Z">
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:TEADailyRun@d44fc21]" name="tearDown" is-config="true" duration-ms="1461" started-at="2017-10-27T15:54:35Z" finished-at="2017-10-27T15:54:36Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- TEAWeeklyRun -->
+      </class> <!-- TEADailyRun -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
