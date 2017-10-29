@@ -31,7 +31,7 @@ import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 
 
-public class TEADailyRun {
+public class TEA_Registration_To_Enrolled {
 	//Story# 13867:	//1. A domestic applicant who has done Bachelor of Science at a New Zealand university, now applying for BA at UoW, CCLs mentioned below generated automatically when the application is Tran'd:
 							// a Evidence of graduation for completed Tertiary qualifications
 							// b Tertiary Academic Records (including Grading Scale)
