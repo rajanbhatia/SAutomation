@@ -354,10 +354,19 @@ public void Auto1TEASubmitApplication(String getusertype, String getfirstn, Stri
     //courseyear = driver.findElement(By.xpath("//tbody/tr[1]/td[1]/span")).getText(); //To be checked in the Summary page, Story#10287
     //courseintake= driver.findElement(By.xpath("//tbody/tr[1]/td[2]/span")).getText();  //To be checked in the Summary page, Story#10287
     //driver.findElement(By.name("APPLY.IPO.SRS.1")).click();
+    if (coursename.equals("Bachelor of Computer Graphic Design") || coursename.equals("Bachelor of Tourism"))	
+    {
+    	driver.findElement(By.name("APPLY.IPO.SRS.1")).click(); //Only one row, Click Apply button
+    	courseyear=(String)courseoptions[0][0]; //clicked first row
+        courseintake= (String)courseoptions[0][1];
+    }
+    else    
+    {
+    	driver.findElement(By.name("APPLY.IPO.SRS.2")).click(); //Click Apply button
+    	courseyear=(String)courseoptions[1][0]; //clicked 2nd row
+        courseintake= (String)courseoptions[1][1];
+    }
     
-    driver.findElement(By.name("APPLY.IPO.SRS.2")).click(); //Click Apply button
-    courseyear=(String)courseoptions[1][0]; //clicked 2nd row
-    courseintake= (String)courseoptions[1][1];
     if(courseintake.contains(" "))
     {
         coursemonth = courseintake.substring(0, courseintake.indexOf(" ")); 
@@ -2848,14 +2857,14 @@ public Object[][] courseChoice(String coursename) throws Exception   // Load Dat
   	
 	//int rows=excelconfig.getRowCount(sheetnumber);  //rows in the first sheet
 	//int cols=excelconfig.getColCount(sheetnumber);  //cols in the first sheet
-	if (coursename.equals("Bachelor of Computer Graphic Design"))
+	if (coursename.equals("Bachelor of Computer Graphic Design") || coursename.equals("Bachelor of Tourism"))
 	{
 		courseoptions = new Object[1][2];
 		for(int i=0;i<1;i++)   //Initializing Array //This course has one row only
 		{
 			for (int j=0;j<2;j++)  //Columns value is one more than the index so less than sign
 			{
-				courseoptions[i][j]= driver.findElement(By.xpath("//tbody/tr["+(i+1)+"]/td["+(j+1)+"]/span")).getText(); 
+				courseoptions[i][j]= driver.findElement(By.xpath("//tbody/tr["+(i+1)+"]/td["+(j+1)+"]/span")).getText(); 				
 				//System.out.println(courseoptions[i][j]+"\n");
 			}					
 		}

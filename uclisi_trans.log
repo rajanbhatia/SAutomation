@@ -1,12 +1,11 @@
 ﻿[startup] ======================================================================
-[startup] Date/time : 2017-10-30 09:55:42.83
+[startup] Date/time : 2017-10-30 14:44:53.23
 [startup] Uniface   : [MSW] 9.7.03.02, QG15 (Jun 23 2017), $ioprint=0
-[startup] Command   : \\filer-usg.its.waikato.ac.nz\USG-share\program\SITS\siapp\vision\uat\uniface\bin\uniface.exe  /asn=\\filer-usg.its.waikato.ac.nz\USG-share\program\SITS\siapp\vision\uat\adm\uclisi.asn winlog, pid=15752
+[startup] Command   : \\filer-usg.its.waikato.ac.nz\USG-share\program\SITS\siapp\vision\uat\uniface\bin\uniface.exe  /asn=\\filer-usg.its.waikato.ac.nz\USG-share\program\SITS\siapp\vision\uat\adm\uclisi.asn winlog, pid=22828
 [startup] Directory : C:\Users\rbhatia\Google Drive\Project\Automation\SMSAuto\
 [startup] OS        : Windows 10  (Build 14393)
 [startup] Processor : Intel64 Family 6 Model 78 Stepping 3, Intel(R) Core(TM) i5-6200U CPU @ 2.30GHz, 8074 Mb
 [startup] Hostname  : AVC-SMS-LAP17.resource.waikato.ac.nz
 [startup] User      : rbhatia
 [startup] ======================================================================
-2017-10-30 09:55:42.82 - Uniface session started
-2017-10-30 10:01:54.86 - Uniface session stopped
+2017-10-30 14:44:53.22 - Uniface session started
