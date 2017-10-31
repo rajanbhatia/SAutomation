@@ -280,7 +280,8 @@ public class TEA_Registration_To_Enrolled {
 		    	}
 	    	 	    	    	
 		    	new Select(driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset[3]/div[4]/div/select"))).selectByVisibleText(qualificationtype);    	 
-	    	   	driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset[3]/div[5]/div/input")).clear();
+	    	   	
+		    	driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset[3]/div[5]/div/input")).clear();
 		    	driver.findElement(By.xpath("//form[@id='app_form']/div/div[2]/div/div/fieldset[3]/div[5]/div/input")).sendKeys(qualname);    	  
 		    	new Select(driver.findElement(By.id("IPQ_ADOAP_EDYF"))).selectByVisibleText(yearfrom);
 		    	    	    	
@@ -322,7 +323,7 @@ public class TEA_Registration_To_Enrolled {
 		    }
 	    }
 	    driver.findElement(By.id("app-btn-next")).click();
-	  
+	    if (qualsearchtype.equals("Master of Philosophy") || qualsearchtype.equals("Higher Doctorate") || qualsearchtype.equals("Doctor of Philosophy/Higher Degrees"))	researchEnrolmentAdditionalInfoPage();  // call Additional Info page for the Reasearch quals
 	    // temp this.executeScript("beforesubmission", firstn, lastn, email, dob, city, postcode, mobile, country, coursename, contactaddressline1, contactaddressline2, contactaddressline3, contactaddressline4, gender, contactcountry, homephone, completequalcode, qualname, yearfrom, yearto, firstenrolter, livinginNZcode, nstudentnumber, prevfamilyname, secondname, othersecondname, anyotherqualcode, prevtertiarystudyatunivcode, currentlyatsecondaryschoolcode, currentlystudyingtowards, highsecqual, institutionname, institutiontype, qualificationtype, lastsecschool, lastschoolyear, ethnicity1, ethnicity2, ethnicity3, iwi1, iwi2, iwi3, iwi4, residencystatus, courseyear, coursemonth);
 	    Thread.sleep(500);	      
 	    if (residencystatus.equals("Other") || (residencystatus.equals("Australian Citizen") && livinginNZ.equalsIgnoreCase("No")) || (residencystatus.equalsIgnoreCase("Australian Permanent Resident") && livinginNZ.equals("No")) || (residencystatus.equalsIgnoreCase("Australian and NZ Permanent Resident") && livinginNZ.equalsIgnoreCase("No")))
@@ -392,7 +393,7 @@ public class TEA_Registration_To_Enrolled {
     //Respond to offer page
     assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[1]/h1")).getText(), "Respond to offer");
     assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div/div[1]/h2")).getText(), "About your offer");
-    assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div/div[2]/div/div/fieldset/p[1]")).getText(), "Congratulations on your offer from the University of Waikato for the "+coursename+".");
+    /// temp as M. Phil showing only qualsearch type and not exact name assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div/div[2]/div/div/fieldset/p[1]")).getText(), "Congratulations on your offer from the University of Waikato for the "+coursename+".");
     assertEquals(driver.findElement(By.xpath("//html/body/div[1]/form/div[2]/div/div/div[2]/div/div/fieldset/p[3]")).getText(), "To accept your offer please select the Accept button below. If you do not wish to accept a place at the University, please select the Decline button to inform us of your decision.");
     if (currentlystudyingtowards.equalsIgnoreCase("NCEA Level 3 Certificate"))
     {
@@ -896,6 +897,38 @@ public class TEA_Registration_To_Enrolled {
 		//string=new Timestamp(System.currentTimeMillis()).getTime()+""+cal.get(Calendar.DATE)+string;
 		string=System.currentTimeMillis()+""+cal.get(Calendar.DATE)+string;
 		return string;
+	}
+	
+	public void researchEnrolmentAdditionalInfoPage()
+	{
+		//Additional Info page
+		assertEquals(driver.findElement(By.xpath("//*[@id='app_form']/div/div[2]/div/div/fieldset[1]/div[2]/p")).getText(), "Do you intend to enrol full-time or part-time? *");
+		driver.findElement(By.id("IPQ_ADOAP_MOAF")).click(); //Full time radio button
+		driver.findElement(By.id("IPQ_ADOAP_OVRV")).clear();
+		driver.findElement(By.id("IPQ_ADOAP_OVRV")).sendKeys("Area of research interest overview");
+		driver.findElement(By.id("IPQ_ADOAP_FUNDN")).click(); // No funding
+		driver.findElement(By.id("IPQ_ADOAP_SCHOLN")).click();  // No scholarship
+		driver.findElement(By.id("IPQ_ADOAP_SCONN")).click();  // No specific staff contact
+		driver.findElement(By.id("IPQ_ADOAP_PRED1N")).click();  // No doctorate enrolment
+		
+		
+		driver.findElement(By.id("IPQ_ADOAP_RF1N")).clear();
+		driver.findElement(By.id("IPQ_ADOAP_RF1N")).sendKeys("Referee 1");
+		driver.findElement(By.id("IPQ_ADOAP_RF1P")).clear();
+		driver.findElement(By.id("IPQ_ADOAP_RF1P")).sendKeys("Position 1");
+		driver.findElement(By.id("IPQ_ADOAP_RF1E")).clear();
+		driver.findElement(By.id("IPQ_ADOAP_RF1E")).sendKeys("Email 1");
+		
+		driver.findElement(By.id("IPQ_ADOAP_RF2N")).clear();
+		driver.findElement(By.id("IPQ_ADOAP_RF2N")).sendKeys("Referee 2");
+		driver.findElement(By.id("IPQ_ADOAP_RF2P")).clear();
+		driver.findElement(By.id("IPQ_ADOAP_RF2P")).sendKeys("Position 2");
+		driver.findElement(By.id("IPQ_ADOAP_RF2E")).clear();
+		driver.findElement(By.id("IPQ_ADOAP_RF2E")).sendKeys("Email 2");
+		
+		
+    	driver.findElement(By.id("app-btn-next")).click(); //click Next button
+    
 	}
   
 }
