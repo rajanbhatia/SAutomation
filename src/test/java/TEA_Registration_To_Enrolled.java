@@ -323,7 +323,7 @@ public class TEA_Registration_To_Enrolled {
 		    }
 	    }
 	    driver.findElement(By.id("app-btn-next")).click();
-	    if (qualsearchtype.equals("Master of Philosophy") || qualsearchtype.equals("Higher Doctorate") || qualsearchtype.equals("Doctor of Philosophy/Higher Degrees"))	researchEnrolmentAdditionalInfoPage();  // call Additional Info page for the Reasearch quals
+	    // Not required as Research quals do not need Paper selection from MyWaikato but through SITS (staff). if (qualsearchtype.equals("Master of Philosophy") || qualsearchtype.equals("Higher Doctorate") || qualsearchtype.equals("Doctor of Philosophy/Higher Degrees"))	researchEnrolmentAdditionalInfoPage(residencystatus, livinginNZ);  // call Additional Info page for the Reasearch quals
 	    // temp this.executeScript("beforesubmission", firstn, lastn, email, dob, city, postcode, mobile, country, coursename, contactaddressline1, contactaddressline2, contactaddressline3, contactaddressline4, gender, contactcountry, homephone, completequalcode, qualname, yearfrom, yearto, firstenrolter, livinginNZcode, nstudentnumber, prevfamilyname, secondname, othersecondname, anyotherqualcode, prevtertiarystudyatunivcode, currentlyatsecondaryschoolcode, currentlystudyingtowards, highsecqual, institutionname, institutiontype, qualificationtype, lastsecschool, lastschoolyear, ethnicity1, ethnicity2, ethnicity3, iwi1, iwi2, iwi3, iwi4, residencystatus, courseyear, coursemonth);
 	    Thread.sleep(500);	      
 	    if (residencystatus.equals("Other") || (residencystatus.equals("Australian Citizen") && livinginNZ.equalsIgnoreCase("No")) || (residencystatus.equalsIgnoreCase("Australian Permanent Resident") && livinginNZ.equals("No")) || (residencystatus.equalsIgnoreCase("Australian and NZ Permanent Resident") && livinginNZ.equalsIgnoreCase("No")))
@@ -500,6 +500,7 @@ public class TEA_Registration_To_Enrolled {
     //new Select(driver.findElement(By.id("ANSWER.TTQ.MENSYS.2."))).selectByIndex(1); // select the first element
     if (coursename.equals("Bachelor of Business"))		new Select(driver.findElement(By.id("ANSWER.TTQ.MENSYS.2."))).selectByVisibleText("Digital Business (Hamilton)"); // select major for Bachelor of Business
     else if (coursename.equals("Bachelor of Arts"))		new Select(driver.findElement(By.id("ANSWER.TTQ.MENSYS.2."))).selectByVisibleText("Economics (Hamilton)"); // select major for Bachelor of Arts
+    
     driver.findElement(By.name("NEXT.DUMMY.MENSYS.1")).click(); // click Next
     
     //Back to Enrolment page
@@ -899,7 +900,7 @@ public class TEA_Registration_To_Enrolled {
 		return string;
 	}
 	
-	public void researchEnrolmentAdditionalInfoPage()
+	/**public void researchEnrolmentAdditionalInfoPage(String residencystatus, String livinginNZ)
 	{
 		//Additional Info page
 		assertEquals(driver.findElement(By.xpath("//*[@id='app_form']/div/div[2]/div/div/fieldset[1]/div[2]/p")).getText(), "Do you intend to enrol full-time or part-time? *");
@@ -926,9 +927,12 @@ public class TEA_Registration_To_Enrolled {
 		driver.findElement(By.id("IPQ_ADOAP_RF2E")).clear();
 		driver.findElement(By.id("IPQ_ADOAP_RF2E")).sendKeys("Email 2");
 		
-		
-    	driver.findElement(By.id("app-btn-next")).click(); //click Next button
+		if (residencystatus.equals("Other") || (residencystatus.equals("Australian Citizen") && livinginNZ.equalsIgnoreCase("No")) || (residencystatus.equalsIgnoreCase("Australian Permanent Resident") && livinginNZ.equals("No")) || (residencystatus.equalsIgnoreCase("Australian and NZ Permanent Resident") && livinginNZ.equalsIgnoreCase("No"))) 
+		{	//do nothing as another condition of internation will need to be checked
+			
+		}
+		else    	driver.findElement(By.id("app-btn-next")).click(); //click Next button
     
-	}
+	}**/
   
 }
